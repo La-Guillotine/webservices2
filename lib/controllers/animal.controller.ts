@@ -1,10 +1,14 @@
 import { Request, Response } from "express";
-
+import { Animal } from "../models/animal";
 
 export class AnimalController {
 
     public getAnimals (req: Request, res: Response) {
-
+        console.log("hello");
+        Animal.findAll<Animal>({})
+            .then((animals: Array<Animal>) => res.json(animals))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
     }
 
     public getAnimal (req: Request, res: Response) {

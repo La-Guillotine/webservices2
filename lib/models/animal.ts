@@ -21,7 +21,8 @@ Animal.init(
     },
     {
         tableName: "animal",
-        sequelize: database, // this bit is important
+        sequelize: database, // this bit is important,
+        timestamps: false
     }
 );
   

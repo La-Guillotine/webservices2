@@ -12,11 +12,14 @@ export class AnimalController {
     }
 
     public getAnimal (req: Request, res: Response) {
-
+        Animal.findOne({ where: { id: req.params.id } })
+        .then((animal: Animal) => res.json(animal))
+        .catch((err: Error) => res.status(500).json(err))
+    ;
     }
 
     public addAnimal (req: Request, res: Response) {
-
+        
     }
 
     public removeAnimal (req: Request, res: Response) {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Animal } from "../models/animal";
+import { Animal } from "../models/animal.model";
 
 export class AnimalController {
 

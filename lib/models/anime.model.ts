@@ -2,12 +2,12 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
 
-export class Animal extends Model {
+export class Anime extends Model {
     public id: number;
     public name: string;
 }
 
-Animal.init(
+Anime.init(
     {
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -15,15 +15,13 @@ Animal.init(
             primaryKey: true,
         },
         name: {
-            type: new DataTypes.STRING(128),
+            type: new DataTypes.STRING(50),
             allowNull: false,
         },
     },
     {
-        tableName: "animal",
+        tableName: "anime",
         sequelize: database, // this bit is important,
         timestamps: false
     }
 );
-  
-//Animal.sync({ force: true }).then(() => console.log("Node table created"));

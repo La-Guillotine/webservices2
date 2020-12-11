@@ -4,14 +4,19 @@ import { Animal } from "../models/animal.model";
 export class AnimalController {
 
     public getAnimals (req: Request, res: Response) {
-        Animal.findAll<Animal>({})
+        Animal.findAll<Animal>({
+            include: [Animal.associations.users]
+        })
             .then((animals: Array<Animal>) => res.json(animals))
             .catch((err: Error) => res.status(500).json(err))
         ;
     }
 
     public getAnimal (req: Request, res: Response) {
-        Animal.findOne({ where: { id: req.params.id } })
+        Animal.findOne({ 
+            where: { id: req.params.id },
+            include:[Animal.associations.users]
+         })
             .then((animal: Animal) => res.json(animal))
             .catch((err: Error) => res.status(500).json(err))
         ;

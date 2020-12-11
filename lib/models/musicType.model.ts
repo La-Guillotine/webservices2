@@ -1,6 +1,7 @@
 // lib/models/node.model.ts
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
+import { User } from "./user.model";
 
 export class MusicType extends Model {
     public id: number;
@@ -25,3 +26,16 @@ MusicType.init(
         timestamps: false
     }
 );
+
+MusicType.belongsToMany(User, {
+    as : "users",
+    foreignKey: "user_id",
+    through: "user_musictype",
+    timestamps: false
+});
+User.belongsToMany(MusicType, {
+    as: "musictypes",
+    foreignKey: "musictype_id",
+    through: "user_musictype",
+    timestamps: false
+});

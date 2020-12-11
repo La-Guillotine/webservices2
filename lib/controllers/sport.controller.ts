@@ -4,14 +4,19 @@ import { Sport } from "../models/sport.model";
 export class SportController {
 
     public getSports (req: Request, res: Response) {
-        Sport.findAll<Sport>({})
+        Sport.findAll<Sport>({
+            include:[Sport.associations.users]
+        })
             .then((sports: Array<Sport>) => res.json(sports))
             .catch((err: Error) => res.status(500).json(err))
         ;
     }
 
     public getSport (req: Request, res: Response) {
-        Sport.findOne({ where: { id: req.params.id } })
+        Sport.findOne({ 
+            where: { id: req.params.id },
+            include:[Sport.associations.users]
+         })
             .then((sport: Sport) => res.json(sport))
             .catch((err: Error) => res.status(500).json(err))
         ;

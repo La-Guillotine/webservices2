@@ -1,6 +1,7 @@
 // lib/models/node.model.ts
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
+import { User } from "./user.model";
 
 export class Animal extends Model {
     public id: number;
@@ -25,3 +26,16 @@ Animal.init(
         timestamps: false
     }
 );
+
+Animal.belongsToMany(User, {
+    as : "users",
+    foreignKey: "user_id",
+    through: "user_animal",
+    timestamps: false
+});
+User.belongsToMany(Animal, {
+    as: "animals",
+    foreignKey: "animal_id",
+    through: "user_animal",
+    timestamps: false
+});

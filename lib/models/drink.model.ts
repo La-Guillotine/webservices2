@@ -1,6 +1,7 @@
 // lib/models/node.model.ts
 import { Sequelize, Model, DataTypes, BuildOptions, TinyIntegerDataType } from "sequelize";
 import { database } from "../config/database";
+import { User } from "./user.model";
 
 export class Drink extends Model {
     public id: number;
@@ -30,3 +31,16 @@ Drink.init(
         timestamps: false
     }
 );
+
+Drink.belongsToMany(User, {
+    as : "users",
+    foreignKey: "user_id",
+    through: "user_drink",
+    timestamps: false
+});
+User.belongsToMany(Drink, {
+    as: "drinks",
+    foreignKey: "drink_id",
+    through: "user_drink",
+    timestamps: false
+});

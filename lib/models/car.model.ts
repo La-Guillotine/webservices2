@@ -1,6 +1,7 @@
 // lib/models/node.model.ts
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
+import { User } from "./user.model";
 
 export class Car extends Model {
     public id: number;
@@ -30,3 +31,16 @@ Car.init(
         timestamps: false
     }
 );
+
+Car.belongsToMany(User, {
+    as : "users",
+    foreignKey: "user_id",
+    through: "user_car",
+    timestamps: false
+});
+User.belongsToMany(Car, {
+    as: "cars",
+    foreignKey: "car_id",
+    through: "user_car",
+    timestamps: false
+});

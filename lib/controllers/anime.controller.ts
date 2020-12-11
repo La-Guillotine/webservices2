@@ -5,14 +5,19 @@ import { Anime } from "../models/anime.model";
 export class AnimeController {
 
     public getAnimes (req: Request, res: Response) {
-        Anime.findAll<Anime>({})
+        Anime.findAll<Anime>({
+            include:[Anime.associations.users]
+        })
         .then((animes: Array<Anime>) => res.json(animes))
         .catch((err: Error) => res.status(500).json(err))
     ;
     }
 
     public getAnime (req: Request, res: Response) {
-        Anime.findOne({ where: { id: req.params.id } })
+        Anime.findOne({ 
+            where: { id: req.params.id },
+            include:[Anime.associations.users]
+         })
             .then((anime: Anime) => res.json(anime))
             .catch((err: Error) => res.status(500).json(err))
         ;

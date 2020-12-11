@@ -5,7 +5,10 @@ export class CityController {
 
     public getCitys (req: Request, res: Response) {
         City.findAll<City>({
-            include: [City.associations.region]
+            include: [
+                City.associations.region,
+                City.associations.users
+            ]
         })
         .then((cities: Array<City>) => res.json(cities))
         .catch((err: Error) => res.status(500).json(err))
@@ -13,15 +16,27 @@ export class CityController {
     }
 
     public getCity (req: Request, res: Response) {
-
+        City.findOne({ 
+            where: { id: req.params.id },
+            include:[City.associations.users]
+         })
+            .then((city: City) => res.json(city))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
     }
 
     public addCity (req: Request, res: Response) {
-
+        City.create({ name: req.body.name, isTeamPlay: req.body.isTeamPlay })
+        .then((city: City) => res.json(city))
+        .catch((err: Error) => res.status(500).json(err))
+    ;
     }
 
     public removeCity (req: Request, res: Response) {
-
+        City.destroy({ where: { id: req.params.id } })
+            .then((value: number) => res.json(value))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
     }
 
 }

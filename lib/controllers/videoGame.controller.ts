@@ -4,14 +4,19 @@ import { Videogame } from "../models/videogame.model";
 export class VideoGameController {
 
     public getVideoGames (req: Request, res: Response) {
-        Videogame.findAll<Videogame>({})
+        Videogame.findAll<Videogame>({
+            include:[Videogame.associations.users]
+        })
             .then((videoGames: Array<Videogame>) => res.json(videoGames))
             .catch((err: Error) => res.status(500).json(err))
         ;
     }
 
     public getVideoGame (req: Request, res: Response) {
-        Videogame.findOne({ where: { id: req.params.id } })
+        Videogame.findOne({ 
+            where: { id: req.params.id },
+            include:[Videogame.associations.users]
+         })
             .then((videoGame: Videogame) => res.json(videoGame))
             .catch((err: Error) => res.status(500).json(err))
         ;

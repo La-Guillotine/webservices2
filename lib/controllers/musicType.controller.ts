@@ -5,14 +5,19 @@ import { MusicType } from "../models/musicType.model";
 export class MusicTypeController {
 
     public getMusicTypes (req: Request, res: Response) {
-        MusicType.findAll<MusicType>({})
+        MusicType.findAll<MusicType>({
+            include:[MusicType.associations.users]
+        })
         .then((musicTypes: Array<MusicType>) => res.json(musicTypes))
         .catch((err: Error) => res.status(500).json(err))
     ;
     }
 
     public getMusicType (req: Request, res: Response) {
-        MusicType.findOne({ where: { id: req.params.id } })
+        MusicType.findOne({ 
+            where: { id: req.params.id },
+            include:[MusicType.associations.users]
+         })
             .then((musicType: MusicType) => res.json(musicType))
             .catch((err: Error) => res.status(500).json(err))
         ;

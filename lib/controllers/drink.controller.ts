@@ -4,14 +4,19 @@ import { Drink } from "../models/drink.model";
 export class DrinkController {
 
     public getDrinks (req: Request, res: Response) {
-        Drink.findAll<Drink>({})
+        Drink.findAll<Drink>({
+            include:[Drink.associations.users]
+        })
             .then((drinks: Array<Drink>) => res.json(drinks))
             .catch((err: Error) => res.status(500).json(err))
         ;
     }
 
     public getDrink (req: Request, res: Response) {
-        Drink.findOne({ where: { id: req.params.id } })
+        Drink.findOne({ 
+            where: { id: req.params.id },
+            include:[Drink.associations.users]
+         })
             .then((drink: Drink) => res.json(drink))
             .catch((err: Error) => res.status(500).json(err))
         ;

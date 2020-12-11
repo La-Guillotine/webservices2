@@ -4,14 +4,19 @@ import { Food } from "../models/food.model";
 export class FoodController {
 
     public getFoods (req: Request, res: Response) {
-        Food.findAll<Food>({})
+        Food.findAll<Food>({
+            include:[Food.associations.users]
+        })
         .then((foods: Array<Food>) => res.json(foods))
         .catch((err: Error) => res.status(500).json(err))
     ;
     }
 
     public getFood (req: Request, res: Response) {
-        Food.findOne({ where: { id: req.params.id } })
+        Food.findOne({ 
+            where: { id: req.params.id },
+            include:[Food.associations.users]
+         })
             .then((food: Food) => res.json(food))
             .catch((err: Error) => res.status(500).json(err))
         ;

@@ -5,14 +5,19 @@ import { Car } from "../models/car.model";
 export class CarController {
 
     public getCars (req: Request, res: Response) {
-        Car.findAll<Car>({})
+        Car.findAll<Car>({
+            include:[Car.associations.users]
+        })
             .then((cars: Array<Car>) => res.json(cars))
             .catch((err: Error) => res.status(500).json(err))
         ;
     }
 
     public getCar (req: Request, res: Response) {
-        Car.findOne({ where: { id: req.params.id } })
+        Car.findOne({ 
+            where: { id: req.params.id },
+            include:[Car.associations.users]
+         })
             .then((car: Car) => res.json(car))
             .catch((err: Error) => res.status(500).json(err))
         ;

@@ -1,6 +1,7 @@
 // lib/models/node.model.ts
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
+import { User } from "./user.model";
 
 export class Anime extends Model {
     public id: number;
@@ -25,3 +26,16 @@ Anime.init(
         timestamps: false
     }
 );
+
+Anime.belongsToMany(User, {
+    as : "users",
+    foreignKey: "user_id",
+    through: "user_anime",
+    timestamps: false
+});
+User.belongsToMany(Anime, {
+    as: "animes",
+    foreignKey: "anime_id",
+    through: "user_anime",
+    timestamps: false
+});

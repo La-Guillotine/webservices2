@@ -1,6 +1,7 @@
 // lib/models/node.model.ts
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
+import { User } from "./user.model";
 
 export class FilmType extends Model {
     public id: number;
@@ -25,3 +26,16 @@ FilmType.init(
         timestamps: false
     }
 );
+
+FilmType.belongsToMany(User, {
+    as : "users",
+    foreignKey: "user_id",
+    through: "user_filmtype",
+    timestamps: false
+});
+User.belongsToMany(FilmType, {
+    as: "filmtypes",
+    foreignKey: "filmtype_id",
+    through: "user_filmtype",
+    timestamps: false
+});

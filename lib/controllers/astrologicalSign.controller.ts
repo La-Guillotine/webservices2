@@ -1,17 +1,22 @@
 import { Request, Response } from "express";
-import { AstrologicalSign } from "../models/astrologicalSign";
+import { AstrologicalSign } from "../models/astrologicalSign.model";
 
 export class AstrologicalSignController {
 
     public getAstrologicalSigns (req: Request, res: Response) {
-        AstrologicalSign.findAll<AstrologicalSign>({})
+        AstrologicalSign.findAll<AstrologicalSign>({
+            include: [AstrologicalSign.associations.users]
+        })
             .then((astrologicalSigns: Array<AstrologicalSign>) => res.json(astrologicalSigns))
             .catch((err: Error) => res.status(500).json(err))
         ;
     }
 
     public getAstrologicalSign (req: Request, res: Response) {
-        AstrologicalSign.findOne({ where: { id: req.params.id } })
+        AstrologicalSign.findOne({ 
+            where: { id: req.params.id },
+            include:[AstrologicalSign.associations.users]
+         })
             .then((astrologicalSign: AstrologicalSign) => res.json(astrologicalSign))
             .catch((err: Error) => res.status(500).json(err))
         ;

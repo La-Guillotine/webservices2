@@ -1,6 +1,7 @@
 // lib/models/node.model.ts
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
+import { User } from "./user.model";
 
 export class Videogame extends Model {
     public id: number;
@@ -25,3 +26,16 @@ Videogame.init(
         timestamps: false
     }
 );
+
+Videogame.belongsToMany(User, {
+    as : "users",
+    foreignKey: "user_id",
+    through: "user_videogame",
+    timestamps: false
+});
+User.belongsToMany(Videogame, {
+    as: "videogames",
+    foreignKey: "videogame_id",
+    through: "user_videogame",
+    timestamps: false
+});

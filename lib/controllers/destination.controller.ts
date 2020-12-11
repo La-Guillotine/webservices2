@@ -5,14 +5,19 @@ import { Destination } from "../models/destination.model";
 export class DestinationController {
 
     public getDestinations (req: Request, res: Response) {
-        Destination.findAll<Destination>({})
+        Destination.findAll<Destination>({
+            include:[Destination.associations.users]
+        })
             .then((destinations: Array<Destination>) => res.json(destinations))
             .catch((err: Error) => res.status(500).json(err))
         ;
     }
 
     public getDestination (req: Request, res: Response) {
-        Destination.findOne({ where: { id: req.params.id } })
+        Destination.findOne({ 
+            where: { id: req.params.id },
+            include:[Destination.associations.users]
+         })
             .then((destination: Destination) => res.json(destination))
             .catch((err: Error) => res.status(500).json(err))
         ;

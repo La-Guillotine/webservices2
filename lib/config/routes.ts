@@ -12,6 +12,7 @@ import { CarController } from "../controllers/car.controller";
 import { DrinkController } from "../controllers/drink.controller";
 import { SportController } from "../controllers/sport.controller";
 import { UserController } from "../controllers/user.controller";
+import { CityController } from "../controllers/city.controller";
 
 export class Routes {
     public app: express.Application;
@@ -29,6 +30,7 @@ export class Routes {
     public drinkController: DrinkController = new DrinkController();
     public sportController: SportController = new SportController();
     public userController: UserController = new UserController();
+    public cityController: CityController = new CityController();
 
     public routes(app): void {
         //------------------
@@ -147,6 +149,15 @@ export class Routes {
         app.route("/users/:id")
             .get(this.userController.getUser)
             .post(this.userController.removeUser)
+
+        //------------------
+
+        app.route("/cities")
+            .get(this.cityController.getCitys)
+            .post(this.cityController.addCity)
+        app.route("/cities/:id")
+            .get(this.cityController.getCity)
+            .post(this.cityController.removeCity)
 
 
     }

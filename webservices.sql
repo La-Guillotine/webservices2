@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `animal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table webservices.animal : ~0 rows (environ)
 /*!40000 ALTER TABLE `animal` DISABLE KEYS */;
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `anime` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table webservices.anime : ~0 rows (environ)
 /*!40000 ALTER TABLE `anime` DISABLE KEYS */;
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `city` (
   PRIMARY KEY (`id`),
   KEY `FK_city_region` (`region_id`) USING BTREE,
   CONSTRAINT `FK_city_region` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table webservices.city : ~0 rows (environ)
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `region` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table webservices.region : ~0 rows (environ)
 /*!40000 ALTER TABLE `region` DISABLE KEYS */;
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `FK_user_astrologicalsign` (`astrologicalsign_id`),
   CONSTRAINT `FK_user_astrologicalsign` FOREIGN KEY (`astrologicalsign_id`) REFERENCES `astrologicalsign` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_user_city` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table webservices.user : ~0 rows (environ)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;

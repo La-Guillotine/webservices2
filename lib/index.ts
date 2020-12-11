@@ -3,17 +3,17 @@ import * as express from "express";
 // import * as bodyParser from "body-parser";
 import * as cors from 'cors';
 import * as jwt from 'jsonwebtoken';
-// import { Routes } from "./config/routes";
+import { Routes } from "./config/routes";
 require('dotenv').config()
 
 class App {
   public app: express.Application;
-//   public routePrv: Routes = new Routes();
+  public router: Routes = new Routes();
 
   constructor() {
     this.app = express();
     this.config();
-    // this.routePrv.routes(this.app);
+    this.router.routes(this.app);
   }
 
   private config(): void {

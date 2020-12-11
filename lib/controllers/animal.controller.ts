@@ -11,7 +11,6 @@ export class AnimalController {
     }
 
     public getAnimal (req: Request, res: Response) {
-
         Animal.findOne({ where: { id: req.params.id } })
             .then((animal: Animal) => res.json(animal))
             .catch((err: Error) => res.status(500).json(err))
@@ -19,11 +18,17 @@ export class AnimalController {
     }
 
     public addAnimal (req: Request, res: Response) {
-        
+        Animal.create({ name: req.body.name })
+            .then((animal: Animal) => res.json(animal))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
     }
 
     public removeAnimal (req: Request, res: Response) {
-
+        Animal.destroy({ where: { id: req.params.id } })
+            .then((value: number) => res.json(value))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
     }
 
 }

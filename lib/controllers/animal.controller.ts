@@ -4,7 +4,6 @@ import { Animal } from "../models/animal";
 export class AnimalController {
 
     public getAnimals (req: Request, res: Response) {
-        console.log("hello");
         Animal.findAll<Animal>({})
             .then((animals: Array<Animal>) => res.json(animals))
             .catch((err: Error) => res.status(500).json(err))
@@ -12,10 +11,11 @@ export class AnimalController {
     }
 
     public getAnimal (req: Request, res: Response) {
+
         Animal.findOne({ where: { id: req.params.id } })
-        .then((animal: Animal) => res.json(animal))
-        .catch((err: Error) => res.status(500).json(err))
-    ;
+            .then((animal: Animal) => res.json(animal))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
     }
 
     public addAnimal (req: Request, res: Response) {

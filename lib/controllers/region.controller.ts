@@ -5,10 +5,12 @@ import { Region } from "../models/region.model";
 export class RegionController {
 
     public getRegions (req: Request, res: Response) {
-        Region.findAll<Region>({})
-            .then((regions: Array<Region>) => res.json(regions))
-            .catch((err: Error) => res.status(500).json(err))
-        ;
+        Region.findAll<Region>({
+            include: [Region.associations.cities]
+        })
+        .then((regions: Array<Region>) => res.json(regions))
+        .catch((err: Error) => res.status(500).json(err))
+    ;
     }
 
     public getRegion (req: Request, res: Response) {

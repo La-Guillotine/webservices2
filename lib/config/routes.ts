@@ -7,6 +7,11 @@ import { FoodController } from "../controllers/food.controller";
 import { MusicTypeController } from "../controllers/musicType.controller";
 import { RegionController } from "../controllers/region.controller";
 import { VideoGameController } from "../controllers/videoGame.controller";
+import { AnimeController } from "../controllers/anime.controller";
+import { CarController } from "../controllers/car.controller";
+import { DrinkController } from "../controllers/drink.controller";
+import { SportController } from "../controllers/sport.controller";
+import { UserController } from "../controllers/user.controller";
 
 export class Routes {
     public app: express.Application;
@@ -19,6 +24,11 @@ export class Routes {
     public musicTypeController: MusicTypeController = new MusicTypeController();
     public regionController: RegionController = new RegionController();
     public videoGameController: VideoGameController = new VideoGameController();
+    public animeController: AnimeController = new AnimeController();
+    public carController: CarController = new CarController();
+    public drinkController: DrinkController = new DrinkController();
+    public sportController: SportController = new SportController();
+    public userController: UserController = new UserController();
 
     public routes(app): void {
         //------------------
@@ -92,6 +102,53 @@ export class Routes {
         app.route("/videoGames/:id")
             .get(this.videoGameController.getVideoGame)
             .post(this.videoGameController.removeVideoGame)
+
+        //------------------
+
+        app.route("/animes")
+            .get(this.animeController.getAnimes)
+            .post(this.animeController.addAnime)
+        app.route("/animes/:id")
+            .get(this.animeController.getAnime)
+            .post(this.animeController.removeAnime)
+
+        //------------------
+
+        app.route("/cars")
+            .get(this.carController.getCars)
+            .post(this.carController.addCar)
+        app.route("/cars/:id")
+            .get(this.carController.getCar)
+            .post(this.carController.removeCar)
+
+        //------------------
+
+        app.route("/drinks")
+            .get(this.drinkController.getDrinks)
+            .post(this.drinkController.addDrink)
+        app.route("/drinks/:id")
+            .get(this.drinkController.getDrink)
+            .post(this.drinkController.removeDrink)
+
+        //------------------
+
+        app.route("/sports")
+            .get(this.sportController.getSports)
+            .post(this.sportController.addSport)
+        app.route("/sports/:id")
+            .get(this.sportController.getSport)
+            .post(this.sportController.removeSport)
+
+        //------------------
+
+        app.route("/users")
+            .get(this.userController.getUsers)
+            .post(this.userController.addUser)
+        app.route("/users/:id")
+            .get(this.userController.getUser)
+            .post(this.userController.removeUser)
+
+
     }
 
 }

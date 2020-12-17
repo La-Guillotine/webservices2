@@ -121,6 +121,32 @@ module.exports = {
                 }
             }
         },
+        "/animes/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID de l'anime que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime l'anime par l'ID donné",
+              "tags": [
+                "Anime"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Anime supprimé",
+                  "schema": {
+                    "$ref": "#/definitions/Anime"
+                  }
+                }
+              }
+            },
+            
+        },
         "/astrologicalSigns": {
             "get": {
                 "tags": [
@@ -163,6 +189,32 @@ module.exports = {
                     }
                 }
             }
+        },
+        "/astrologicalSigns/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID du signe astrologique que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime le signe astrologique par l'ID donné",
+              "tags": [
+                "Astrological sign"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Signe astrologique supprimé",
+                  "schema": {
+                    "$ref": "#/definitions/AstrologicalSign"
+                  }
+                }
+              }
+            },
+            
         },
         "/cars": {
             "get": {
@@ -207,6 +259,32 @@ module.exports = {
                 }
             }
         },
+        "/cars/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID de la voiture que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime la voiture par l'ID donné",
+              "tags": [
+                "Car"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Voiture supprimée",
+                  "schema": {
+                    "$ref": "#/definitions/Car"
+                  }
+                }
+              }
+            },
+            
+        },
         "/cities": {
             "get": {
                 "tags": [
@@ -249,6 +327,32 @@ module.exports = {
                     }
                 }
             }
+        },
+        "/cities/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID de la ville que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime la ville par l'ID donné",
+              "tags": [
+                "City"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Ville supprimée",
+                  "schema": {
+                    "$ref": "#/definitions/City"
+                  }
+                }
+              }
+            },
+            
         },
         "/destinations": {
             "get": {
@@ -293,6 +397,32 @@ module.exports = {
                 }
             }
         },
+        "/destinations/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID de la destination que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime la destination par l'ID donné",
+              "tags": [
+                "Destination"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Destination supprimée",
+                  "schema": {
+                    "$ref": "#/definitions/Destination"
+                  }
+                }
+              }
+            },
+            
+        },
         "/drinks": {
             "get": {
                 "tags": [
@@ -336,7 +466,33 @@ module.exports = {
                 }
             }
         },
-        "/filmtypes": {
+        "/drinks/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID de la boisson que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime la boisson par l'ID donné",
+              "tags": [
+                "Drink"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Boisson supprimée",
+                  "schema": {
+                    "$ref": "#/definitions/Drink"
+                  }
+                }
+              }
+            },
+            
+        },
+        "/filmTypes": {
             "get": {
                 "tags": [
                     "Film type"
@@ -378,6 +534,32 @@ module.exports = {
                     }
                 }
             }
+        },
+        "/filmTypes/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID du type de film que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime le type de film par l'ID donné",
+              "tags": [
+                "Film type"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Type de film supprimé",
+                  "schema": {
+                    "$ref": "#/definitions/FilmType"
+                  }
+                }
+              }
+            },
+            
         },
         "/foods": {
             "get": {
@@ -422,6 +604,32 @@ module.exports = {
                 }
             }
         },
+        "/foods/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID du restaurant que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime le restaurant par l'ID donné",
+              "tags": [
+                "Food"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Restaurant supprimé",
+                  "schema": {
+                    "$ref": "#/definitions/Food"
+                  }
+                }
+              }
+            },
+            
+        },
         "/musicTypes": {
             "get": {
                 "tags": [
@@ -464,6 +672,32 @@ module.exports = {
                     }
                 }
             }
+        },
+        "/musicTypes/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID du type de musique que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime le type de musique par l'ID donné",
+              "tags": [
+                "Music type"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Type de musique supprimé",
+                  "schema": {
+                    "$ref": "#/definitions/MusicType"
+                  }
+                }
+              }
+            },
+            
         },
         "/regions": {
             "get": {
@@ -508,6 +742,32 @@ module.exports = {
                 }
             }
         },
+        "/regions/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID de la region que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime la region par l'ID donné",
+              "tags": [
+                "Region"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Region supprimée",
+                  "schema": {
+                    "$ref": "#/definitions/Region"
+                  }
+                }
+              }
+            },
+            
+        },
         "/sports": {
             "get": {
                 "tags": [
@@ -550,6 +810,32 @@ module.exports = {
                     }
                 }
             }
+        },
+        "/sports/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID du sport que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime le sport par l'ID donné",
+              "tags": [
+                "Sport"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Sport supprimé",
+                  "schema": {
+                    "$ref": "#/definitions/Sport"
+                  }
+                }
+              }
+            },
+            
         },
         "/users": {
             "get": {
@@ -594,6 +880,32 @@ module.exports = {
                 }
             }
         },
+        "/users/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID de l'utilisateur que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime l'utilisateur par l'ID donné",
+              "tags": [
+                "User"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Utilisateur supprimé",
+                  "schema": {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+              }
+            },
+            
+        },
         "/videoGames": {
             "get": {
                 "tags": [
@@ -637,7 +949,32 @@ module.exports = {
                 }
             }
         },
-
+        "/videoGames/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID du jeux video que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime le jeux video par l'ID donné",
+              "tags": [
+                "Video game"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Voiture supprimée",
+                  "schema": {
+                    "$ref": "#/definitions/VideoGame"
+                  }
+                }
+              }
+            },
+            
+        },
     },
     "definitions": {
         "Animal": {

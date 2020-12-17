@@ -27,11 +27,12 @@ import * as videogames from '../datas/videogame';
 
 function loadFixtures(): void{
     try{
+        loadRegions();
+        loadCities();
         loadAnimals();
         loadAnimes();
         loadAstrologicalSigns();
-        loadRegions();
-        loadCities();
+        
         // loadCars();
         loadDestinations();
         loadDrinks();
@@ -70,16 +71,16 @@ function loadAstrologicalSigns(): void{
     });
 }
 function loadRegions(): void{
-    regions.forEach(region => {
-        Region.create({ name: region.name })
+    regions.forEach(async region => {
+        await Region.create({ name: region.name })
             .then((region: Region) => console.log(region.id))
             .catch((err: Error) => console.error(err))
         ;
     });
 }
 function loadCities(): void{
-    cities.forEach(city => {
-        City.create({ name: city.name, region_id: city.region_id })
+    cities.forEach(async city => {
+        await City.create({ name: city.name, region_id: city.region_id })
             .then((city: City) => console.log(city.id))
             .catch((err: Error) => console.error(err))
         ;

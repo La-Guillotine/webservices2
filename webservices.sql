@@ -61,13 +61,24 @@ CREATE TABLE IF NOT EXISTS `car` (
 /*!40000 ALTER TABLE `car` DISABLE KEYS */;
 /*!40000 ALTER TABLE `car` ENABLE KEYS */;
 
+-- Listage de la structure de la table webservices. region
+CREATE TABLE IF NOT EXISTS `region` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table webservices.region : ~0 rows (environ)
+/*!40000 ALTER TABLE `region` DISABLE KEYS */;
+/*!40000 ALTER TABLE `region` ENABLE KEYS */;
+
 -- Listage de la structure de la table webservices. city
 CREATE TABLE IF NOT EXISTS `city` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `region_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_city_region` (`region_id`) USING BTREE,
+  KEY `FK_city_region` (`region_id`),
   CONSTRAINT `FK_city_region` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
@@ -131,16 +142,7 @@ CREATE TABLE IF NOT EXISTS `musictype` (
 /*!40000 ALTER TABLE `musictype` DISABLE KEYS */;
 /*!40000 ALTER TABLE `musictype` ENABLE KEYS */;
 
--- Listage de la structure de la table webservices. region
-CREATE TABLE IF NOT EXISTS `region` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table webservices.region : ~0 rows (environ)
-/*!40000 ALTER TABLE `region` DISABLE KEYS */;
-/*!40000 ALTER TABLE `region` ENABLE KEYS */;
 
 -- Listage de la structure de la table webservices. sport
 CREATE TABLE IF NOT EXISTS `sport` (
@@ -153,6 +155,17 @@ CREATE TABLE IF NOT EXISTS `sport` (
 -- Listage des données de la table webservices.sport : ~0 rows (environ)
 /*!40000 ALTER TABLE `sport` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sport` ENABLE KEYS */;
+
+-- Listage de la structure de la table webservices. videogame
+CREATE TABLE IF NOT EXISTS `videogame` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table webservices.videogame : ~0 rows (environ)
+/*!40000 ALTER TABLE `videogame` DISABLE KEYS */;
+/*!40000 ALTER TABLE `videogame` ENABLE KEYS */;
 
 -- Listage de la structure de la table webservices. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -167,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `city_id` int(11) NOT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `astrologicalsign_id` int(11) DEFAULT NULL,
+  `astrologicalsign_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `FK_user_city` (`city_id`),
@@ -319,17 +332,6 @@ CREATE TABLE IF NOT EXISTS `user_videogame` (
 -- Listage des données de la table webservices.user_videogame : ~0 rows (environ)
 /*!40000 ALTER TABLE `user_videogame` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_videogame` ENABLE KEYS */;
-
--- Listage de la structure de la table webservices. videogame
-CREATE TABLE IF NOT EXISTS `videogame` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Listage des données de la table webservices.videogame : ~0 rows (environ)
-/*!40000 ALTER TABLE `videogame` DISABLE KEYS */;
-/*!40000 ALTER TABLE `videogame` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

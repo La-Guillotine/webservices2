@@ -26,7 +26,7 @@ export class CityController {
     }
 
     public addCity (req: Request, res: Response) {
-        City.create({ name: req.body.name, isTeamPlay: req.body.isTeamPlay })
+        City.create({ name: req.body.name, region_id: req.body.region_id })
         .then((city: City) => res.json(city))
         .catch((err: Error) => res.status(500).json(err))
     ;

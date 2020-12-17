@@ -194,6 +194,33 @@ module.exports = {
                     }
                 }
             },
+            "post": {
+                "tags": [
+                    "City"
+                ],
+                "description": "Créer une ville",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "body",
+                        "description": "Ville que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/City"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouvelle ville créée",
+                        "schema": {
+                            "$ref": "#/definitions/City"
+                        }
+                    }
+                }
+            }
         },
         "/destinations": {
             "get": {
@@ -217,7 +244,7 @@ module.exports = {
                 "description": "Créer une destination",
                 "parameters": [
                     {
-                        "name": "car",
+                        "name": "destination",
                         "in": "body",
                         "description": "Destination que l'on souhaite ajouter",
                         "schema": {
@@ -252,6 +279,33 @@ module.exports = {
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Drink"
+                ],
+                "description": "Créer une boisson",
+                "parameters": [
+                    {
+                        "name": "drink",
+                        "in": "body",
+                        "description": "Boisson que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/Drink"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouvelle boisson créée",
+                        "schema": {
+                            "$ref": "#/definitions/Drink"
+                        }
+                    }
+                }
             }
         },
         "/filmtypes": {
@@ -263,6 +317,33 @@ module.exports = {
                 "responses": {
                     "200": {
                         "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/FilmType"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Film type"
+                ],
+                "description": "Créer un typez de film",
+                "parameters": [
+                    {
+                        "name": "filmType",
+                        "in": "body",
+                        "description": "Type de film que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/FilmType"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouveau type de film créé",
                         "schema": {
                             "$ref": "#/definitions/FilmType"
                         }
@@ -284,6 +365,33 @@ module.exports = {
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Food"
+                ],
+                "description": "Créer un restaurant",
+                "parameters": [
+                    {
+                        "name": "food",
+                        "in": "body",
+                        "description": "Restaurant que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/Food"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouveux restaurant créé",
+                        "schema": {
+                            "$ref": "#/definitions/Food"
+                        }
+                    }
+                }
             }
         },
         "/musicTypes": {
@@ -295,6 +403,33 @@ module.exports = {
                 "responses": {
                     "200": {
                         "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/MusicType"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Music type"
+                ],
+                "description": "Créer un type de musique",
+                "parameters": [
+                    {
+                        "name": "musicType",
+                        "in": "body",
+                        "description": "Type de musique que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/MusicType"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouveau type de musique créé",
                         "schema": {
                             "$ref": "#/definitions/MusicType"
                         }
@@ -316,6 +451,33 @@ module.exports = {
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Region"
+                ],
+                "description": "Créer une region",
+                "parameters": [
+                    {
+                        "name": "region",
+                        "in": "body",
+                        "description": "Region que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/Region"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouvelle region créée",
+                        "schema": {
+                            "$ref": "#/definitions/Region"
+                        }
+                    }
+                }
             }
         },
         "/sports": {
@@ -327,6 +489,33 @@ module.exports = {
                 "responses": {
                     "200": {
                         "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Sport"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sport"
+                ],
+                "description": "Créer un sport",
+                "parameters": [
+                    {
+                        "name": "sport",
+                        "in": "body",
+                        "description": "Sport que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/Sport"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouveau sport créé",
                         "schema": {
                             "$ref": "#/definitions/Sport"
                         }
@@ -348,6 +537,33 @@ module.exports = {
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Créer un utilisateur",
+                "parameters": [
+                    {
+                        "name": "utilisateur",
+                        "in": "body",
+                        "description": "Utilisateur que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouvel utilisateur créée",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
             }
         },
         "/videoGames": {
@@ -359,6 +575,33 @@ module.exports = {
                 "responses": {
                     "200": {
                         "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/VideoGame"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Video game"
+                ],
+                "description": "Créer un jeux vidéo",
+                "parameters": [
+                    {
+                        "name": "videoGame",
+                        "in": "body",
+                        "description": "Jeux vidéo que l'on souhaite ajouter",
+                        "schema": {
+                            "$ref": "#/definitions/VideoGame"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nouveau jeux vidéo créé",
                         "schema": {
                             "$ref": "#/definitions/VideoGame"
                         }
@@ -549,7 +792,7 @@ module.exports = {
                 "age": {
                     "type": "integer"
                 },
-                "adress": {
+                "address": {
                     "type": "string"
                 },
                 "city_id": {

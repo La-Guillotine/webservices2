@@ -56,8 +56,9 @@ export class UserController {
                 last_name: req.body.last_name,
                 tel_number: req.body.tel_number,
                 age: req.body.age,
-                adress: req.body.adress,
-                city_id: req.body.city_id
+                address: req.body.address,
+                city_id: req.body.city_id,
+                astrologicalsign_id:req.body.astrologicalsign_id
             })
             .then((user: User) => res.json(user))
             .catch((err: Error) => res.status(500).json(err))

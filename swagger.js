@@ -75,7 +75,29 @@ module.exports = {
                 }
               }
             },
-            
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de l'animal que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Animal"
+                ],
+                "summary": "Récupérer l'animal par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Animal"
+                        }
+                    }
+                }
+            },
         },
         "/animes": {
             "get": {
@@ -145,7 +167,29 @@ module.exports = {
                 }
               }
             },
-            
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de l'anime que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Anime"
+                ],
+                "summary": "Récupérer l'anime par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Anime"
+                        }
+                    }
+                }
+            },
         },
         "/astrologicalSigns": {
             "get": {
@@ -214,6 +258,29 @@ module.exports = {
                   }
                 }
               }
+            },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID du signe astrologique que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Astrological sign"
+                ],
+                "summary": "Récupérer le signe astrologique par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AstrologicalSign"
+                        }
+                    }
+                }
             },
             
         },
@@ -285,6 +352,29 @@ module.exports = {
                 }
               }
             },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de la voiture que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Car"
+                ],
+                "summary": "Récupérer la voiture par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Car"
+                        }
+                    }
+                }
+            },
             
         },
         "/cities": {
@@ -354,6 +444,29 @@ module.exports = {
                   }
                 }
               }
+            },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de la ville que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "City"
+                ],
+                "summary": "Récupérer la ville par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/City"
+                        }
+                    }
+                }
             },
             
         },
@@ -425,6 +538,29 @@ module.exports = {
                 }
               }
             },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de la destination que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Destination"
+                ],
+                "summary": "Récupérer la destination par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Destination"
+                        }
+                    }
+                }
+            },
             
         },
         "/drinks": {
@@ -494,6 +630,29 @@ module.exports = {
                   }
                 }
               }
+            },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de la boisson que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Drink"
+                ],
+                "summary": "Récupérer la boisson par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Drink"
+                        }
+                    }
+                }
             },
             
         },
@@ -565,6 +724,29 @@ module.exports = {
                 }
               }
             },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de le type de film que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Film type"
+                ],
+                "summary": "Récupérer le type de film par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/FilmType"
+                        }
+                    }
+                }
+            },
             
         },
         "/foods": {
@@ -634,6 +816,29 @@ module.exports = {
                   }
                 }
               }
+            },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de le restaurant que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Food"
+                ],
+                "summary": "Récupérer le restaurant par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Food"
+                        }
+                    }
+                }
             },
             
         },
@@ -705,6 +910,29 @@ module.exports = {
                 }
               }
             },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de le type de musique que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Music type"
+                ],
+                "summary": "Récupérer le type de musique par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/MusicType"
+                        }
+                    }
+                }
+            },
             
         },
         "/regions": {
@@ -774,6 +1002,29 @@ module.exports = {
                   }
                 }
               }
+            },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de la region que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Region"
+                ],
+                "summary": "Récupérer la region par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Region"
+                        }
+                    }
+                }
             },
             
         },
@@ -845,6 +1096,29 @@ module.exports = {
                 }
               }
             },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de le sport que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Sport"
+                ],
+                "summary": "Récupérer le sport par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Sport"
+                        }
+                    }
+                }
+            },
             
         },
         "/users": {
@@ -915,6 +1189,29 @@ module.exports = {
                 }
               }
             },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de l'utilisateur que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Récupérer l'utilisateur par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
             
         },
         "/videoGames": {
@@ -984,6 +1281,29 @@ module.exports = {
                   }
                 }
               }
+            },
+            "get": {
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID de le jeux video que l'on souhaite recupérer",
+                      "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Video game"
+                ],
+                "summary": "Récupérer le jeux video par l'ID donné",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/VideoGame"
+                        }
+                    }
+                }
             },
             
         },

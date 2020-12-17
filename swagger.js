@@ -62,7 +62,7 @@ module.exports = {
               }
             ],
             "delete": {
-              "summary": "Supprime l'animal par l'ID donné",
+              "summary": "Supprimer l'animal par l'ID donné",
               "tags": [
                 "Animal"
               ],
@@ -166,6 +166,7 @@ module.exports = {
                 "tags": [
                     "Astrological sign"
                 ],
+                "summary": "Créer un signe astrologique",
                 "description": "Créer un signe astrologique",
                 "parameters": [
                     {
@@ -235,6 +236,7 @@ module.exports = {
                 "tags": [
                     "Car"
                 ],
+                "summary": "Créer une voiture",
                 "description": "Créer une voiture",
                 "parameters": [
                     {
@@ -304,6 +306,7 @@ module.exports = {
                 "tags": [
                     "City"
                 ],
+                "summary": "Créer une ville",
                 "description": "Créer une ville",
                 "parameters": [
                     {
@@ -373,6 +376,7 @@ module.exports = {
                 "tags": [
                     "Destination"
                 ],
+                "summary": "Créer une destination",
                 "description": "Créer une destination",
                 "parameters": [
                     {
@@ -442,6 +446,7 @@ module.exports = {
                 "tags": [
                     "Drink"
                 ],
+                "summary": "Créer une boisson",
                 "description": "Créer une boisson",
                 "parameters": [
                     {
@@ -511,6 +516,7 @@ module.exports = {
                 "tags": [
                     "Film type"
                 ],
+                "summary": "Créer un type de film",
                 "description": "Créer un typez de film",
                 "parameters": [
                     {
@@ -580,6 +586,7 @@ module.exports = {
                 "tags": [
                     "Food"
                 ],
+                "summary": "Créer un restaurant",
                 "description": "Créer un restaurant",
                 "parameters": [
                     {
@@ -649,6 +656,7 @@ module.exports = {
                 "tags": [
                     "Music type"
                 ],
+                "summary": "Créer un type de musique",
                 "description": "Créer un type de musique",
                 "parameters": [
                     {
@@ -718,6 +726,7 @@ module.exports = {
                 "tags": [
                     "Region"
                 ],
+                "summary": "Créer une region",
                 "description": "Créer une region",
                 "parameters": [
                     {
@@ -787,6 +796,7 @@ module.exports = {
                 "tags": [
                     "Sport"
                 ],
+                "summary": "Créer un sport",
                 "description": "Créer un sport",
                 "parameters": [
                     {
@@ -856,6 +866,7 @@ module.exports = {
                 "tags": [
                     "User"
                 ],
+                "summary": "Créer un utilisateur",
                 "description": "Créer un utilisateur",
                 "parameters": [
                     {
@@ -925,6 +936,7 @@ module.exports = {
                 "tags": [
                     "Video game"
                 ],
+                "summary": "Créer un jeux vidéo",
                 "description": "Créer un jeux vidéo",
                 "parameters": [
                     {
@@ -984,7 +996,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -995,7 +1008,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -1006,7 +1020,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -1017,10 +1032,12 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
                 "brand": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -1031,7 +1048,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
                 "region_id": {
                     "type": "integer",
@@ -1046,7 +1064,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -1057,10 +1076,12 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
                 "isAlcoholised":{
-                    "type":"boolean"
+                    "type":"boolean",
+                    "required":true
                 }
             }
         },
@@ -1071,7 +1092,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -1082,18 +1104,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
-                },
-            }
-        },
-        "Animal": {
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "uniqueItems": true
-                },
-                "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -1104,7 +1116,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -1115,7 +1128,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },
@@ -1126,10 +1140,12 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
                 "isTeamPlay": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "required":true
                 },
             }
         },
@@ -1140,37 +1156,48 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "email": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
                 "password": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
                 "first_name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
                 "last_name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
                 "tel_number": {
-                    "type": "string"
+                    "type": "string",
+                    "required":false
                 },
                 "age": {
-                    "type": "integer"
+                    "type": "integer",
+                    "required":true
                 },
                 "address": {
-                    "type": "string"
+                    "type": "string",
+                    "required":false
                 },
                 "city_id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "required":true
                 },
                 "createdAt": {
-                    "type": "datetime"
+                    "type": "datetime",
+                    "required":false
                 },
                 "updatedAt": {
-                    "type": "datetime"
+                    "type": "datetime",
+                    "required":false
                 },
                 "astrologicalsign_id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "required":true
                 },
             }
         },
@@ -1181,7 +1208,8 @@ module.exports = {
                     "uniqueItems": true
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "required":true
                 },
             }
         },

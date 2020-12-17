@@ -26,6 +26,7 @@ module.exports = {
                 "tags": [
                     "Animal"
                 ],
+                "summary": "Créer un animal",
                 "description": "Créer un animal",
                 "parameters": [
                     {
@@ -50,6 +51,32 @@ module.exports = {
                 }
             }
         },
+        "/animals/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID de l'animal que l'on souhaite supprimer",
+                "type": "integer"
+              }
+            ],
+            "delete": {
+              "summary": "Supprime l'animal par l'ID donné",
+              "tags": [
+                "Animal"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Animal supprimé",
+                  "schema": {
+                    "$ref": "#/definitions/Animal"
+                  }
+                }
+              }
+            },
+            
+        },
         "/animes": {
             "get": {
                 "tags": [
@@ -69,6 +96,7 @@ module.exports = {
                 "tags": [
                     "Anime"
                 ],
+                "summary": "Créer un anime",
                 "description": "Créer un anime",
                 "parameters": [
                     {

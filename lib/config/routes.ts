@@ -40,7 +40,7 @@ export class Routes {
             .post(this.animalController.addAnimal)
         app.route("/animals/:id")
             .get(this.animalController.getAnimal)
-            .post(this.animalController.removeAnimal)
+            .delete(this.animalController.removeAnimal)
 
         //-------------------
 
@@ -49,7 +49,7 @@ export class Routes {
             .post(this.astrologicalSignController.addAstrologicalSign)
         app.route("/astrologicalSigns/:id")
             .get(this.astrologicalSignController.getAstrologicalSign)
-            .post(this.astrologicalSignController.removeAstrologicalSign)
+            .delete(this.astrologicalSignController.removeAstrologicalSign)
 
         //------------------
 
@@ -58,7 +58,7 @@ export class Routes {
             .post(this.destinationController.addDestination)
         app.route("/destinations/:id")
             .get(this.destinationController.getDestination)
-            .post(this.destinationController.removeDestination)
+            .delete(this.destinationController.removeDestination)
 
         //------------------
 
@@ -67,7 +67,7 @@ export class Routes {
             .post(this.filmTypeController.addFilmType)
         app.route("/filmTypes/:id")
             .get(this.filmTypeController.getFilmType)
-            .post(this.filmTypeController.removeFilmType)
+            .delete(this.filmTypeController.removeFilmType)
 
         //------------------
 
@@ -76,7 +76,7 @@ export class Routes {
             .post(this.foodController.addFood)
         app.route("/foods/:id")
             .get(this.foodController.getFood)
-            .post(this.foodController.removeFood)
+            .delete(this.foodController.removeFood)
 
         //------------------
 
@@ -85,7 +85,7 @@ export class Routes {
             .post(this.musicTypeController.addMusicType)
         app.route("/musicTypes/:id")
             .get(this.musicTypeController.getMusicType)
-            .post(this.musicTypeController.removeMusicType)
+            .delete(this.musicTypeController.removeMusicType)
 
         //------------------
 
@@ -94,7 +94,7 @@ export class Routes {
             .post(this.regionController.addRegion)
         app.route("/regions/:id")
             .get(this.regionController.getRegion)
-            .post(this.regionController.removeRegion)
+            .delete(this.regionController.removeRegion)
 
         //------------------
 
@@ -103,7 +103,7 @@ export class Routes {
             .post(this.videoGameController.addVideoGame)
         app.route("/videoGames/:id")
             .get(this.videoGameController.getVideoGame)
-            .post(this.videoGameController.removeVideoGame)
+            .delete(this.videoGameController.removeVideoGame)
 
         //------------------
 
@@ -112,7 +112,7 @@ export class Routes {
             .post(this.animeController.addAnime)
         app.route("/animes/:id")
             .get(this.animeController.getAnime)
-            .post(this.animeController.removeAnime)
+            .delete(this.animeController.removeAnime)
 
         //------------------
 
@@ -121,7 +121,7 @@ export class Routes {
             .post(this.carController.addCar)
         app.route("/cars/:id")
             .get(this.carController.getCar)
-            .post(this.carController.removeCar)
+            .delete(this.carController.removeCar)
 
         //------------------
 
@@ -130,7 +130,7 @@ export class Routes {
             .post(this.drinkController.addDrink)
         app.route("/drinks/:id")
             .get(this.drinkController.getDrink)
-            .post(this.drinkController.removeDrink)
+            .delete(this.drinkController.removeDrink)
 
         //------------------
 
@@ -139,7 +139,7 @@ export class Routes {
             .post(this.sportController.addSport)
         app.route("/sports/:id")
             .get(this.sportController.getSport)
-            .post(this.sportController.removeSport)
+            .delete(this.sportController.removeSport)
 
         //------------------
 
@@ -148,7 +148,7 @@ export class Routes {
             .post(this.userController.addUser)
         app.route("/users/:id")
             .get(this.userController.getUser)
-            .post(this.userController.removeUser)
+            .delete(this.userController.removeUser)
 
         //------------------
 
@@ -157,7 +157,7 @@ export class Routes {
             .post(this.cityController.addCity)
         app.route("/cities/:id")
             .get(this.cityController.getCity)
-            .post(this.cityController.removeCity)
+            .delete(this.cityController.removeCity)
 
 
     }

@@ -406,6 +406,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour le signe astrologique par l'ID donné ou le créer",
+                "tags": [
+                  "Astrological sign"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du signe astrologique que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "astrologicalSign",
+                    "in": "body",
+                    "description": "Signe astrologique avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateAstrologicalSign"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le signe astrologique a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/AstrologicalSign"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour le signe astrologique par l'ID donné",
+                "tags": [
+                  "Astrological sign"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du signe astrologique que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "astrologicalSign",
+                    "in": "body",
+                    "description": "Signe astrologique avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateAstrologicalSign"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le signe astrologique a été mis à jour",
+                    "schema": {
+                      "$ref": "#/definitions/AstrologicalSign"
+                    }
+                  }
+                }
+            }
             
         },
         "/cars": {
@@ -499,7 +561,68 @@ module.exports = {
                     }
                 }
             },
-            
+            "put": {
+                "summary": "Mettre a jour la voiture par l'ID donné ou le créer",
+                "tags": [
+                  "Car"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la voiture que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "car",
+                    "in": "body",
+                    "description": "Voiture avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateCar"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La voiture a été mise à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/Car"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour la voiture par l'ID donné",
+                "tags": [
+                  "Car"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la voiture que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "car",
+                    "in": "body",
+                    "description": "Voiture avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateCar"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La voiture a été mise à jour",
+                    "schema": {
+                      "$ref": "#/definitions/Car"
+                    }
+                  }
+                }
+            }
         },
         "/cities": {
             "get": {
@@ -592,7 +715,68 @@ module.exports = {
                     }
                 }
             },
-            
+            "put": {
+                "summary": "Mettre a jour la ville par l'ID donné ou le créer",
+                "tags": [
+                  "City"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la ville que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "city",
+                    "in": "body",
+                    "description": "Ville avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateCity"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La ville a été mise à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/City"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour la ville par l'ID donné",
+                "tags": [
+                  "City"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la ville que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "city",
+                    "in": "body",
+                    "description": "Ville avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateCity"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La ville a été mise à jour",
+                    "schema": {
+                      "$ref": "#/definitions/City"
+                    }
+                  }
+                }
+            }
         },
         "/destinations": {
             "get": {
@@ -685,6 +869,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour la destination par l'ID donné ou le créer",
+                "tags": [
+                  "Destination"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la destination que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "destination",
+                    "in": "body",
+                    "description": "Destination avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateDestination"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La destination a été mise à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/Destination"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour la destination par l'ID donné",
+                "tags": [
+                  "Destination"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la destination que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "destination",
+                    "in": "body",
+                    "description": "Destination avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateDestination"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La destination a été mise à jour",
+                    "schema": {
+                      "$ref": "#/definitions/Destination"
+                    }
+                  }
+                }
+            }
             
         },
         "/drinks": {
@@ -778,6 +1024,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour la boisson par l'ID donné ou le créer",
+                "tags": [
+                  "Drink"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la boisson que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "drink",
+                    "in": "body",
+                    "description": "Boisson avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateDrink"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La boisson a été mise à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/Drink"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour la boisson par l'ID donné",
+                "tags": [
+                  "Drink"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la boisson, que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "csrinkar",
+                    "in": "body",
+                    "description": "Boisson avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateDrink"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La boisson a été mise à jour",
+                    "schema": {
+                      "$ref": "#/definitions/Drink"
+                    }
+                  }
+                }
+            }
             
         },
         "/filmTypes": {
@@ -871,6 +1179,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour le type de film par l'ID donné ou le créer",
+                "tags": [
+                  "Film type"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du type de film que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "filmType",
+                    "in": "body",
+                    "description": "Type de film avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateFilmType"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le type de film a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/FilmType"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour le type de film par l'ID donné",
+                "tags": [
+                  "Film type"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du type de film que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "filmType",
+                    "in": "body",
+                    "description": "Type de film avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateFilmType"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le type de film a été mis à jour",
+                    "schema": {
+                      "$ref": "#/definitions/FilmType"
+                    }
+                  }
+                }
+            }
             
         },
         "/foods": {
@@ -964,6 +1334,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour le restaurant par l'ID donné ou le créer",
+                "tags": [
+                  "Food"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du restaurant que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "car",
+                    "in": "body",
+                    "description": "Restaurant avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateFood"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le restaurant a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/Food"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour le restaurant par l'ID donné",
+                "tags": [
+                  "Food"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du restaurant que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "car",
+                    "in": "body",
+                    "description": "Restaurant avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateFood"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le restaurant a été mis à jour",
+                    "schema": {
+                      "$ref": "#/definitions/Food"
+                    }
+                  }
+                }
+            }
             
         },
         "/musicTypes": {
@@ -1057,7 +1489,68 @@ module.exports = {
                     }
                 }
             },
-            
+            "put": {
+                "summary": "Mettre a jour le type de musique par l'ID donné ou le créer",
+                "tags": [
+                  "Music type"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du type de la musique que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "musicType",
+                    "in": "body",
+                    "description": "Type de musique avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateMusicType"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le type de musique a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/MusicType"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour le type de la musique par l'ID donné",
+                "tags": [
+                  "Music type"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du type de musique que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "musicType",
+                    "in": "body",
+                    "description": "Type de musique avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateMusicType"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le type de musique a été mise à jour",
+                    "schema": {
+                      "$ref": "#/definitions/MusicType"
+                    }
+                  }
+                }
+            } 
         },
         "/regions": {
             "get": {
@@ -1150,7 +1643,68 @@ module.exports = {
                     }
                 }
             },
-            
+            "put": {
+                "summary": "Mettre a jour la region par l'ID donné ou le créer",
+                "tags": [
+                  "Region"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la region que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "region",
+                    "in": "body",
+                    "description": "Region avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateRegion"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La region a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/Region"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour la region par l'ID donné",
+                "tags": [
+                  "Region"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la region que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "region",
+                    "in": "body",
+                    "description": "Région avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateRegion"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "La region a été mise à jour",
+                    "schema": {
+                      "$ref": "#/definitions/Region"
+                    }
+                  }
+                }
+            }
         },
         "/sports": {
             "get": {
@@ -1243,6 +1797,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour le sport par l'ID donné ou le créer",
+                "tags": [
+                  "Sport"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du sport que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "sport",
+                    "in": "body",
+                    "description": "Sport avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateSport"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le sport a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/Sport"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour le sport par l'ID donné",
+                "tags": [
+                  "Sport"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du sport que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "sport",
+                    "in": "body",
+                    "description": "Sport avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateSport"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le sport a été mis à jour",
+                    "schema": {
+                      "$ref": "#/definitions/Sport"
+                    }
+                  }
+                }
+            } 
             
         },
         "/users": {
@@ -1336,6 +1952,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour l'utilisateur par l'ID donné ou le créer",
+                "tags": [
+                  "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'utilisateur que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "user",
+                    "in": "body",
+                    "description": "Utilisateur avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateUser"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "L'utilisateur a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/User"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour la region par l'ID donné",
+                "tags": [
+                  "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'utilisateur que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "user",
+                    "in": "body",
+                    "description": "L'utilisateur avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateUser"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "L'utilisateur a été mise à jour",
+                    "schema": {
+                      "$ref": "#/definitions/User"
+                    }
+                  }
+                }
+            } 
             
         },
         "/videoGames": {
@@ -1429,6 +2107,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour le jeux vidéo par l'ID donné ou le créer",
+                "tags": [
+                  "Video game"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du jeux video que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "videoGame",
+                    "in": "body",
+                    "description": "Jeux video avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateVideoGame"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le jeux video a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/VideoGame"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour le jeux vidéo par l'ID donné",
+                "tags": [
+                  "Video game"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du jeux video que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "videoGame",
+                    "in": "body",
+                    "description": "Jeux video avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateVideoGame"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Le jeux vidéo a été mise à jour",
+                    "schema": {
+                      "$ref": "#/definitions/VideoGame"
+                    }
+                  }
+                }
+            } 
             
         },
     },

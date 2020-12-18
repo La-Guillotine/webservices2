@@ -1,19 +1,19 @@
 import { expect } from 'chai';
 const chai = require('chai');
-// import * as App from '../index';
 const chaiHttp = require('chai-http');
 
 chai.use(chaiHttp);
 
-const API = 'http://localhost:3001';
-let lastIdInserted = 0;
-describe('Animal', () => {
+const API: String = 'http://localhost:3001';
+let lastIdInserted: Number = 0;
+
+describe('Animals', () => {
     describe('#getAll', () => {
         it('should return all animals',(done) => {
             chai
             .request(API)
             .get('/animals')
-            .end((err, res) => {
+            .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
                 expect(res.body[1].name).to.equals('Chien');
@@ -27,7 +27,7 @@ describe('Animal', () => {
             chai
             .request(API)
             .get('/animals/1')
-            .end((err, res) => {
+            .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.id).to.equals(1);
@@ -43,7 +43,7 @@ describe('Animal', () => {
             .request(API)
             .post('/animals')
             .send({name: 'Dragon'})
-            .end((err, res) => {
+            .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.name).to.equals('Dragon');
@@ -59,7 +59,7 @@ describe('Animal', () => {
             .request(API)
             .put(`/animals/${lastIdInserted}`)
             .send({name: 'Couleuvre'})
-            .end((err, res) => {
+            .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.created).to.be.false;
@@ -75,7 +75,7 @@ describe('Animal', () => {
             chai
             .request(API)
             .delete(`/animals/${lastIdInserted}`)
-            .end((err, res) => {
+            .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.equals(1);
                 done();

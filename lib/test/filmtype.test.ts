@@ -7,46 +7,46 @@ chai.use(chaiHttp);
 const API: String = 'http://localhost:3001';
 let lastIdInserted: Number = 0;
 
-describe('Animes', () => {
+describe('Film Types', () => {
     describe('#getAll', () => {
-        it('should return all animes',(done) => {
+        it('should return all film types',(done) => {
             chai
             .request(API)
-            .get('/animes')
+            .get('/filmtypes')
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
-                expect(res.body[14].name).to.equals('My Hero Academia');
+                expect(res.body[2].name).to.equals('Catastrophe');
                 done();
             });
         });
     });
 
     describe('#getOne', () => {
-        it('should return one anime', (done) => {
+        it('should return one film type', (done) => {
             chai
             .request(API)
-            .get('/animes/1')
+            .get('/filmtypes/1')
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.id).to.equals(1);
-                expect(res.body.name).to.equals('One Piece');
+                expect(res.body.name).to.equals('Action');
                 done();
             });
         });
     });
 
     describe('#Add', () => {
-        it('should add one anime on database', (done) => {
+        it('should add one film type on database', (done) => {
             chai
             .request(API)
-            .post('/animes')
-            .send({name: 'The Rising of the Shield Hero'})
+            .post('/filmtypes')
+            .send({name: 'Muet'})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
-                expect(res.body.name).to.equals('The Rising of the Shield Hero');
+                expect(res.body.name).to.equals('Muet');
                 lastIdInserted = res.body.id;
                 done();
             });
@@ -54,27 +54,27 @@ describe('Animes', () => {
     });
 
     describe('#UpdateOne', () => {
-        it('should update one anime', (done) => {
+        it('should update one film type', (done) => {
             chai
             .request(API)
-            .put(`/animes/${lastIdInserted}`)
-            .send({name: 'The Promised Neverland'})
+            .put(`/filmtypes/${lastIdInserted}`)
+            .send({name: 'Théâtre'})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.created).to.be.false;
-                expect(res.body.anime.id).to.equals(lastIdInserted.toString());
-                expect(res.body.anime.name).to.equals('The Promised Neverland');
+                expect(res.body.filmType.id).to.equals(lastIdInserted.toString());
+                expect(res.body.filmType.name).to.equals('Théâtre');
                 done();
             });
         });
     });
 
     describe('#DeleteOne', () => {
-        it('should delete one anime', (done) => {
+        it('should delete one film type', (done) => {
             chai
             .request(API)
-            .delete(`/animes/${lastIdInserted}`)
+            .delete(`/filmtypes/${lastIdInserted}`)
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.equals(1);

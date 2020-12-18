@@ -7,46 +7,46 @@ chai.use(chaiHttp);
 const API: String = 'http://localhost:3001';
 let lastIdInserted: Number = 0;
 
-describe('Animes', () => {
+describe('Destinations', () => {
     describe('#getAll', () => {
-        it('should return all animes',(done) => {
+        it('should return all destinations',(done) => {
             chai
             .request(API)
-            .get('/animes')
+            .get('/destinations')
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
-                expect(res.body[14].name).to.equals('My Hero Academia');
+                expect(res.body[3].name).to.equals('Espagne');
                 done();
             });
         });
     });
 
     describe('#getOne', () => {
-        it('should return one anime', (done) => {
+        it('should return one destination', (done) => {
             chai
             .request(API)
-            .get('/animes/1')
+            .get('/destinations/1')
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.id).to.equals(1);
-                expect(res.body.name).to.equals('One Piece');
+                expect(res.body.name).to.equals('Canada');
                 done();
             });
         });
     });
 
     describe('#Add', () => {
-        it('should add one anime on database', (done) => {
+        it('should add one destination on database', (done) => {
             chai
             .request(API)
-            .post('/animes')
-            .send({name: 'The Rising of the Shield Hero'})
+            .post('/destinations')
+            .send({name: 'Suisse'})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
-                expect(res.body.name).to.equals('The Rising of the Shield Hero');
+                expect(res.body.name).to.equals('Suisse');
                 lastIdInserted = res.body.id;
                 done();
             });
@@ -54,27 +54,27 @@ describe('Animes', () => {
     });
 
     describe('#UpdateOne', () => {
-        it('should update one anime', (done) => {
+        it('should update one destination', (done) => {
             chai
             .request(API)
-            .put(`/animes/${lastIdInserted}`)
-            .send({name: 'The Promised Neverland'})
+            .put(`/destinations/${lastIdInserted}`)
+            .send({name: 'Islande'})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.created).to.be.false;
-                expect(res.body.anime.id).to.equals(lastIdInserted.toString());
-                expect(res.body.anime.name).to.equals('The Promised Neverland');
+                expect(res.body.destination.id).to.equals(lastIdInserted.toString());
+                expect(res.body.destination.name).to.equals('Islande');
                 done();
             });
         });
     });
 
     describe('#DeleteOne', () => {
-        it('should delete one anime', (done) => {
+        it('should delete one destination', (done) => {
             chai
             .request(API)
-            .delete(`/animes/${lastIdInserted}`)
+            .delete(`/destinations/${lastIdInserted}`)
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.equals(1);

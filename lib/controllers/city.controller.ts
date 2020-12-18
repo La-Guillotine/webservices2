@@ -18,7 +18,10 @@ export class CityController {
     public getCity (req: Request, res: Response) {
         City.findOne({ 
             where: { id: req.params.id },
-            include:[City.associations.users]
+            include: [
+                City.associations.region,
+                City.associations.users
+            ]
          })
             .then((city: City) => res.json(city))
             .catch((err: Error) => res.status(500).json(err))

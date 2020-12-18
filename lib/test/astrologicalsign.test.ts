@@ -7,46 +7,46 @@ chai.use(chaiHttp);
 const API: String = 'http://localhost:3001';
 let lastIdInserted: Number = 0;
 
-describe('Animes', () => {
+describe('Astrological Signs', () => {
     describe('#getAll', () => {
-        it('should return all animes',(done) => {
+        it('should return all astrological signs',(done) => {
             chai
             .request(API)
-            .get('/animes')
+            .get('/astrologicalsigns')
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
-                expect(res.body[14].name).to.equals('My Hero Academia');
+                expect(res.body[2].name).to.equals('Taureau');
                 done();
             });
         });
     });
 
     describe('#getOne', () => {
-        it('should return one anime', (done) => {
+        it('should return one astrological sign', (done) => {
             chai
             .request(API)
-            .get('/animes/1')
+            .get('/astrologicalsigns/1')
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.id).to.equals(1);
-                expect(res.body.name).to.equals('One Piece');
+                expect(res.body.name).to.equals('Bélier');
                 done();
             });
         });
     });
 
     describe('#Add', () => {
-        it('should add one anime on database', (done) => {
+        it('should add one astrological sign on database', (done) => {
             chai
             .request(API)
-            .post('/animes')
-            .send({name: 'The Rising of the Shield Hero'})
+            .post('/astrologicalsigns')
+            .send({name: 'Lièvre'})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
-                expect(res.body.name).to.equals('The Rising of the Shield Hero');
+                expect(res.body.name).to.equals('Lièvre');
                 lastIdInserted = res.body.id;
                 done();
             });
@@ -54,27 +54,27 @@ describe('Animes', () => {
     });
 
     describe('#UpdateOne', () => {
-        it('should update one anime', (done) => {
+        it('should update one astrological sign', (done) => {
             chai
             .request(API)
-            .put(`/animes/${lastIdInserted}`)
-            .send({name: 'The Promised Neverland'})
+            .put(`/astrologicalsigns/${lastIdInserted}`)
+            .send({name: 'Tortue'})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.created).to.be.false;
-                expect(res.body.anime.id).to.equals(lastIdInserted.toString());
-                expect(res.body.anime.name).to.equals('The Promised Neverland');
+                expect(res.body.astrologicalSign.id).to.equals(lastIdInserted.toString());
+                expect(res.body.astrologicalSign.name).to.equals('Tortue');
                 done();
             });
         });
     });
 
     describe('#DeleteOne', () => {
-        it('should delete one anime', (done) => {
+        it('should delete one astrological sign', (done) => {
             chai
             .request(API)
-            .delete(`/animes/${lastIdInserted}`)
+            .delete(`/astrologicalsigns/${lastIdInserted}`)
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.equals(1);

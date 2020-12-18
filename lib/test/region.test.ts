@@ -7,46 +7,46 @@ chai.use(chaiHttp);
 const API: String = 'http://localhost:3001';
 let lastIdInserted: Number = 0;
 
-describe('Animes', () => {
+describe('Regions', () => {
     describe('#getAll', () => {
-        it('should return all animes',(done) => {
+        it('should return all regions',(done) => {
             chai
             .request(API)
-            .get('/animes')
+            .get('/regions')
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
-                expect(res.body[14].name).to.equals('My Hero Academia');
+                expect(res.body[10].name).to.equals('Occitanie');
                 done();
             });
         });
     });
 
     describe('#getOne', () => {
-        it('should return one anime', (done) => {
+        it('should return one region', (done) => {
             chai
             .request(API)
-            .get('/animes/1')
+            .get('/regions/2')
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
-                expect(res.body.id).to.equals(1);
-                expect(res.body.name).to.equals('One Piece');
+                expect(res.body.id).to.equals(2);
+                expect(res.body.name).to.equals('Bourgogne-Franche-Comté');
                 done();
             });
         });
     });
 
     describe('#Add', () => {
-        it('should add one anime on database', (done) => {
+        it('should add one region on database', (done) => {
             chai
             .request(API)
-            .post('/animes')
-            .send({name: 'The Rising of the Shield Hero'})
+            .post('/regions')
+            .send({name: 'Guadeloupe'})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
-                expect(res.body.name).to.equals('The Rising of the Shield Hero');
+                expect(res.body.name).to.equals('Guadeloupe');
                 lastIdInserted = res.body.id;
                 done();
             });
@@ -54,27 +54,27 @@ describe('Animes', () => {
     });
 
     describe('#UpdateOne', () => {
-        it('should update one anime', (done) => {
+        it('should update one region', (done) => {
             chai
             .request(API)
-            .put(`/animes/${lastIdInserted}`)
-            .send({name: 'The Promised Neverland'})
+            .put(`/regions/${lastIdInserted}`)
+            .send({name: 'Martinique'})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.created).to.be.false;
-                expect(res.body.anime.id).to.equals(lastIdInserted.toString());
-                expect(res.body.anime.name).to.equals('The Promised Neverland');
+                expect(res.body.region.id).to.equals(lastIdInserted.toString());
+                expect(res.body.region.name).to.equals('Martinique');
                 done();
             });
         });
     });
 
     describe('#DeleteOne', () => {
-        it('should delete one anime', (done) => {
+        it('should delete one region', (done) => {
             chai
             .request(API)
-            .delete(`/animes/${lastIdInserted}`)
+            .delete(`/regions/${lastIdInserted}`)
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.equals(1);

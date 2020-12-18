@@ -7,46 +7,47 @@ chai.use(chaiHttp);
 const API: String = 'http://localhost:3001';
 let lastIdInserted: Number = 0;
 
-describe('Animes', () => {
+describe('Drinks', () => {
     describe('#getAll', () => {
-        it('should return all animes',(done) => {
+        it('should return all drinks',(done) => {
             chai
             .request(API)
-            .get('/animes')
+            .get('/drinks')
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
-                expect(res.body[14].name).to.equals('My Hero Academia');
+                expect(res.body[5].name).to.equals('Cidre');
                 done();
             });
         });
     });
 
     describe('#getOne', () => {
-        it('should return one anime', (done) => {
+        it('should return one drink', (done) => {
             chai
             .request(API)
-            .get('/animes/1')
+            .get('/drinks/1')
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.id).to.equals(1);
-                expect(res.body.name).to.equals('One Piece');
+                expect(res.body.name).to.equals('Coca Cola');
                 done();
             });
         });
     });
 
     describe('#Add', () => {
-        it('should add one anime on database', (done) => {
+        it('should add one drink on database', (done) => {
             chai
             .request(API)
-            .post('/animes')
-            .send({name: 'The Rising of the Shield Hero'})
+            .post('/drinks')
+            .send({name: 'Bière', isAlcoholised: 1})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
-                expect(res.body.name).to.equals('The Rising of the Shield Hero');
+                expect(res.body.name).to.equals('Bière');
+                expect(res.body.isAlcoholised).to.equals(1);
                 lastIdInserted = res.body.id;
                 done();
             });
@@ -54,27 +55,28 @@ describe('Animes', () => {
     });
 
     describe('#UpdateOne', () => {
-        it('should update one anime', (done) => {
+        it('should update one drink', (done) => {
             chai
             .request(API)
-            .put(`/animes/${lastIdInserted}`)
-            .send({name: 'The Promised Neverland'})
+            .put(`/drinks/${lastIdInserted}`)
+            .send({name: 'Whisky', isAlcoholised: 1})
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.created).to.be.false;
-                expect(res.body.anime.id).to.equals(lastIdInserted.toString());
-                expect(res.body.anime.name).to.equals('The Promised Neverland');
+                expect(res.body.drink.id).to.equals(lastIdInserted.toString());
+                expect(res.body.drink.name).to.equals('Whisky');
+                expect(res.body.drink.isAlcoholised).to.equals(1);
                 done();
             });
         });
     });
 
     describe('#DeleteOne', () => {
-        it('should delete one anime', (done) => {
+        it('should delete one drink', (done) => {
             chai
             .request(API)
-            .delete(`/animes/${lastIdInserted}`)
+            .delete(`/drinks/${lastIdInserted}`)
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.equals(1);

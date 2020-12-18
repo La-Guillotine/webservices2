@@ -5,7 +5,7 @@ import { Anime } from "../models/anime.model";
 import { AstrologicalSign } from "../models/astrologicalSign.model";
 import * as astrologicalsigns from '../datas/astrologicalsign';
 import { Car } from "../models/car.model";
-// import * as cars from '../datas/car';
+import * as cars from '../datas/car';
 import { City } from "../models/city.model";
 import * as cities from '../datas/city';
 import { Region } from "../models/region.model";
@@ -25,22 +25,22 @@ import * as sports from "../datas/sport";
 import { Videogame } from "../models/videogame.model";
 import * as videogames from '../datas/videogame';
 
-function loadFixtures(): void{
+async function loadFixtures(): Promise<void>{
     try{
-        loadRegions();
-        loadCities();
-        loadAnimals();
-        loadAnimes();
-        loadAstrologicalSigns();
-        
-        // loadCars();
-        loadDestinations();
-        loadDrinks();
-        loadFilmTypes();
-        loadFoods();
-        loadMusicTypes();
-        loadSports();
-        loadVideogames();
+        await loadAnimals();
+        await loadAnimes();
+        await loadAstrologicalSigns();
+        await loadCars();
+        await loadDestinations();
+        await loadDrinks();
+        await loadFilmTypes();
+        await loadFoods();
+        await loadMusicTypes();
+        await loadSports();
+        await loadVideogames();
+        await loadRegions();
+        await loadCities();
+
     }catch(err: any){
         throw new Error(err);
     }
@@ -71,29 +71,29 @@ function loadAstrologicalSigns(): void{
     });
 }
 function loadRegions(): void{
-    regions.forEach(async region => {
-        await Region.create({ name: region.name })
+    regions.forEach(region => {
+        Region.create({ name: region.name })
             .then((region: Region) => console.log(region.id))
             .catch((err: Error) => console.error(err))
         ;
     });
 }
 function loadCities(): void{
-    cities.forEach(async city => {
-        await City.create({ name: city.name, region_id: city.region_id })
+    cities.forEach(city => {
+        City.create({ name: city.name, region_id: city.region_id })
             .then((city: City) => console.log(city.id))
             .catch((err: Error) => console.error(err))
         ;
     });
 }
-// function loadCars(){
-//     cars.forEach(car => {
-//         Car.create({ name: car.name, brand: car.brand })
-//             .then((car: Car) => console.log(car.id))
-//             .catch((err: Error) => console.error(err))
-//         ;
-//     });
-// }
+function loadCars(){
+    cars.forEach(car => {
+        Car.create({ name: car.name, brand: car.brand })
+            .then((car: Car) => console.log(car.id))
+            .catch((err: Error) => console.error(err))
+        ;
+    });
+}
 function loadDestinations(): void{
     destinations.forEach(destination => {
         Destination.create({ name: destination.name })

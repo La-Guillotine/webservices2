@@ -2,7 +2,6 @@
   "name": "webservices2",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.ts",
   "scripts": {
     "test": "mocha -r ts-node/register lib/test/*",

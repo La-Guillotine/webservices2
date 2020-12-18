@@ -6,7 +6,7 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 const API = 'http://localhost:3001';
-
+let lastIdInserted = 0;
 describe('Animal', () => {
     describe('#getAll', () => {
         it('should return all animals',(done) => {
@@ -47,6 +47,7 @@ describe('Animal', () => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body.name).to.equals('Dragon');
+                lastIdInserted = res.body.id;
                 done();
             });
         });
@@ -56,13 +57,14 @@ describe('Animal', () => {
         it('should update one animal', (done) => {
             chai
             .request(API)
-            .patch('/animals/19')
+            .put(`/animals/${lastIdInserted}`)
             .send({name: 'Couleuvre'})
             .end((err, res) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
-                expect(res.body.id).to.equals(19);
-                expect(res.body.name).to.equals('Couleuvre');
+                expect(res.body.created).to.be.false;
+                expect(res.body.animal.id).to.equals(lastIdInserted.toString());
+                expect(res.body.animal.name).to.equals('Couleuvre');
                 done();
             });
         });
@@ -72,9 +74,10 @@ describe('Animal', () => {
         it('should delete one animal', (done) => {
             chai
             .request(API)
-            .delete('/animals/19')
+            .delete(`/animals/${lastIdInserted}`)
             .end((err, res) => {
                 expect(res.status).to.equals(200);
+                expect(res.body).to.equals(1);
                 done();
             });
         });

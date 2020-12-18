@@ -56,8 +56,9 @@ export class UserController {
                 last_name: req.body.last_name,
                 tel_number: req.body.tel_number,
                 age: req.body.age,
-                adress: req.body.adress,
-                city_id: req.body.city_id
+                address: req.body.address,
+                city_id: req.body.city_id,
+                astrologicalsign_id:req.body.astrologicalsign_id
             })
             .then((user: User) => res.json(user))
             .catch((err: Error) => res.status(500).json(err))
@@ -67,6 +68,41 @@ export class UserController {
     public removeUser (req: Request, res: Response) {
         User.destroy({ where: { id: req.params.id } })
             .then((value: number) => res.json(value))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateUser (req: Request, res: Response) {
+        User.update({
+            email: req.body.email,
+            password: req.body.password,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            tel_number: req.body.tel_number,
+            age: req.body.age,
+            address: req.body.address,
+            city_id: req.body.city_id,
+            astrologicalsign_id: req.body.astrologicalsign_id
+        },{ where: { id: req.params.id } })
+            .then(([number,users]: [number,Array<User>]) => res.json({number,users}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateUser (req: Request, res: Response) {
+        User.upsert({
+            id:req.params.id,
+            email: req.body.email,
+            password: req.body.password,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            tel_number: req.body.tel_number,
+            age: req.body.age,
+            address: req.body.address,
+            city_id: req.body.city_id,
+            astrologicalsign_id: req.body.astrologicalsign_id
+        },{ returning:true})
+            .then(([user,created]: [User,boolean]) => res.json({user,created}))
             .catch((err: Error) => res.status(500).json(err))
         ;
     }

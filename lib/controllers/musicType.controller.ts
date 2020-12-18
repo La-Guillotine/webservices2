@@ -37,4 +37,18 @@ export class MusicTypeController {
     ;
     }
 
+    public updateMusicType (req: Request, res: Response) {
+        MusicType.update({name: req.body.name},{ where: { id: req.params.id } })
+            .then(([number,musicTypes]: [number,Array<MusicType>]) => res.json({number,musicTypes}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateMusicType (req: Request, res: Response) {
+        MusicType.upsert({id:req.params.id,name: req.body.name},{ returning:true})
+            .then(([musicType,created]: [MusicType,boolean]) => res.json({musicType,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

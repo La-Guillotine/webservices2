@@ -36,4 +36,18 @@ export class AstrologicalSignController {
     ;
     }
 
+    public updateAstrologicalSign (req: Request, res: Response) {
+        AstrologicalSign.update({name: req.body.name},{ where: { id: req.params.id } })
+            .then(([number,astrologicalSigns]: [number,Array<AstrologicalSign>]) => res.json({number,astrologicalSigns}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateAstrologicalSign (req: Request, res: Response) {
+        AstrologicalSign.upsert({id:req.params.id,name: req.body.name},{ returning:true})
+            .then(([astrologicalSign,created]: [AstrologicalSign,boolean]) => res.json({astrologicalSign,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

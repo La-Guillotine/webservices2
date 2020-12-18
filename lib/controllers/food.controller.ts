@@ -36,4 +36,18 @@ export class FoodController {
         ;
     }
 
+    public updateFood (req: Request, res: Response) {
+        Food.update({name: req.body.name},{ where: { id: req.params.id } })
+            .then(([number,foods]: [number,Array<Food>]) => res.json({number,foods}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateFood (req: Request, res: Response) {
+        Food.upsert({id:req.params.id,name: req.body.name},{ returning:true})
+            .then(([food,created]: [Food,boolean]) => res.json({food,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

@@ -4,6 +4,10 @@ import * as express from "express";
 import * as cors from 'cors';
 import * as jwt from 'jsonwebtoken';
 import { Routes } from "./config/routes";
+import * as swaggerUi from 'swagger-ui-express'
+import * as swaggerDocument from '../swagger.js'
+
+
 require('dotenv').config()
 
 class App {
@@ -20,6 +24,7 @@ class App {
         this.app.use(cors())                                 // Activation de CORS
         this.app.use(express.json())                         // Activation du raw (json)
         this.app.use(express.urlencoded({ extended: true })) // Activation de x-wwww-form-urlencoded
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //Swagger
 
         this.app.listen(process.env.PORT, () => {
             console.log("Fonctionne sur le port "+process.env.PORT)

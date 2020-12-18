@@ -36,4 +36,18 @@ export class FilmTypeController {
     ;
     }
 
+    public updateFilmType (req: Request, res: Response) {
+        FilmType.update({name: req.body.name},{ where: { id: req.params.id } })
+            .then(([number,filmTypes]: [number,Array<FilmType>]) => res.json({number,filmTypes}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateFilmType (req: Request, res: Response) {
+        FilmType.upsert({id:req.params.id,name: req.body.name},{ returning:true})
+            .then(([filmType,created]: [FilmType,boolean]) => res.json({filmType,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

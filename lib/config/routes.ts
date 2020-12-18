@@ -40,7 +40,9 @@ export class Routes {
             .post(this.animalController.addAnimal)
         app.route("/animals/:id")
             .get(this.animalController.getAnimal)
-            .post(this.animalController.removeAnimal)
+            .delete(this.animalController.removeAnimal)
+            .put(this.animalController.updateOrCreateAnimal)
+            .patch(this.animalController.updateAnimal)
 
         //-------------------
 
@@ -49,7 +51,9 @@ export class Routes {
             .post(this.astrologicalSignController.addAstrologicalSign)
         app.route("/astrologicalSigns/:id")
             .get(this.astrologicalSignController.getAstrologicalSign)
-            .post(this.astrologicalSignController.removeAstrologicalSign)
+            .delete(this.astrologicalSignController.removeAstrologicalSign)
+            .put(this.astrologicalSignController.updateOrCreateAstrologicalSign)
+            .patch(this.astrologicalSignController.updateAstrologicalSign)
 
         //------------------
 
@@ -58,7 +62,9 @@ export class Routes {
             .post(this.destinationController.addDestination)
         app.route("/destinations/:id")
             .get(this.destinationController.getDestination)
-            .post(this.destinationController.removeDestination)
+            .delete(this.destinationController.removeDestination)
+            .put(this.destinationController.updateOrCreateDestination)
+            .patch(this.destinationController.updateDestination)
 
         //------------------
 
@@ -67,7 +73,9 @@ export class Routes {
             .post(this.filmTypeController.addFilmType)
         app.route("/filmTypes/:id")
             .get(this.filmTypeController.getFilmType)
-            .post(this.filmTypeController.removeFilmType)
+            .delete(this.filmTypeController.removeFilmType)
+            .put(this.filmTypeController.updateOrCreateFilmType)
+            .patch(this.filmTypeController.updateFilmType)
 
         //------------------
 
@@ -76,7 +84,9 @@ export class Routes {
             .post(this.foodController.addFood)
         app.route("/foods/:id")
             .get(this.foodController.getFood)
-            .post(this.foodController.removeFood)
+            .delete(this.foodController.removeFood)
+            .put(this.foodController.updateOrCreateFood)
+            .patch(this.foodController.updateFood)
 
         //------------------
 
@@ -85,7 +95,9 @@ export class Routes {
             .post(this.musicTypeController.addMusicType)
         app.route("/musicTypes/:id")
             .get(this.musicTypeController.getMusicType)
-            .post(this.musicTypeController.removeMusicType)
+            .delete(this.musicTypeController.removeMusicType)
+            .put(this.musicTypeController.updateOrCreateMusicType)
+            .patch(this.musicTypeController.updateMusicType)
 
         //------------------
 
@@ -94,7 +106,9 @@ export class Routes {
             .post(this.regionController.addRegion)
         app.route("/regions/:id")
             .get(this.regionController.getRegion)
-            .post(this.regionController.removeRegion)
+            .delete(this.regionController.removeRegion)
+            .put(this.regionController.updateOrCreateRegion)
+            .patch(this.regionController.updateRegion)
 
         //------------------
 
@@ -103,7 +117,9 @@ export class Routes {
             .post(this.videoGameController.addVideoGame)
         app.route("/videoGames/:id")
             .get(this.videoGameController.getVideoGame)
-            .post(this.videoGameController.removeVideoGame)
+            .delete(this.videoGameController.removeVideoGame)
+            .put(this.videoGameController.updateOrCreateVideogame)
+            .patch(this.videoGameController.updateVideogame)
 
         //------------------
 
@@ -112,7 +128,9 @@ export class Routes {
             .post(this.animeController.addAnime)
         app.route("/animes/:id")
             .get(this.animeController.getAnime)
-            .post(this.animeController.removeAnime)
+            .delete(this.animeController.removeAnime)
+            .put(this.animeController.updateOrCreateAnime)
+            .patch(this.animeController.updateAnime)
 
         //------------------
 
@@ -121,7 +139,9 @@ export class Routes {
             .post(this.carController.addCar)
         app.route("/cars/:id")
             .get(this.carController.getCar)
-            .post(this.carController.removeCar)
+            .delete(this.carController.removeCar)
+            .put(this.carController.updateOrCreateCar)
+            .patch(this.carController.updateCar)
 
         //------------------
 
@@ -130,7 +150,9 @@ export class Routes {
             .post(this.drinkController.addDrink)
         app.route("/drinks/:id")
             .get(this.drinkController.getDrink)
-            .post(this.drinkController.removeDrink)
+            .delete(this.drinkController.removeDrink)
+            .put(this.drinkController.updateOrCreateDrink)
+            .patch(this.drinkController.updateDrink)
 
         //------------------
 
@@ -139,7 +161,9 @@ export class Routes {
             .post(this.sportController.addSport)
         app.route("/sports/:id")
             .get(this.sportController.getSport)
-            .post(this.sportController.removeSport)
+            .delete(this.sportController.removeSport)
+            .put(this.sportController.updateOrCreateSport)
+            .patch(this.sportController.updateSport)
 
         //------------------
 
@@ -148,7 +172,9 @@ export class Routes {
             .post(this.userController.addUser)
         app.route("/users/:id")
             .get(this.userController.getUser)
-            .post(this.userController.removeUser)
+            .delete(this.userController.removeUser)
+            .put(this.userController.updateOrCreateUser)
+            .patch(this.userController.updateUser)
 
         //------------------
 
@@ -157,8 +183,9 @@ export class Routes {
             .post(this.cityController.addCity)
         app.route("/cities/:id")
             .get(this.cityController.getCity)
-            .post(this.cityController.removeCity)
-
+            .delete(this.cityController.removeCity)
+            .put(this.cityController.updateOrCreateCity)
+            .patch(this.cityController.updateCity)
 
     }
 

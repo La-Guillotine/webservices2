@@ -34,4 +34,18 @@ export class RegionController {
         ;
     }
 
+    public updateRegion (req: Request, res: Response) {
+        Region.update({name: req.body.name},{ where: { id: req.params.id } })
+            .then(([number,regions]: [number,Array<Region>]) => res.json({number,regions}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateRegion (req: Request, res: Response) {
+        Region.upsert({id:req.params.id,name: req.body.name},{ returning:true})
+            .then(([region,created]: [Region,boolean]) => res.json({region,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

@@ -37,4 +37,18 @@ export class AnimeController {
         ;
     }
 
+    public updateAnime (req: Request, res: Response) {
+        Anime.update({name: req.body.name},{ where: { id: req.params.id } })
+            .then(([number,animes]: [number,Array<Anime>]) => res.json({number,animes}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateAnime (req: Request, res: Response) {
+        Anime.upsert({id:req.params.id,name: req.body.name},{ returning:true})
+            .then(([anime,created]: [Anime,boolean]) => res.json({anime,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

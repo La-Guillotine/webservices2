@@ -36,4 +36,18 @@ export class AnimalController {
         ;
     }
 
+    public updateAnimal (req: Request, res: Response) {
+        Animal.update({name: req.body.name},{ where: { id: req.params.id } })
+            .then(([number,animals]: [number,Array<Animal>]) => res.json({number,animals}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateAnimal (req: Request, res: Response) {
+        Animal.upsert({id:req.params.id,name: req.body.name},{ returning:true})
+            .then(([animal,created]: [Animal,boolean]) => res.json({animal,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

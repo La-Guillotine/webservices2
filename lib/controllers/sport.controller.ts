@@ -35,4 +35,18 @@ export class SportController {
             .catch((err: Error) => res.status(500).json(err))
         ;
     }
+
+    public updateSport (req: Request, res: Response) {
+        Sport.update({name: req.body.name, isTeamPlay: req.body.isTeamPlay},{ where: { id: req.params.id } })
+            .then(([number,sports]: [number,Array<Sport>]) => res.json({number,sports}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateSport (req: Request, res: Response) {
+        Sport.upsert({id:req.params.id,name: req.body.name, isTeamPlay: req.body.isTeamPlay},{ returning:true})
+            .then(([sport,created]: [Sport,boolean]) => res.json({sport,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
 }

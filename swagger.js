@@ -52,19 +52,19 @@ module.exports = {
             }
         },
         "/animals/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID de l'animal que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
             "delete": {
               "summary": "Supprimer l'animal par l'ID donné",
               "tags": [
                 "Animal"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID de l'animal que l'on souhaite supprimer",
+                  "type": "integer"
+                }
               ],
               "responses": {
                 "200": {
@@ -98,6 +98,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour l'animal par l'ID donné ou le créer",
+                "tags": [
+                  "Animal"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'animal que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "animal",
+                    "in": "body",
+                    "description": "Animal avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateAnimal"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "l'animal a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/Animal"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour l'animal par l'ID donné",
+                "tags": [
+                  "Animal"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'animal que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "animal",
+                    "in": "body",
+                    "description": "Animal avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateAnimal"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "l'animal a été mis à jour",
+                    "schema": {
+                      "$ref": "#/definitions/Animal"
+                    }
+                  }
+                }
+            }
         },
         "/animes": {
             "get": {
@@ -190,6 +252,68 @@ module.exports = {
                     }
                 }
             },
+            "put": {
+                "summary": "Mettre a jour l'anime par l'ID donné ou le créer",
+                "tags": [
+                  "Anime"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'anime que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "anime",
+                    "in": "body",
+                    "description": "Anime avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateAnime"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "l'anime a été mis à jour ou créer",
+                    "schema": {
+                      "$ref": "#/definitions/Anime"
+                    }
+                  }
+                }
+            },
+            "patch": {
+                "summary": "Mettre a jour l'anime par l'ID donné",
+                "tags": [
+                  "Anime"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'anime que l'on souhaite modifier",
+                        "type": "integer"
+                      },
+                  {
+                    "name": "anime",
+                    "in": "body",
+                    "description": "Anime avec les nouvelles valeurs des propriétés",
+                    "schema": {
+                      "$ref": "#/definitions/UpdateAnime"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "l'anime a été mis à jour",
+                    "schema": {
+                      "$ref": "#/definitions/Anime"
+                    }
+                  }
+                }
+            }
         },
         "/astrologicalSigns": {
             "get": {
@@ -1321,12 +1445,28 @@ module.exports = {
                 },
             }
         },
+        "UpdateAnimal": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
         "Anime": {
             "properties": {
                 "id": {
                     "type": "integer",
                     "uniqueItems": true
                 },
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
+        "UpdateAnime": {
+            "properties": {
                 "name": {
                     "type": "string",
                     "required":true
@@ -1345,12 +1485,32 @@ module.exports = {
                 },
             }
         },
+        "UpdateAstrologicalSign": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
         "Car": {
             "properties": {
                 "id": {
                     "type": "integer",
                     "uniqueItems": true
                 },
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+                "brand": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
+        "UpdateCar": {
+            "properties": {
                 "name": {
                     "type": "string",
                     "required":true
@@ -1377,12 +1537,32 @@ module.exports = {
                 },
             }
         },
+        "UpdateCity": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+                "region_id": {
+                    "type": "integer",
+                    "required":true
+                },
+            }
+        },
         "Destination": {
             "properties": {
                 "id": {
                     "type": "integer",
                     "uniqueItems": true
                 },
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
+        "UpdateDestination": {
+            "properties": {
                 "name": {
                     "type": "string",
                     "required":true
@@ -1405,12 +1585,32 @@ module.exports = {
                 }
             }
         },
+        "UpdateDrink": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+                "isAlcoholised":{
+                    "type":"boolean",
+                    "required":true
+                }
+            }
+        },
         "FilmType": {
             "properties": {
                 "id": {
                     "type": "integer",
                     "uniqueItems": true
                 },
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
+        "UpdateFilmType": {
+            "properties": {
                 "name": {
                     "type": "string",
                     "required":true
@@ -1429,12 +1629,28 @@ module.exports = {
                 },
             }
         },
+        "UpdateFood": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
         "MusicType": {
             "properties": {
                 "id": {
                     "type": "integer",
                     "uniqueItems": true
                 },
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
+        "UpdateMusicType": {
+            "properties": {
                 "name": {
                     "type": "string",
                     "required":true
@@ -1453,12 +1669,32 @@ module.exports = {
                 },
             }
         },
+        "UpdateRegion": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
         "Sport": {
             "properties": {
                 "id": {
                     "type": "integer",
                     "uniqueItems": true
                 },
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+                "isTeamPlay": {
+                    "type": "boolean",
+                    "required":true
+                },
+            }
+        },
+        "UpdateSport": {
+            "properties": {
                 "name": {
                     "type": "string",
                     "required":true
@@ -1521,6 +1757,54 @@ module.exports = {
                 },
             }
         },
+        "UpdateUser": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "required":true
+                },
+                "password": {
+                    "type": "string",
+                    "required":true
+                },
+                "first_name": {
+                    "type": "string",
+                    "required":true
+                },
+                "last_name": {
+                    "type": "string",
+                    "required":true
+                },
+                "tel_number": {
+                    "type": "string",
+                    "required":false
+                },
+                "age": {
+                    "type": "integer",
+                    "required":true
+                },
+                "address": {
+                    "type": "string",
+                    "required":false
+                },
+                "city_id": {
+                    "type": "integer",
+                    "required":true
+                },
+                "createdAt": {
+                    "type": "datetime",
+                    "required":false
+                },
+                "updatedAt": {
+                    "type": "datetime",
+                    "required":false
+                },
+                "astrologicalsign_id": {
+                    "type": "integer",
+                    "required":true
+                },
+            }
+        },
         "VideoGame": {
             "properties": {
                 "id": {
@@ -1533,7 +1817,13 @@ module.exports = {
                 },
             }
         },
-
-
+        "UpdateVideoGame": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
     }
  }

@@ -39,4 +39,18 @@ export class CityController {
         ;
     }
 
+    public updateCity (req: Request, res: Response) {
+        City.update({name: req.body.name, region_id: req.body.region_id},{ where: { id: req.params.id } })
+            .then(([number,cities]: [number,Array<City>]) => res.json({number,cities}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateCity (req: Request, res: Response) {
+        City.upsert({id:req.params.id,name: req.body.name, region_id: req.body.region_id},{ returning:true})
+            .then(([city,created]: [City,boolean]) => res.json({city,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

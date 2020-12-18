@@ -37,4 +37,18 @@ export class CarController {
         ;
     }
 
+    public updateCar (req: Request, res: Response) {
+        Car.update({name: req.body.name, brand: req.body.brand},{ where: { id: req.params.id } })
+            .then(([number,cars]: [number,Array<Car>]) => res.json({number,cars}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateCar (req: Request, res: Response) {
+        Car.upsert({id:req.params.id,name: req.body.name, brand: req.body.brand},{ returning:true})
+            .then(([car,created]: [Car,boolean]) => res.json({car,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

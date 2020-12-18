@@ -36,4 +36,18 @@ export class DrinkController {
         ;
     }
 
+    public updateDrink (req: Request, res: Response) {
+        Drink.update({name: req.body.name, isAlcoholised: req.body.isAlcoholised},{ where: { id: req.params.id } })
+            .then(([number,drinks]: [number,Array<Drink>]) => res.json({number,drinks}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateDrink (req: Request, res: Response) {
+        Drink.upsert({id:req.params.id,name: req.body.name, isAlcoholised: req.body.isAlcoholised},{ returning:true})
+            .then(([drink,created]: [Drink,boolean]) => res.json({drink,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }

@@ -37,6 +37,20 @@ export class DestinationController {
         ;
     }
 
+    public updateDestination (req: Request, res: Response) {
+        Destination.update({name: req.body.name},{ where: { id: req.params.id } })
+            .then(([number,destinations]: [number,Array<Destination>]) => res.json({number,destinations}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
+    public updateOrCreateDestination (req: Request, res: Response) {
+        Destination.upsert({id:req.params.id,name: req.body.name},{ returning:true})
+            .then(([destination,created]: [Destination,boolean]) => res.json({destination,created}))
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+    }
+
 }
 
 

@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 const API: String = 'http://localhost:3001';
 let lastIdInserted: Number = 0;
 
-describe('videogames', () => {
+describe('Videogames', () => {
     describe('#getAll', () => {
         it('should return all videogames',(done) => {
             chai

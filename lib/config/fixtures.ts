@@ -89,7 +89,6 @@ async function loadRegions(): Promise<void>{
 
 async function loadCities(): Promise<void>{
     for (const city of cities){
-        
             const contents = await City.create({ name: city.name, region_id: city.region_id })
                 .then((city: City) => console.log(city.id))
                 .catch((err: Error) => console.error(err))
@@ -131,7 +130,7 @@ async function loadFilmTypes(): Promise<void>{
 }
 async function loadFoods(): Promise<void>{
     for (const food of foods){
-            Food.create({ name: food.name })
+            const contents = await Food.create({ name: food.name })
                 .then((food: Food) => console.log(food.id))
                 .catch((err: Error) => console.error(err))
             ;

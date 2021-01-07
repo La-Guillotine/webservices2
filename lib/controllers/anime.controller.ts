@@ -6,6 +6,9 @@ export class AnimeController {
 
     public getAnimes (req: Request, res: Response) {
         Anime.findAll<Anime>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[Anime.associations.users]
         })
         .then((animes: Array<Anime>) => res.json(animes))

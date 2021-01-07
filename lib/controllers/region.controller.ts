@@ -6,6 +6,9 @@ export class RegionController {
 
     public getRegions (req: Request, res: Response) {
         Region.findAll<Region>({
+            order: [
+                ['id', 'ASC']
+            ],
             include: [Region.associations.cities]
         })
         .then((regions: Array<Region>) => res.json(regions))

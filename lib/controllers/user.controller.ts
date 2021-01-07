@@ -6,6 +6,9 @@ export class UserController {
 
     public getUsers (res: Response) {
         User.findAll<User>({
+            order: [
+                ['id', 'ASC']
+            ],
             include: [
                 User.associations.city,
                 User.associations.animals,

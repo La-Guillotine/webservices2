@@ -5,6 +5,9 @@ export class AstrologicalSignController {
 
     public getAstrologicalSigns (req: Request, res: Response) {
         AstrologicalSign.findAll<AstrologicalSign>({
+            order: [
+                ['id', 'ASC']
+            ],
             include: [AstrologicalSign.associations.users]
         })
             .then((astrologicalSigns: Array<AstrologicalSign>) => res.json(astrologicalSigns))

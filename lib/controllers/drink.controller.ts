@@ -5,6 +5,9 @@ export class DrinkController {
 
     public getDrinks (req: Request, res: Response) {
         Drink.findAll<Drink>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[Drink.associations.users]
         })
             .then((drinks: Array<Drink>) => res.json(drinks))

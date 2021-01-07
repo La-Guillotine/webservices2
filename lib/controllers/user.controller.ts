@@ -4,7 +4,7 @@ import * as bcrypt from "bcrypt";
 
 export class UserController {
 
-    public getUsers (res: Response) {
+    public getUsers (req: Request, res: Response) {
         User.findAll<User>({
             order: [
                 ['id', 'ASC']

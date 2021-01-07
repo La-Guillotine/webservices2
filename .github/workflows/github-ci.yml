@@ -1,0 +1,15 @@
+name: github-ci
+on: [push]
+jobs:
+  install:
+    runs-on: node-latest
+    steps:
+      - run: npm install
+    
+  # build:
+  #   runs-on: node-latest
+  #   steps:
+  #     - uses: install
+  #     - run: pm2 start pm2.json
+  #     - run: npm run fixtures
+  #     - run: npm run test

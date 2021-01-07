@@ -16,7 +16,7 @@ describe('Music Types', () => {
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
-                expect(res.body[5].name).to.equals('Rap');
+                expect(res.body[5].name).to.equals('Slam');
                 done();
             });
         });

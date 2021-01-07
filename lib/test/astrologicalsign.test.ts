@@ -16,7 +16,7 @@ describe('Astrological Signs', () => {
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
-                expect(res.body[2].name).to.equals('Taureau');
+                expect(res.body[2].name).to.equals('Gémeaux');
                 done();
             });
         });

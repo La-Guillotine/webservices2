@@ -16,7 +16,7 @@ describe('Destinations', () => {
             .end((err: any, res: Response) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
-                expect(res.body[3].name).to.equals('Espagne');
+                expect(res.body[3].name).to.equals('Royaume-Uni');
                 done();
             });
         });

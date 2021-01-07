@@ -17,7 +17,7 @@ export const extractBearerToken = (headerValue:any) => {
 export const checkTokenMiddleware = (req:Request, res:Response, next:any):any => {
 
     //Verifier la route 
-    if(req.path == "/login"){
+    if(req.path == "/login" || req.path == "/register"){
         return next()
     }
 

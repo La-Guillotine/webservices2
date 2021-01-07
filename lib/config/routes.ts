@@ -14,7 +14,6 @@ import { SportController } from "../controllers/sport.controller";
 import { UserController } from "../controllers/user.controller";
 import { CityController } from "../controllers/city.controller";
 import { AuthController } from "../controllers/auth.controller";
-import { checkTokenMiddleware } from "./auth"
 
 export class Routes {
     public app: express.Application;
@@ -194,6 +193,12 @@ export class Routes {
 
         app.route("/login")
             .post(this.authController.login)
+
+        app.route("/register")
+            .post(this.authController.register)
+
+
+        //-----------------
 
     }
 

@@ -5,6 +5,9 @@ export class AnimalController {
 
     public getAnimals (req: Request, res: Response) {
         Animal.findAll<Animal>({
+            order: [
+                ['id', 'ASC']
+            ],
             include: [Animal.associations.users]
         })
             .then((animals: Array<Animal>) => res.json(animals))

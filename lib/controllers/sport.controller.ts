@@ -5,6 +5,9 @@ export class SportController {
 
     public getSports (req: Request, res: Response) {
         Sport.findAll<Sport>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[Sport.associations.users]
         })
             .then((sports: Array<Sport>) => res.json(sports))

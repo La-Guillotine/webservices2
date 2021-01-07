@@ -6,6 +6,9 @@ export class MusicTypeController {
 
     public getMusicTypes (req: Request, res: Response) {
         MusicType.findAll<MusicType>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[MusicType.associations.users]
         })
         .then((musicTypes: Array<MusicType>) => res.json(musicTypes))

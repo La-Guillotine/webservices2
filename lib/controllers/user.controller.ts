@@ -1,10 +1,14 @@
 import { Request, Response } from "express";
 import { User } from "../models/user.model";
+import * as bcrypt from "bcrypt";
 
 export class UserController {
 
-    public getUsers (req: Request, res: Response) {
+    public getUsers (res: Response) {
         User.findAll<User>({
+            order: [
+                ['id', 'ASC']
+            ],
             include: [
                 User.associations.city,
                 User.associations.animals,
@@ -48,10 +52,12 @@ export class UserController {
         ;
     }
 
-    public addUser (req: Request, res: Response) {
-        User.create({ 
+    public async addUser (req: Request, res: Response) {
+        let password: String = await bcrypt.hash(req.body.password, 10);
+
+        await User.create({ 
                 email: req.body.email,
-                password: req.body.password,
+                password: password,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 tel_number: req.body.tel_number,
@@ -72,10 +78,12 @@ export class UserController {
         ;
     }
 
-    public updateUser (req: Request, res: Response) {
-        User.update({
+    public async updateUser (req: Request, res: Response) {
+        let password: String = await bcrypt.hash(req.body.password, 10);
+
+        await User.update({
             email: req.body.email,
-            password: req.body.password,
+            password: password,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             tel_number: req.body.tel_number,
@@ -89,11 +97,13 @@ export class UserController {
         ;
     }
 
-    public updateOrCreateUser (req: Request, res: Response) {
-        User.upsert({
+    public async updateOrCreateUser (req: Request, res: Response) {
+        let password: String = await bcrypt.hash(req.body.password, 10);
+
+        await User.upsert({
             id:req.params.id,
             email: req.body.email,
-            password: req.body.password,
+            password: password,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             tel_number: req.body.tel_number,

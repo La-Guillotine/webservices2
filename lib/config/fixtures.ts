@@ -26,23 +26,26 @@ import { Videogame } from "../models/videogame.model";
 import * as videogames from '../datas/videogame';
 import * as users from "../datas/users";
 import { User} from "../models/user.model"
+import * as bcrypt from "bcrypt";
 
+const saltRounds: Number = 10;
 async function loadFixtures(): Promise<void>{
     try{
+        
         await loadAnimals(),
         await loadAnimes(),
         await loadAstrologicalSigns(),
         await loadCars(),
         await loadDestinations(),
         await loadDrinks(),
-        await loadRegions(),
         await loadFilmTypes(),
         await loadFoods(),
         await loadMusicTypes(),
         await loadSports(),
         await loadVideogames(),
-        await loadCities(),
-        await loadUsers()
+        await loadRegions(),
+        await loadCities();
+        await loadUsers();
 
     }catch(err: any){
         throw new Error(err);
@@ -50,6 +53,7 @@ async function loadFixtures(): Promise<void>{
 }
 
 async function loadAnimals(): Promise<void>{
+
     for (const animal of animals) {
         const contents =  await Animal.create({ name: animal.name })
         .then((animal: Animal) => console.log(animal.id))
@@ -58,6 +62,7 @@ async function loadAnimals(): Promise<void>{
 }
 
 async function loadAnimes(): Promise<void>{
+
     for (const anime of animes){
         const contents = await Anime.create({ name: anime.name })
                 .then((anime: Anime) => console.log(anime.id))
@@ -70,10 +75,10 @@ async function loadAstrologicalSigns(): Promise<void>{
             const contents = await AstrologicalSign.create({ name: astrologicalsign.name })
             .then((astrologicalsign: AstrologicalSign) => console.log(astrologicalsign.id))
             .catch((err: Error) => console.error(err))
-        
         }
 }
 async function loadRegions(): Promise<void>{
+   
         for ( const region of regions){
            const contents = await Region.create({ name: region.name })
             .then((region: Region) => console.log(region.id))
@@ -153,12 +158,14 @@ async function loadVideogames(): Promise<void>{
             ;
     }
 }
-
 async function loadUsers(): Promise<void>{
     for (const user of users){
-        const contents = await User.create({ 
+
+        await bcrypt.hash(user.password, saltRounds)
+        .then( (hash :String) => {
+            const contents = User.create({ 
                 email: user.email,
-                password: user.password,
+                password: hash,
                 first_name: user.first_name,
                 last_name: user.last_name,
                 tel_number: user.tel_number,
@@ -166,9 +173,13 @@ async function loadUsers(): Promise<void>{
                 address: user.address,
                 city_id: user.city_id,
                 astrologicalsign_id:user.astrologicalsign_id
-        })
-        .then((user: User) => console.log(user.id))
-        .catch((err: Error) => console.log(err))
+            })
+            .then((user: User) => console.log(user.id))
+            .catch((err: Error) => console.log(err))
+            })
+        .catch((err :Error) => {
+            console.error(err);
+        });
     }
 }
 

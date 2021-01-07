@@ -5,6 +5,9 @@ export class VideoGameController {
 
     public getVideoGames (req: Request, res: Response) {
         Videogame.findAll<Videogame>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[Videogame.associations.users]
         })
             .then((videoGames: Array<Videogame>) => res.json(videoGames))

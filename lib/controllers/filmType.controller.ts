@@ -5,6 +5,9 @@ export class FilmTypeController {
 
     public getFilmTypes (req: Request, res: Response) {
         FilmType.findAll<FilmType>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[FilmType.associations.users]
         })
         .then((filmTypes: Array<FilmType>) => res.json(filmTypes))

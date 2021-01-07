@@ -5,6 +5,9 @@ export class CityController {
 
     public getCitys (req: Request, res: Response) {
         City.findAll<City>({
+            order: [
+                ['id', 'ASC']
+            ],
             include: [
                 City.associations.region,
                 City.associations.users

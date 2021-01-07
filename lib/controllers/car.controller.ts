@@ -6,6 +6,9 @@ export class CarController {
 
     public getCars (req: Request, res: Response) {
         Car.findAll<Car>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[Car.associations.users]
         })
             .then((cars: Array<Car>) => res.json(cars))

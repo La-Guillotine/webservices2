@@ -5,6 +5,9 @@ export class FoodController {
 
     public getFoods (req: Request, res: Response) {
         Food.findAll<Food>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[Food.associations.users]
         })
         .then((foods: Array<Food>) => res.json(foods))

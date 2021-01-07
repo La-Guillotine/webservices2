@@ -6,6 +6,9 @@ export class DestinationController {
 
     public getDestinations (req: Request, res: Response) {
         Destination.findAll<Destination>({
+            order: [
+                ['id', 'ASC']
+            ],
             include:[Destination.associations.users]
         })
             .then((destinations: Array<Destination>) => res.json(destinations))

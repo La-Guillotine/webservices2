@@ -27,20 +27,20 @@ import * as videogames from '../datas/videogame';
 
 async function loadFixtures(): Promise<void>{
     try{
-        Promise.all([
-        loadAnimals(),
-        loadAnimes(),
-        loadAstrologicalSigns(),
-        loadCars(),
-        loadDestinations(),
-        loadDrinks(),
-        loadFilmTypes(),
-        loadFoods(),
-        loadMusicTypes(),
-        loadSports(),
-        loadVideogames(),
-        loadRegions(),
-        loadCities()]);
+        
+        await loadAnimals(),
+        await loadAnimes(),
+        await loadAstrologicalSigns(),
+        await loadCars(),
+        await loadDestinations(),
+        await loadDrinks(),
+        await loadFilmTypes(),
+        await loadFoods(),
+        await loadMusicTypes(),
+        await loadSports(),
+        await loadVideogames(),
+        await loadRegions(),
+        await loadCities();
 
     }catch(err: any){
         throw new Error(err);

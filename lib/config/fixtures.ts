@@ -24,7 +24,11 @@ import { Sport } from "../models/sport.model";
 import * as sports from "../datas/sport";
 import { Videogame } from "../models/videogame.model";
 import * as videogames from '../datas/videogame';
+import * as users from "../datas/users";
+import { User} from "../models/user.model"
+import * as bcrypt from "bcrypt";
 
+const saltRounds: Number = 10;
 async function loadFixtures(): Promise<void>{
     try{
         
@@ -41,6 +45,7 @@ async function loadFixtures(): Promise<void>{
         await loadVideogames(),
         await loadRegions(),
         await loadCities();
+        await loadUsers();
 
     }catch(err: any){
         throw new Error(err);
@@ -53,9 +58,7 @@ async function loadAnimals(): Promise<void>{
         const contents =  await Animal.create({ name: animal.name })
         .then((animal: Animal) => console.log(animal.id))
         .catch((err: Error) => console.error(err))
-    
     }
-
 }
 
 async function loadAnimes(): Promise<void>{
@@ -66,17 +69,13 @@ async function loadAnimes(): Promise<void>{
                 .catch((err: Error) => console.error(err))
             ;
     }
-    
 }
 async function loadAstrologicalSigns(): Promise<void>{
         for (const astrologicalsign of astrologicalsigns){
             const contents = await AstrologicalSign.create({ name: astrologicalsign.name })
             .then((astrologicalsign: AstrologicalSign) => console.log(astrologicalsign.id))
             .catch((err: Error) => console.error(err))
-        
         }
-        
-    
 }
 async function loadRegions(): Promise<void>{
    
@@ -93,7 +92,6 @@ async function loadCities(): Promise<void>{
                 .then((city: City) => console.log(city.id))
                 .catch((err: Error) => console.error(err))
             ;
-        
     }
 }
 async function loadCars(){
@@ -160,8 +158,29 @@ async function loadVideogames(): Promise<void>{
             ;
     }
 }
-function loadUsers(): void{
+async function loadUsers(): Promise<void>{
+    for (const user of users){
 
+        await bcrypt.hash(user.password, saltRounds)
+        .then( (hash :String) => {
+            const contents = User.create({ 
+                email: user.email,
+                password: hash,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                tel_number: user.tel_number,
+                age: user.age,
+                address: user.address,
+                city_id: user.city_id,
+                astrologicalsign_id:user.astrologicalsign_id
+            })
+            .then((user: User) => console.log(user))
+            .catch((err: Error) => console.log(err))
+            })
+        .catch((err :Error) => {
+            console.error(err);
+        });
+    }
 }
 
 loadFixtures();

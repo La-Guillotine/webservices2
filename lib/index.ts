@@ -2,10 +2,10 @@
 import * as express from "express";
 // import * as bodyParser from "body-parser";
 import * as cors from 'cors';
-import * as jwt from 'jsonwebtoken';
 import { Routes } from "./config/routes";
 import * as swaggerUi from 'swagger-ui-express'
 import * as swaggerDocument from '../swagger.js'
+import { checkTokenMiddleware } from "./config/auth"
 
 
 require('dotenv').config()
@@ -25,6 +25,7 @@ class App {
         this.app.use(express.json())                         // Activation du raw (json)
         this.app.use(express.urlencoded({ extended: true })) // Activation de x-wwww-form-urlencoded
         this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //Swagger
+        //this.app.use(checkTokenMiddleware);                  // Middleware verifiant le token
 
         this.app.listen(process.env.PORT, () => {
             console.log("Fonctionne sur le port "+process.env.PORT)

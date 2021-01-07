@@ -13,6 +13,8 @@ import { DrinkController } from "../controllers/drink.controller";
 import { SportController } from "../controllers/sport.controller";
 import { UserController } from "../controllers/user.controller";
 import { CityController } from "../controllers/city.controller";
+import { AuthController } from "../controllers/auth.controller";
+import { checkTokenMiddleware } from "./auth"
 
 export class Routes {
     public app: express.Application;
@@ -31,6 +33,7 @@ export class Routes {
     public sportController: SportController = new SportController();
     public userController: UserController = new UserController();
     public cityController: CityController = new CityController();
+    public authController: AuthController = new AuthController();
 
     public routes(app): void {
         //------------------
@@ -186,6 +189,11 @@ export class Routes {
             .delete(this.cityController.removeCity)
             .put(this.cityController.updateOrCreateCity)
             .patch(this.cityController.updateCity)
+
+        //-----------------
+
+        app.route("/login")
+            .post(this.authController.login)
 
     }
 

@@ -10,16 +10,27 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
-    container:
-      image:  node:latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
     steps:
-      - run: npm install
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install and test
+      run: npm install
+      env:
+        CI: true
     
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: npm install
-      - run: npm build
-      - run: pm2 start pm2.json
-      - run: npm run fixtures
-      - run: npm run test
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: npm install
+  #     - run: npm build
+  #     - run: pm2 start pm2.json
+  #     - run: npm run fixtures
+  #     - run: npm run test

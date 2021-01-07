@@ -174,7 +174,7 @@ async function loadUsers(): Promise<void>{
                 city_id: user.city_id,
                 astrologicalsign_id:user.astrologicalsign_id
             })
-            .then((user: User) => console.log(user))
+            .then((user: User) => console.log(user.id))
             .catch((err: Error) => console.log(err))
             })
         .catch((err :Error) => {

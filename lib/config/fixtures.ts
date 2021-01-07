@@ -1,6 +1,6 @@
 import { Animal } from "../models/animal.model"
 import * as animals from '../datas/animal';
-import * as anime from '../datas/anime';
+import * as animes from '../datas/anime';
 import { Anime } from "../models/anime.model";
 import { AstrologicalSign } from "../models/astrologicalSign.model";
 import * as astrologicalsigns from '../datas/astrologicalsign';
@@ -27,128 +27,139 @@ import * as videogames from '../datas/videogame';
 
 async function loadFixtures(): Promise<void>{
     try{
-        await loadAnimals();
-        await loadAnimes();
-        await loadAstrologicalSigns();
-        await loadCars();
-        await loadDestinations();
-        await loadDrinks();
-        await loadFilmTypes();
-        await loadFoods();
-        await loadMusicTypes();
-        await loadSports();
-        await loadVideogames();
-        await loadRegions();
-        await loadCities();
+        Promise.all([
+        loadAnimals(),
+        loadAnimes(),
+        loadAstrologicalSigns(),
+        loadCars(),
+        loadDestinations(),
+        loadDrinks(),
+        loadFilmTypes(),
+        loadFoods(),
+        loadMusicTypes(),
+        loadSports(),
+        loadVideogames(),
+        loadRegions(),
+        loadCities()]);
 
     }catch(err: any){
         throw new Error(err);
     }
 }
 
-function loadAnimals(): void{
-    animals.forEach(animal => {
-        Animal.create({ name: animal.name })
-            .then((animal: Animal) => console.log(animal.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+async function loadAnimals(): Promise<void>{
+
+    for (const animal of animals) {
+        const contents =  await Animal.create({ name: animal.name })
+        .then((animal: Animal) => console.log(animal.id))
+        .catch((err: Error) => console.error(err))
+    
+    }
+
 }
-function loadAnimes(): void{
-    anime.forEach(anime => {
-        Anime.create({ name: anime.name })
-            .then((anime: Anime) => console.log(anime.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+
+async function loadAnimes(): Promise<void>{
+
+    for (const anime of animes){
+        const contents = await Anime.create({ name: anime.name })
+                .then((anime: Anime) => console.log(anime.id))
+                .catch((err: Error) => console.error(err))
+            ;
+    }
+    
 }
-function loadAstrologicalSigns(): void{
-    astrologicalsigns.forEach(astrologicalsign => {
-        AstrologicalSign.create({ name: astrologicalsign.name })
+async function loadAstrologicalSigns(): Promise<void>{
+        for (const astrologicalsign of astrologicalsigns){
+            const contents = await AstrologicalSign.create({ name: astrologicalsign.name })
             .then((astrologicalsign: AstrologicalSign) => console.log(astrologicalsign.id))
             .catch((err: Error) => console.error(err))
-        ;
-    });
+        
+        }
+        
+    
 }
-function loadRegions(): void{
-    regions.forEach(region => {
-        Region.create({ name: region.name })
+async function loadRegions(): Promise<void>{
+   
+        for ( const region of regions){
+           const contents = await Region.create({ name: region.name })
             .then((region: Region) => console.log(region.id))
             .catch((err: Error) => console.error(err))
-        ;
-    });
+        }
 }
-function loadCities(): void{
-    cities.forEach(city => {
-        City.create({ name: city.name, region_id: city.region_id })
-            .then((city: City) => console.log(city.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+
+async function loadCities(): Promise<void>{
+    for (const city of cities){
+        
+            const contents = await City.create({ name: city.name, region_id: city.region_id })
+                .then((city: City) => console.log(city.id))
+                .catch((err: Error) => console.error(err))
+            ;
+        
+    }
 }
-function loadCars(){
-    cars.forEach(car => {
-        Car.create({ name: car.name, brand: car.brand })
+async function loadCars(){
+    for (const car of cars){    
+        const contents = await Car.create({ name: car.name, brand: car.brand })
             .then((car: Car) => console.log(car.id))
             .catch((err: Error) => console.error(err))
         ;
-    });
+    }
 }
-function loadDestinations(): void{
-    destinations.forEach(destination => {
-        Destination.create({ name: destination.name })
-            .then((destination: Destination) => console.log(destination.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+async function loadDestinations(): Promise<void>{
+    for (const destination of destinations){
+            const contents = await Destination.create({ name: destination.name })
+                .then((destination: Destination) => console.log(destination.id))
+                .catch((err: Error) => console.error(err))
+            ;
+    }
 }
-function loadDrinks(): void{
-    drinks.forEach(drink => {
-        Drink.create({ name: drink.name, isAlcoholised: drink.isAlcoholised })
-            .then((drink: Drink) => console.log(drink.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+async function loadDrinks(): Promise<void>{
+    for (const drink of drinks){
+            const contents = await Drink.create({ name: drink.name, isAlcoholised: drink.isAlcoholised })
+                .then((drink: Drink) => console.log(drink.id))
+                .catch((err: Error) => console.error(err))
+            ;
+    }
 }
-function loadFilmTypes(): void{
-    filmtypes.forEach(filmtype => {
-        FilmType.create({ name: filmtype.name })
-            .then((filmtype: FilmType) => console.log(filmtype.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+async function loadFilmTypes(): Promise<void>{
+    for (const filmtype of filmtypes){
+            const contents = await FilmType.create({ name: filmtype.name })
+                .then((filmtype: FilmType) => console.log(filmtype.id))
+                .catch((err: Error) => console.error(err))
+            ;
+    }
 }
-function loadFoods(): void{
-    foods.forEach(food => {
-        Food.create({ name: food.name })
-            .then((food: Food) => console.log(food.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+async function loadFoods(): Promise<void>{
+    for (const food of foods){
+            Food.create({ name: food.name })
+                .then((food: Food) => console.log(food.id))
+                .catch((err: Error) => console.error(err))
+            ;
+    }
 }
-function loadMusicTypes(): void{
-    musictypes.forEach(musictype => {
-        MusicType.create({ name: musictype.name })
-            .then((musictype: MusicType) => console.log(musictype.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+async function loadMusicTypes(): Promise<void>{
+    for (const musictype of musictypes){
+            const contents = await MusicType.create({ name: musictype.name })
+                .then((musictype: MusicType) => console.log(musictype.id))
+                .catch((err: Error) => console.error(err))
+            ;
+    }
 }
-function loadSports(): void{
-    sports.forEach(sport => {
-        Sport.create({ name: sport.name, isTeamPlay: sport.team_play })
-            .then((sport: Sport) => console.log(sport.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+async function loadSports(): Promise<void>{
+    for ( const sport of sports){
+            const contents = await Sport.create({ name: sport.name, isTeamPlay: sport.team_play })
+                .then((sport: Sport) => console.log(sport.id))
+                .catch((err: Error) => console.error(err))
+            ;
+    }
 }
-function loadVideogames(): void{
-    videogames.forEach(videogame => {
-        Videogame.create({ name: videogame.name })
-            .then((videogame: Videogame) => console.log(videogame.id))
-            .catch((err: Error) => console.error(err))
-        ;
-    });
+async function loadVideogames(): Promise<void>{
+    for (const videogame of videogames){
+           const contents = await Videogame.create({ name: videogame.name })
+                .then((videogame: Videogame) => console.log(videogame.id))
+                .catch((err: Error) => console.error(err))
+            ;
+    }
 }
 function loadUsers(): void{
 

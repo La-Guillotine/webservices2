@@ -7,6 +7,36 @@ module.exports = {
     },
     "produces": ["application/json"],
     "paths": {
+          "/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Se connecter",
+                "description": "Se connecter",
+                "parameters": [
+                    {
+                        "name": "auth",
+                        "in": "body",
+                        "description": "Se connecter",
+                        "schema": {
+                            "$ref": "#/definitions/Auth"
+                        }
+                    },
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se connecter",
+                        "schema": {
+                            "$ref": "#/definitions/Auth"
+                        }
+                    }
+                }
+            }
+        },
         "/animals": {
             "get": {
                 "tags": [
@@ -36,6 +66,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/Animal"
                         }
+                    },
+                    {
+                          "name": "authorization",
+                          "in": "header",
+                          "description": "authorization",
+                          "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -64,6 +100,12 @@ module.exports = {
                   "required": true,
                   "description": "ID de l'animal que l'on souhaite supprimer",
                   "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
                 }
               ],
               "responses": {
@@ -118,7 +160,14 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateAnimal"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+              }
+                  
                 ],
                 "responses": {
                   "200": {
@@ -149,7 +198,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateAnimal"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+              }
                 ],
                 "responses": {
                   "200": {
@@ -190,7 +245,13 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/Anime"
                         }
-                    }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
+                  }
                 ],
                 "produces": [
                     "application/json"
@@ -206,19 +267,25 @@ module.exports = {
             }
         },
         "/animes/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID de l'anime que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
             "delete": {
               "summary": "Supprime l'anime par l'ID donné",
               "tags": [
                 "Anime"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID de l'anime que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+            }
               ],
               "responses": {
                 "200": {
@@ -272,7 +339,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateAnime"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+              }
                 ],
                 "responses": {
                   "200": {
@@ -303,7 +376,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateAnime"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+              }
                 ],
                 "responses": {
                   "200": {
@@ -344,7 +423,13 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/AstrologicalSign"
                         }
-                    }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
+                  }
                 ],
                 "produces": [
                     "application/json"
@@ -360,19 +445,26 @@ module.exports = {
             }
         },
         "/astrologicalSigns/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID du signe astrologique que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+            
             "delete": {
               "summary": "Supprime le signe astrologique par l'ID donné",
               "tags": [
                 "Astrological sign"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID du signe astrologique que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+            }
               ],
               "responses": {
                 "200": {
@@ -391,7 +483,13 @@ module.exports = {
                       "required": true,
                       "description": "ID du signe astrologique que l'on souhaite recupérer",
                       "type": "integer"
-                    }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
+                  }
                 ],
                 "tags": [
                     "Astrological sign"
@@ -426,7 +524,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateAstrologicalSign"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+              }
                 ],
                 "responses": {
                   "200": {
@@ -457,7 +561,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateAstrologicalSign"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -499,6 +609,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/Car"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -515,19 +631,26 @@ module.exports = {
             }
         },
         "/cars/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID de la voiture que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+            
             "delete": {
               "summary": "Supprime la voiture par l'ID donné",
               "tags": [
                 "Car"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID de la voiture que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -581,7 +704,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateCar"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -612,7 +741,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateCar"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -653,6 +788,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/City"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -669,19 +810,26 @@ module.exports = {
             }
         },
         "/cities/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID de la ville que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+            
             "delete": {
               "summary": "Supprime la ville par l'ID donné",
               "tags": [
                 "City"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID de la ville que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -735,7 +883,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateCity"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -766,7 +920,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateCity"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -807,6 +967,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/Destination"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -823,19 +989,26 @@ module.exports = {
             }
         },
         "/destinations/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID de la destination que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+            
             "delete": {
               "summary": "Supprime la destination par l'ID donné",
               "tags": [
                 "Destination"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID de la destination que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -889,7 +1062,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateDestination"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -920,7 +1099,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateDestination"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -962,6 +1147,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/Drink"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -978,19 +1169,26 @@ module.exports = {
             }
         },
         "/drinks/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID de la boisson que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+
             "delete": {
               "summary": "Supprime la boisson par l'ID donné",
               "tags": [
                 "Drink"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID de la boisson que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -1044,7 +1242,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateDrink"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1075,7 +1279,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateDrink"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1117,6 +1327,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/FilmType"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -1133,19 +1349,26 @@ module.exports = {
             }
         },
         "/filmTypes/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID du type de film que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+
             "delete": {
               "summary": "Supprime le type de film par l'ID donné",
               "tags": [
                 "Film type"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID du type de film que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -1199,7 +1422,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateFilmType"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1230,7 +1459,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateFilmType"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1272,6 +1507,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/Food"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -1288,19 +1529,26 @@ module.exports = {
             }
         },
         "/foods/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID du restaurant que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+
             "delete": {
               "summary": "Supprime le restaurant par l'ID donné",
               "tags": [
                 "Food"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID du restaurant que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -1354,7 +1602,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateFood"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1385,7 +1639,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateFood"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1427,6 +1687,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/MusicType"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -1443,19 +1709,26 @@ module.exports = {
             }
         },
         "/musicTypes/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID du type de musique que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+
             "delete": {
               "summary": "Supprime le type de musique par l'ID donné",
               "tags": [
                 "Music type"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID du type de musique que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -1509,7 +1782,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateMusicType"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1540,7 +1819,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateMusicType"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1581,6 +1866,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/Region"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -1597,19 +1888,26 @@ module.exports = {
             }
         },
         "/regions/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID de la region que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+
             "delete": {
               "summary": "Supprime la region par l'ID donné",
               "tags": [
                 "Region"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID de la region que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -1663,7 +1961,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateRegion"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1694,7 +1998,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateRegion"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1735,6 +2045,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/Sport"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -1751,19 +2067,26 @@ module.exports = {
             }
         },
         "/sports/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID du sport que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+
             "delete": {
               "summary": "Supprime le sport par l'ID donné",
               "tags": [
                 "Sport"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID du sport que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -1817,7 +2140,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateSport"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1848,7 +2177,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateSport"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -1890,6 +2225,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/User"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -1906,19 +2247,26 @@ module.exports = {
             }
         },
         "/users/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID de l'utilisateur que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+
             "delete": {
               "summary": "Supprime l'utilisateur par l'ID donné",
               "tags": [
                 "User"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID de l'utilisateur que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -1972,7 +2320,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateUser"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -2003,7 +2357,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateUser"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -2045,6 +2405,12 @@ module.exports = {
                         "schema": {
                             "$ref": "#/definitions/VideoGame"
                         }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -2061,19 +2427,26 @@ module.exports = {
             }
         },
         "/videoGames/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID du jeux video que l'on souhaite supprimer",
-                "type": "integer"
-              }
-            ],
+
             "delete": {
               "summary": "Supprime le jeux video par l'ID donné",
               "tags": [
                 "Video game"
+              ],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID du jeux video que l'on souhaite supprimer",
+                  "type": "integer"
+                },
+                {
+                  "name": "authorization",
+                  "in": "header",
+                  "description": "authorization",
+                  "value":"Bearer "
+              }
               ],
               "responses": {
                 "200": {
@@ -2127,7 +2500,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateVideoGame"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -2158,7 +2537,13 @@ module.exports = {
                     "schema": {
                       "$ref": "#/definitions/UpdateVideoGame"
                     }
-                  }
+                  },
+                  {
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
+                }
                 ],
                 "responses": {
                   "200": {
@@ -2185,6 +2570,18 @@ module.exports = {
                 },
             }
         },
+        "Auth": {
+          "properties": {
+              "email": {
+                  "type": "string",
+                  "required":true
+              },
+              "password": {
+                  "type": "string",
+                  "required":true
+              },
+          }
+      },
         "UpdateAnimal": {
             "properties": {
                 "name": {

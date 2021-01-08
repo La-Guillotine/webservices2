@@ -17,7 +17,7 @@ jobs:
         ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-        
+
     strategy:
       matrix:
         node-version: [12.x]
@@ -32,7 +32,9 @@ jobs:
     - name: npm install
       run: |
         npm install
-
+      env:
+        CI: true
+        
     - name: Execute unit tests via Mocha
       run: npm run test
       env: 
@@ -40,5 +42,4 @@ jobs:
         DB_USERNAME: root
         DB_PASSWORD: root
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
-      env:
-        CI: true
+      

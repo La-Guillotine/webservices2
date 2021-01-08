@@ -40,12 +40,12 @@ jobs:
           sleep 1
         done
     
-    - name: Run fixtures
-      run: npm run fixtures
-      env: 
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
-        MYSQL_DATABASE: webservices
+    # - name: Run fixtures
+    #   run: npm run fixtures
+    #   env: 
+    #     MYSQL_USER: root
+    #     MYSQL_PASSWORD: root
+    #     MYSQL_DATABASE: webservices
 
     - name: Execute unit tests via Mocha
       run: npm run test

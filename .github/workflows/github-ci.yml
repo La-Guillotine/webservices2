@@ -6,15 +6,6 @@ jobs:
   install:
     runs-on: ubuntu-latest 
 
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-        - 3306
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
-
     strategy:
       matrix:
         node-version: [12.x]
@@ -31,29 +22,54 @@ jobs:
         npm install
       env:
         CI: true
+  
+  mysql-connexion:
+    runs-on: ubuntu-latest 
 
-    - name: Verify MySQL connection
-      env:
-        PORT: ${{ job.services.mysql.ports[3306] }}
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: webservices
-      run: |
-        sudo /etc/init.d/mysql start
-        while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
-          sleep 1
-        done
-        echo "SELECT 'OK';" | mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost
-        source webservices.sql
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+        - 3306
+        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+
+    steps:
+      - name: Verify MySQL connection
+        env:
+          PORT: ${{ job.services.mysql.ports[3306] }}
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: webservices
+        run: |
+          sudo /etc/init.d/mysql start
+          while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
+            sleep 1
+          done
+          echo "SELECT 'OK';" | mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost
+          source webservices.sql
+  
+  fixtures-test:
+    runs-on: ubuntu-latest 
     
-    - name: Run fixtures
-      run: npm run fixtures
-      env: 
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
-        MYSQL_DATABASE: webservices
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-    - name: Execute unit tests via Mocha
-      run: npm run test
-      env: 
-        DATABASEB_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
-      
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Run fixtures
+        run: npm run fixtures
+        env: 
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+          MYSQL_DATABASE: webservices
+
+      - name: Execute unit tests via Mocha
+        run: npm run test
+        env: 
+          DATABASEB_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7

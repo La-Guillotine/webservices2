@@ -4,11 +4,26 @@ import * as bcrypt from "bcrypt";
 
 export class UserController {
 
-    public getUsers (req: Request, res: Response) {
+    public async getUsers (req: Request, res: Response) {
+
+        const count : number= await User.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         User.findAll<User>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include: [
                 User.associations.city,
                 User.associations.animals,

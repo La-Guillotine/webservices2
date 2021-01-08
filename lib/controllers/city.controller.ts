@@ -3,11 +3,26 @@ import { City } from '../models/city.model';
 
 export class CityController {
 
-    public getCitys (req: Request, res: Response) {
+    public async getCitys (req: Request, res: Response) {
+
+        const count : number= await City.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         City.findAll<City>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include: [
                 City.associations.region,
                 City.associations.users

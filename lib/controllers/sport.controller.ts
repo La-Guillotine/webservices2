@@ -3,11 +3,26 @@ import { Sport } from "../models/sport.model";
 
 export class SportController {
 
-    public getSports (req: Request, res: Response) {
+    public async getSports (req: Request, res: Response) {
+
+        const count : number= await Sport.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Sport.findAll<Sport>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[Sport.associations.users]
         })
             .then((sports: Array<Sport>) => res.json(sports))

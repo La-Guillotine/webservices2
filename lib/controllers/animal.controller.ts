@@ -1,13 +1,28 @@
 import { Request, Response } from "express";
+import { DEFAULT_MIN_VERSION } from "tls";
 import { Animal } from "../models/animal.model";
 
 export class AnimalController {
 
-    public getAnimals (req: Request, res: Response) {
+    public async getAnimals (req: Request, res: Response) {
+        const count : number= await Animal.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Animal.findAll<Animal>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include: [Animal.associations.users]
         })
             .then((animals: Array<Animal>) => res.json(animals))

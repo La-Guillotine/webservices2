@@ -3,11 +3,26 @@ import { AstrologicalSign } from "../models/astrologicalSign.model";
 
 export class AstrologicalSignController {
 
-    public getAstrologicalSigns (req: Request, res: Response) {
+    public async getAstrologicalSigns (req: Request, res: Response) {
+
+        const count : number= await AstrologicalSign.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         AstrologicalSign.findAll<AstrologicalSign>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include: [AstrologicalSign.associations.users]
         })
             .then((astrologicalSigns: Array<AstrologicalSign>) => res.json(astrologicalSigns))

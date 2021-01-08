@@ -4,11 +4,26 @@ import { Car } from "../models/car.model";
 
 export class CarController {
 
-    public getCars (req: Request, res: Response) {
+    public async getCars (req: Request, res: Response) {
+
+        const count : number= await Car.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Car.findAll<Car>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[Car.associations.users]
         })
             .then((cars: Array<Car>) => res.json(cars))

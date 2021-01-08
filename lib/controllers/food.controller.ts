@@ -3,11 +3,26 @@ import { Food } from "../models/food.model";
 
 export class FoodController {
 
-    public getFoods (req: Request, res: Response) {
+    public async getFoods (req: Request, res: Response) {
+
+        const count : number= await Food.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Food.findAll<Food>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[Food.associations.users]
         })
         .then((foods: Array<Food>) => res.json(foods))

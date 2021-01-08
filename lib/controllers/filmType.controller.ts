@@ -3,11 +3,26 @@ import { FilmType } from "../models/filmType.model";
 
 export class FilmTypeController {
 
-    public getFilmTypes (req: Request, res: Response) {
+    public async getFilmTypes (req: Request, res: Response) {
+
+        const count : number= await FilmType.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         FilmType.findAll<FilmType>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[FilmType.associations.users]
         })
         .then((filmTypes: Array<FilmType>) => res.json(filmTypes))

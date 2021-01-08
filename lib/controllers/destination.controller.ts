@@ -4,11 +4,26 @@ import { Destination } from "../models/destination.model";
 
 export class DestinationController {
 
-    public getDestinations (req: Request, res: Response) {
+    public async getDestinations (req: Request, res: Response) {
+
+        const count : number= await Destination.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Destination.findAll<Destination>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[Destination.associations.users]
         })
             .then((destinations: Array<Destination>) => res.json(destinations))

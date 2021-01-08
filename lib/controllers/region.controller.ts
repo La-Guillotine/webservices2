@@ -4,11 +4,26 @@ import { Region } from "../models/region.model";
 
 export class RegionController {
 
-    public getRegions (req: Request, res: Response) {
+    public async getRegions (req: Request, res: Response) {
+
+        const count : number= await Region.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Region.findAll<Region>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include: [Region.associations.cities]
         })
         .then((regions: Array<Region>) => res.json(regions))

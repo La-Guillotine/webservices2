@@ -4,11 +4,26 @@ import { Anime } from "../models/anime.model";
 
 export class AnimeController {
 
-    public getAnimes (req: Request, res: Response) {
+    public async getAnimes (req: Request, res: Response) {
+
+        const count : number= await Anime.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Anime.findAll<Anime>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[Anime.associations.users]
         })
         .then((animes: Array<Anime>) => res.json(animes))

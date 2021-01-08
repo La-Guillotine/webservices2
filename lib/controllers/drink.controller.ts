@@ -3,11 +3,26 @@ import { Drink } from "../models/drink.model";
 
 export class DrinkController {
 
-    public getDrinks (req: Request, res: Response) {
+    public async getDrinks (req: Request, res: Response) {
+
+        const count : number= await Drink.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Drink.findAll<Drink>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[Drink.associations.users]
         })
             .then((drinks: Array<Drink>) => res.json(drinks))

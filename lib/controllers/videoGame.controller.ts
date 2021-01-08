@@ -3,11 +3,26 @@ import { Videogame } from "../models/videogame.model";
 
 export class VideoGameController {
 
-    public getVideoGames (req: Request, res: Response) {
+    public async getVideoGames (req: Request, res: Response) {
+
+        const count : number= await Videogame.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         Videogame.findAll<Videogame>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[Videogame.associations.users]
         })
             .then((videoGames: Array<Videogame>) => res.json(videoGames))

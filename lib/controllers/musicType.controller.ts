@@ -4,11 +4,26 @@ import { MusicType } from "../models/musicType.model";
 
 export class MusicTypeController {
 
-    public getMusicTypes (req: Request, res: Response) {
+    public async getMusicTypes (req: Request, res: Response) {
+
+        const count : number= await MusicType.count()
+        const element : number | number = parseInt(req.query.element as string) || count
+        const page : number = parseInt(req.query.page as string) || 0
+
+        let jump : number 
+
+        if(page == 0){
+            jump =0
+        }else{
+            jump = element * (page-1)
+        }
+
         MusicType.findAll<MusicType>({
             order: [
                 ['id', 'ASC']
             ],
+            offset:jump,
+            limit:element,
             include:[MusicType.associations.users]
         })
         .then((musicTypes: Array<MusicType>) => res.json(musicTypes))

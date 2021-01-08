@@ -37,9 +37,10 @@ jobs:
         PORT: ${{ job.services.mysql.ports[3306] }}
       run: |
         while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
-          mysqlshow
           sleep 1
         done
+
+        mysqlshow -u root -p root
     
     - name: Run fixtures
       run: npm run fixtures

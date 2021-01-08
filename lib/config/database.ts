@@ -2,4 +2,6 @@
 import { Sequelize } from "sequelize";
 require('dotenv').config()
 
-export const database = new Sequelize(process.env.DB_URL);
+export const database = new Sequelize(process.env.DB_URL,{
+    dialect: "mysql"
+});

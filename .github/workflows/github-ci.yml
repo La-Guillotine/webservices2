@@ -11,7 +11,6 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: webservices
         ports:
         - 3306
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
@@ -36,11 +35,13 @@ jobs:
     - name: Verify MySQL connection
       env:
         PORT: ${{ job.services.mysql.ports[3306] }}
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: webservices
       run: |
         while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
           sleep 1
         done
-        echo "SELECT 'OK';" | mysql --user=root --password=${{ job.services.mysql.env[MYSQL_ROOT_PASSWORD] }} --host=mysql ${{ job.services.mysql.env[MYSQL_DATABASE] }}
+        echo "SELECT 'OK';" | mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=mysql $MYSQL_DATABASE]
     
     - name: Run fixtures
       run: npm run fixtures

@@ -11,6 +11,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: webservices
         ports:
         - 3306
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
@@ -39,13 +40,14 @@ jobs:
         while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
           sleep 1
         done
+        echo "SELECT 'OK';" | mysql --user=root --password=${{ job.services.mysql.env[MYSQL_ROOT_PASSWORD] }} --host=mysql ${{ job.services.mysql.env[MYSQL_DATABASE] }}
     
-    # - name: Run fixtures
-    #   run: npm run fixtures
-    #   env: 
-    #     MYSQL_USER: root
-    #     MYSQL_PASSWORD: root
-    #     MYSQL_DATABASE: webservices
+    - name: Run fixtures
+      run: npm run fixtures
+      env: 
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+        MYSQL_DATABASE: webservices
 
     - name: Execute unit tests via Mocha
       run: npm run test

@@ -35,12 +35,14 @@ jobs:
     - name: Verify MySQL connection
       env:
         PORT: ${{ job.services.mysql.ports[3306] }}
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
       run: |
         while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
           sleep 1
         done
 
-        mysqlshow -u root -p root
+        mysqlshow
     
     - name: Run fixtures
       run: npm run fixtures

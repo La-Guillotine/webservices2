@@ -18,7 +18,9 @@ jobs:
     - name: npm install and test
       run: |
         npm install
-        npm start
+        npm install pm2
+        pm2 install typescript
+        pm2 start pm2.json
         npm run fixtures
         npm run test
       env:

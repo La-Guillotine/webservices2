@@ -36,12 +36,12 @@ jobs:
         CI: true
 
     - name: Verify MySQL connection
-        env:
-          PORT: ${{ job.services.mysql.ports[3306] }}
-        run: |
-          while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
-            sleep 1
-          done
+      env:
+        PORT: ${{ job.services.mysql.ports[3306] }}
+      run: |
+        while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
+          sleep 1
+        done
 
     - name: Execute unit tests via Mocha
       run: npm run test

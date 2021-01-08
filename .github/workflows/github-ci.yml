@@ -39,10 +39,10 @@ jobs:
         MYSQL_PASSWORD: root
       run: |
         while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
-          sleep 1
+          mysqlshow
         done
 
-        mysqlshow
+        
     
     - name: Run fixtures
       run: npm run fixtures

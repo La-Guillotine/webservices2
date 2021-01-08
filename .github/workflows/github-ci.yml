@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
 
-  webservices:
+  install:
     runs-on: ubuntu-latest 
 
     services:
@@ -44,7 +44,6 @@ jobs:
         done
         echo "SELECT 'OK';" | mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost
         ls
-        source webservices.sql
     
     - name: Run fixtures
       run: npm run fixtures

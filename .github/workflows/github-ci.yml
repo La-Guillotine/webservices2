@@ -2,27 +2,8 @@ name: github-ci
 on: [push]
 
 jobs:
-  
+
   install:
-    runs-on: ubuntu-latest 
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install
-      run: |
-        npm install
-      env:
-        CI: true
-  
-  mysql:
     runs-on: ubuntu-latest 
 
     services:
@@ -36,13 +17,28 @@ jobs:
         ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        
+    strategy:
+      matrix:
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Verify MySQL connection
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: npm install
       run: |
-        mysql --version
-        sudo apt-get install -y mysql-client
-        mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uuser -psecret -e "SHOW DATABASES"
+        npm install
+
+    - name: Execute unit tests via Mocha
+      run: npm run test
+      env: 
+        MYSQL_DATABASE: webservices
+        DB_USERNAME: root
+        DB_PASSWORD: root
+        DB_PORT: ${{ job.services.mysql.ports[3306] }}
       env:
         CI: true

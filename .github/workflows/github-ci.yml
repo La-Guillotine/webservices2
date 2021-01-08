@@ -37,9 +37,14 @@ jobs:
         PORT: ${{ job.services.mysql.ports[3306] }}
       run: |
         while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
-          show databases
           sleep 1
         done
+        mysqlshow
+    
+    - name: Run fixtures
+      run: npm run fixtures
+      env: 
+        DATABASEB_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
 
     - name: Execute unit tests via Mocha
       run: npm run test

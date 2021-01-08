@@ -44,7 +44,7 @@ jobs:
         done
         echo "SELECT 'OK';" | mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost
         mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost < webservices.sql
-        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost show databases
+        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost mysqlshow
     
     - name: Run fixtures
       run: npm run fixtures

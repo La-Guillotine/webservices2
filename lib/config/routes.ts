@@ -1,8 +1,8 @@
 import * as express from "express";
 import { AnimalController } from "../controllers/animal.controller";
 import { AstrologicalSignController } from "../controllers/astrologicalSign.controller";
-import { DestinationController } from "../controllers/Destination.controller";
-import { FilmTypeController } from "../controllers/FilmType.controller";
+import { DestinationController } from "../controllers/destination.controller";
+import { FilmTypeController } from "../controllers/filmType.controller";
 import { FoodController } from "../controllers/food.controller";
 import { MusicTypeController } from "../controllers/musicType.controller";
 import { RegionController } from "../controllers/region.controller";

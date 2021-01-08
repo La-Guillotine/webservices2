@@ -9,10 +9,12 @@ jobs:
     services:
       mysql:
         image: mysql:5.7
-        env: 
-          DB_URL: mysql://root:root@localhost:${{ job.services.mysql.ports[3306] }}/webservices?serverVersion=5.7
+        env:
+          MYSQL_DATABASE: webservices
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
         ports:
-          - 3306
+          - 3306/tcp
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     strategy:
@@ -31,8 +33,12 @@ jobs:
         npm install
       env:
         CI: true
-
+        
     - name: Execute unit tests via Mocha
       run: npm run test
-      
+      env: 
+        MYSQL_DATABASE: webservices
+        DB_USERNAME: root
+        DB_PASSWORD: root
+        DB_PORT: ${{ job.services.mysql.ports[3306] }}
       

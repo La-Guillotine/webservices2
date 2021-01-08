@@ -49,10 +49,10 @@ jobs:
     - name: Run fixtures
       run: npm run fixtures
       env: 
-         DATABASEB_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
+         DATABASE_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
 
     - name: Execute unit tests via Mocha
       run: npm run test
       env: 
-        DATABASEB_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
+        DATABASE_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
       

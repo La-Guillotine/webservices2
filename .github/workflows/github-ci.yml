@@ -49,10 +49,14 @@ jobs:
     - name: Run fixtures
       run: |
         npm run fixtures
-        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices < SELECT * from animal;
+        
+    - name: Vérif Fixtures
+      run: |
+        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices
+        SELECT * from animal;
       env: 
         MYSQL_ROOT_PASSWORD: root
-
+        
     - name: Execute unit tests via Mocha
       run: npm run test
       env: 

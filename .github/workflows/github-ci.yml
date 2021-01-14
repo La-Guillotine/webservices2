@@ -49,7 +49,7 @@ jobs:
     - name: Run fixtures
       run: |
         npm run fixtures
-        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices animal
+        mysqlshow --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices animal
       env: 
         MYSQL_ROOT_PASSWORD: root
 

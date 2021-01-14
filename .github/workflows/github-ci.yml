@@ -68,7 +68,7 @@ jobs:
     - name: Curl animals
       uses: wei/curl@master
       with:
-        args: http::localhost/animals
+        args: http://localhost:3001/animals
 
     - name: Execute unit tests via Mocha
       run: npm run test

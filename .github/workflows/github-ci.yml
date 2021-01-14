@@ -51,7 +51,7 @@ jobs:
         npm run fixtures
         mysqlshow --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices animal
       env: 
-         DATABASE_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
+        MYSQL_ROOT_PASSWORD: root
 
     - name: Execute unit tests via Mocha
       run: npm run test

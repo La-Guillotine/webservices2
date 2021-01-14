@@ -72,5 +72,5 @@ jobs:
         DB_USER: root
         DB_PASSWORD: root
         DB_HOST: localhost
-        DB_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
+        DB_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7 
       

@@ -52,6 +52,11 @@ jobs:
     - name: Run fixtures
       run: |
         npm run fixtures
+      env: 
+        DB_DATABASE: webservices
+        DB_USER: root
+        DB_PASSWORD: root
+        DB_HOST: localhost
         
     - name: Vérif Fixtures
       run: |

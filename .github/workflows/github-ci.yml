@@ -52,11 +52,10 @@ jobs:
         
     - name: Vérif Fixtures
       run: |
-        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices
-        SELECT * from animal;
+        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices -e "select * from animal"
       env: 
         MYSQL_ROOT_PASSWORD: root
-        
+
     - name: Execute unit tests via Mocha
       run: npm run test
       env: 

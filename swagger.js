@@ -2226,12 +2226,6 @@ module.exports = {
                             "$ref": "#/definitions/User"
                         }
                     },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "description": "authorization",
-                        "value":"Bearer "
-                    }
                 ],
                 "produces": [
                     "application/json"

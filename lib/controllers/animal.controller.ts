@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { DEFAULT_MIN_VERSION } from "tls";
 import { Animal } from "../models/animal.model";
 
 export class AnimalController {

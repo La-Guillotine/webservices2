@@ -31,11 +31,10 @@ jobs:
         npm install
         npm install -g pm2
         pm2 install typescript
-        pm2 start pm2.json
       env:
         CI: true
 
-    - name: Verify MySQL connection
+    - name: Verify MySQL connexion
       env:
         PORT: ${{ job.services.mysql.ports[3306] }}
         MYSQL_ROOT_PASSWORD: root
@@ -50,8 +49,7 @@ jobs:
         mysqlshow --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices
     
     - name: Run fixtures
-      run: |
-        npm run fixtures
+      run: npm run fixtures
       env: 
         DB_DATABASE: webservices
         DB_USER: root
@@ -63,7 +61,10 @@ jobs:
         mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices -e "select * from animal"
       env: 
         MYSQL_ROOT_PASSWORD: root
-
+    
+    - name: Start Projet with PM2
+      run : pm2 start pm2.json
+      
     - name: Execute unit tests via Mocha
       run: npm run test
       env:
@@ -71,4 +72,5 @@ jobs:
         DB_USER: root
         DB_PASSWORD: root
         DB_HOST: localhost
+        DATABASE_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7
       

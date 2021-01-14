@@ -29,7 +29,7 @@ jobs:
     - name: npm install
       run: |
         npm install
-        npm install pm2
+        npm install  --save-dev pm2
         pm2 start pm2.json
       env:
         CI: true

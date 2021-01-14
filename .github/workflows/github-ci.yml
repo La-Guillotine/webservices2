@@ -66,10 +66,9 @@ jobs:
       run : pm2 start pm2.json
 
     - name: Curl animals
-      uses: wei/curl@master
+      uses: wei/curl@v1
       with:
-        args: http://localhost:3001/animals
-      run: curl
+        args: -X GET http://localhost:3001/animals
 
     - name: Execute unit tests via Mocha
       run: npm run test

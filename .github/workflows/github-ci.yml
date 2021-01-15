@@ -66,10 +66,10 @@ jobs:
     - name: Run fixtures
       run: npm run fixtures
       env: 
-        DB_DATABASE: ${{ job.services.mysql.DB_DATABASE }}
-        DB_USER: ${{ job.services.mysql.DB_USER }}
-        DB_PASSWORD: ${{ job.services.mysql.DB_PASSWORD }}
-        DB_HOST: ${{ job.services.mysql.DB_HOST }}
+        DB_DATABASE: ${{ job.services.mysql.env.DB_DATABASE }}
+        DB_USER: ${{ job.services.mysql.env.DB_USER }}
+        DB_PASSWORD: ${{ job.services.mysql.env.DB_PASSWORD }}
+        DB_HOST: ${{ job.services.mysql.env.DB_HOST }}
         
     - name: Vérif Fixtures
       run: |
@@ -84,7 +84,7 @@ jobs:
       run: npm run test
       env:
         REDIS_HOST: redis
-        REDIS_PORT: ${{ job.services.redis.ports }}
+        REDIS_PORT: 3001
 
     - name: Coverage report
       run: npm run report

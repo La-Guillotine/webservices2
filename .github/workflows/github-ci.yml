@@ -10,7 +10,7 @@ jobs:
       redis:
         image: redis
         ports:
-          - 6379:6379
+          - 6379:3001
         # Set health checks to wait until redis has started
         options: >-
           --health-cmd "redis-cli ping"
@@ -80,7 +80,7 @@ jobs:
       run: npm run test
       env:
         REDIS_HOST: localhost
-        REDIS_PORT: 3001
+        REDIS_PORT: 6379
 
     - name: Coverage report
       run: npm run report

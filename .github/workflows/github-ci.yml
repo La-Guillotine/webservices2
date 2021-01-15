@@ -80,7 +80,7 @@ jobs:
       run: npm run test
       env:
         REDIS_HOST: localhost
-        REDIS_PORT: 6379
+        REDIS_PORT: 3001
 
     - name: Coverage report
       run: npm run report

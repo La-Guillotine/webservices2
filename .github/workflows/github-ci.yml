@@ -10,7 +10,7 @@ jobs:
       redis:
         image: redis
         ports:
-          - 3001:3001
+          - 6379
         # Set health checks to wait until redis has started
         options: >-
           --health-cmd "redis-cli ping"
@@ -75,12 +75,12 @@ jobs:
     
     - name: Start Projet with PM2
       run : pm2 start pm2.json
+      env:
+        REDIS_HOST: localhost
+        REDIS_PORT: 6379
 
     - name: Execute unit tests via Mocha
       run: npm run test
-      env:
-        REDIS_HOST: localhost
-        REDIS_PORT: 3001
 
     - name: Coverage report
       run: npm run report

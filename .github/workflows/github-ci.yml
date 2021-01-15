@@ -10,7 +10,7 @@ jobs:
       redis:
         image: redis
         ports:
-          - 3001:6379
+          - 3001:3001
         # Set health checks to wait until redis has started
         options: >-
           --health-cmd "redis-cli ping"

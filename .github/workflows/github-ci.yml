@@ -22,10 +22,6 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: root
-          DB_DATABASE: webservices
-          DB_USER: root
-          DB_PASSWORD: root
-          DB_HOST: localhost
         ports:
         - 3306
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
@@ -66,10 +62,10 @@ jobs:
     - name: Run fixtures
       run: npm run fixtures
       env: 
-        DB_DATABASE: ${{ job.services.mysql.env.DB_DATABASE }}
-        DB_USER: ${{ job.services.mysql.env.DB_USER }}
-        DB_PASSWORD: ${{ job.services.mysql.env.DB_PASSWORD }}
-        DB_HOST: ${{ job.services.mysql.env.DB_HOST }}
+        DB_DATABASE: webservices
+        DB_USER: root
+        DB_PASSWORD: root
+        DB_HOST: localhost
         
     - name: Vérif Fixtures
       run: |
@@ -83,7 +79,7 @@ jobs:
     - name: Execute unit tests via Mocha
       run: npm run test
       env:
-        REDIS_HOST: redis
+        REDIS_HOST: localhost
         REDIS_PORT: 3001
 
     - name: Coverage report

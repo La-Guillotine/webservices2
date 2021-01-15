@@ -7,10 +7,17 @@ jobs:
     runs-on: ubuntu-latest 
 
     services:
+      localhost:
+        ports:
+          - "3001:3001"
       mysql:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: root
+          DB_DATABASE: webservices
+          DB_USER: root
+          DB_PASSWORD: root
+          DB_HOST: localhost
         ports:
         - 3306
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
@@ -38,7 +45,7 @@ jobs:
       env:
         PORT: ${{ job.services.mysql.ports[3306] }}
         MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: webservices
+        # MYSQL_DATABASE: webservices
       run: |
         sudo /etc/init.d/mysql start
         while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
@@ -50,11 +57,11 @@ jobs:
     
     - name: Run fixtures
       run: npm run fixtures
-      env: 
-        DB_DATABASE: webservices
-        DB_USER: root
-        DB_PASSWORD: root
-        DB_HOST: localhost
+      # env: 
+      #   DB_DATABASE: webservices
+      #   DB_USER: root
+      #   DB_PASSWORD: root
+      #   DB_HOST: localhost
         
     - name: Vérif Fixtures
       run: |
@@ -67,12 +74,12 @@ jobs:
 
     - name: Execute unit tests via Mocha
       run: npm run test
-      env:
-        DB_DATABASE: webservices
-        DB_USER: root
-        DB_PASSWORD: root
-        DB_HOST: localhost
-        DATABASE_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7 
+      # env:
+      #   DB_DATABASE: webservices
+      #   DB_USER: root
+      #   DB_PASSWORD: root
+      #   DB_HOST: localhost
+      #   DATABASE_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7 
 
     - name: Coverage report
       run: npm run report

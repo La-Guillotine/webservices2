@@ -1,0 +1,83 @@
+name: github-ci
+on: [push]
+
+jobs:
+
+  github-ci:
+    runs-on: ubuntu-latest 
+
+    services:
+      redis:
+        image: redis
+        ports:
+          - 3001:3001
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+        - 3306
+        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: npm install
+      run: |
+        npm install
+        npm install -g pm2
+        pm2 install typescript
+      env:
+        CI: true
+
+    - name: Verify MySQL connexion
+      env:
+        PORT: ${{ job.services.mysql.ports[3306] }}
+        MYSQL_ROOT_PASSWORD: root
+        # MYSQL_DATABASE: webservices
+      run: |
+        sudo /etc/init.d/mysql start
+        while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
+          sleep 1
+        done
+        echo "SELECT 'OK';" | mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost
+        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost < webservices.sql
+        mysqlshow --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices
+    
+    - name: Run fixtures
+      run: npm run fixtures
+      env: 
+        DB_DATABASE: webservices
+        DB_USER: root
+        DB_PASSWORD: root
+        DB_HOST: localhost
+        
+    - name: Vérif Fixtures
+      run: |
+        mysql --user=root --password=$MYSQL_ROOT_PASSWORD --host=localhost webservices -e "select * from animal"
+      env: 
+        MYSQL_ROOT_PASSWORD: root
+    
+    - name: Start Projet with PM2
+      run : pm2 start pm2.json
+
+    # - name: Execute unit tests via Mocha
+    #   run: npm run test
+
+    # - name: Coverage report
+    #   run: npm run report

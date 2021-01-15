@@ -75,14 +75,9 @@ jobs:
     
     - name: Start Projet with PM2
       run : pm2 start pm2.json
-    
-    - name: curl
-      uses: wei/curl@master
-      with:
-        args: -X GET http://localhost:3001/animals
 
-    - name: Execute unit tests via Mocha
-      run: npm run test
+    # - name: Execute unit tests via Mocha
+    #   run: npm run test
 
     - name: Coverage report
       run: npm run report

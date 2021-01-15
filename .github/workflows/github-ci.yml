@@ -7,9 +7,17 @@ jobs:
     runs-on: ubuntu-latest 
 
     services:
-      # localhost:
-      #   ports:
-      #     - "3001:3001"
+       redis:
+        image: redis
+        ports:
+          - 3001
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
       mysql:
         image: mysql:5.7
         env:
@@ -57,11 +65,11 @@ jobs:
     
     - name: Run fixtures
       run: npm run fixtures
-      # env: 
-      #   DB_DATABASE: webservices
-      #   DB_USER: root
-      #   DB_PASSWORD: root
-      #   DB_HOST: localhost
+      env: 
+        DB_DATABASE: ${{ job.services.mysql.DB_DATABASE }}
+        DB_USER: ${{ job.services.mysql.DB_USER }}
+        DB_PASSWORD: ${{ job.services.mysql.DB_PASSWORD }}
+        DB_HOST: ${{ job.services.mysql.DB_HOST }}
         
     - name: Vérif Fixtures
       run: |
@@ -74,12 +82,9 @@ jobs:
 
     - name: Execute unit tests via Mocha
       run: npm run test
-      # env:
-      #   DB_DATABASE: webservices
-      #   DB_USER: root
-      #   DB_PASSWORD: root
-      #   DB_HOST: localhost
-      #   DATABASE_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7 
+      env:
+        REDIS_HOST: redis
+        REDIS_PORT: ${{ job.services.redis.ports }}
 
     - name: Coverage report
       run: npm run report

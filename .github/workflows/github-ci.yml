@@ -81,6 +81,9 @@ jobs:
 
     - name: Execute unit tests via Mocha
       run: npm run test
+      env:
+        REDIS_HOST: localhost
+        REDIS_PORT: 6379
 
     - name: Coverage report
       run: npm run report

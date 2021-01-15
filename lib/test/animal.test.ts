@@ -14,7 +14,6 @@ describe('Animals', () => {
             .request(API)
             .get('/animals')
             .end((err: any, res: Response) => {
-                console.error(err);
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('array');
                 expect(res.body[1].name).to.equals('Chien');

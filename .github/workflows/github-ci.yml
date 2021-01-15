@@ -79,5 +79,5 @@ jobs:
     # - name: Execute unit tests via Mocha
     #   run: npm run test
 
-    - name: Coverage report
-      run: npm run report
+    # - name: Coverage report
+    #   run: npm run report

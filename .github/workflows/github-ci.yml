@@ -73,4 +73,6 @@ jobs:
         DB_PASSWORD: root
         DB_HOST: localhost
         DATABASE_URL: mysql://root:root@localhost:3306/webservices?serverVersion=5.7 
-      
+
+    - name: Coverage report
+      run: npm run report

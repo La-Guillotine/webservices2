@@ -159,6 +159,9 @@ export class UserController {
                 users.forEach((user: User) => {
                     commonCount = 0;
                     if(user != userChoisi){
+                        if(user.first_name == userChoisi.first_name)commonCount++;
+                        if(user.last_name == userChoisi.last_name)commonCount++;
+                        if(user.age == userChoisi.age)commonCount++;
                         // signes astrologiques
                         if (user.get({plain: true}).astrologicalsign.id == userChoisi.get({plain: true}).astrologicalsign.id) commonCount++;
                         

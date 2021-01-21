@@ -1,12 +1,25 @@
 import { Request, Response } from "express";
 import { User } from "../models/user.model";
+import { Animal } from "../models/animal.model";
+import { Anime } from "../models/anime.model";
+import { AstrologicalSign } from "../models/astrologicalSign.model"
+import { Car } from "../models/car.model";
+import { City } from '../models/city.model';
+import { Destination } from "../models/destination.model";
+import { Drink } from "../models/drink.model";
+import { FilmType } from "../models/filmType.model";
+import { Food } from "../models/food.model";
+import { MusicType } from "../models/musicType.model";
+import { Region } from "../models/region.model";
+import { Sport } from "../models/sport.model";
+import { Videogame } from "../models/videogame.model";
 import { createToken } from "../config/auth"
 import * as nodemailer from 'nodemailer'
 import * as bcrypt from "bcrypt";
 
 export class AuthController {
 
-    public login (req: Request, res: Response) {
+    public async login (req: Request, res: Response) {
         User.findOne({ 
             where: { email: req.body.email },
             include: [
@@ -27,19 +40,20 @@ export class AuthController {
         .then((user: User) => {
              // user = object || user = null|
             if(!user){
-                res.status(401).json({ message: "Cet utilisateur n'existe pas" })
+                res.json({ message: "Cet utilisateur n'existe pas" })
             }else{
                 //Vérifier le mot de passe
-                if(user.password == req.body.password){
+                console.log(user.password)
+                if(bcrypt.compareSync(req.body.password,user.password)){
                     const token = createToken(user)
                     res.json({ access_token: token })
                 }else{
                     //Si mot de passe incorrect, on renvoie une erreur
-                    res.status(401).json({ message: 'Mot de passe incorrect' })
+                    res.json({ message: 'Mot de passe incorrect' })
                 }
             }
         })
-        .catch((err: Error) => res.status(500).json(err))
+        .catch((err: Error) => res.json(err))
     }
 
     public async register (req: Request, res: Response) {
@@ -92,6 +106,49 @@ export class AuthController {
                     
                 }
             })
-            .catch((err: Error) => res.status(500).json(err))
+            .catch((err: Error) => res.json(err))
     }
+
+    public async datas (req: Request, res: Response) {
+     
+        const totalAnimals = await Animal.count().catch((err: Error) => res.json(err))
+        const totalAnimes = await Anime.count().catch((err: Error) => res.json(err))
+        const totalAStrologicalSigns = await AstrologicalSign.count().catch((err: Error) => res.json(err))
+        const totalCars = await Car.count().catch((err: Error) => res.json(err))
+        const totalCities = await City.count().catch((err: Error) => res.json(err))
+        const totalDestinations = await Destination.count().catch((err: Error) => res.json(err))
+        const totalDrinks = await Drink.count().catch((err: Error) => res.json(err))
+        const totalFilmTypes = await FilmType.count().catch((err: Error) => res.json(err))
+        const totalFood = await Food.count().catch((err: Error) => res.json(err))
+        const totalMusicTypes = await MusicType.count().catch((err: Error) => res.json(err))
+        const totalRegions = await Region.count().catch((err: Error) => res.json(err))
+        const totalSports = await Sport.count().catch((err: Error) => res.json(err))
+        const totalUsers = await User.count().catch((err: Error) => res.json(err))
+        const totalVideoGames = await Videogame.count().catch((err: Error) => res.json(err))
+
+        const total = {
+            "animals":totalAnimals,
+            "animes":totalAnimes,
+            "astrologicalSigns":totalAStrologicalSigns,
+            "cars":totalCars,
+            "cities":totalCities,
+            "destinations":totalDestinations,
+            "drinks":totalDrinks,
+            "filmTypes":totalFilmTypes,
+            "foods":totalFood,
+            "musicTypes":totalMusicTypes,
+            "regions":totalRegions,
+            "sports":totalSports,
+            "users":totalUsers,
+            "videoGames":totalVideoGames,
+        }
+
+        res.json(total)
+        
+    }
+
+
+
+
+
 }

@@ -82,7 +82,7 @@ export class UserController {
                 astrologicalsign_id:req.body.astrologicalsign_id
             })
             .then((user: User) => res.json(user))
-            .catch((err: Error) => res.status(500).json(err))
+            .catch((err: Error) => res.json(err))
         ;
     }
 

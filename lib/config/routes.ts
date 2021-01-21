@@ -200,6 +200,9 @@ export class Routes {
 
         //-----------------
 
+        app.route("/datas")
+            .get(this.authController.datas)
+
     }
 
 }

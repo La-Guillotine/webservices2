@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Drink } from "../models/drink.model";
+import { Op } from "sequelize";
 
 export class DrinkController {
 
@@ -8,6 +9,8 @@ export class DrinkController {
         const count : number= await Drink.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
+        const isAlcoholised : string = req.query.isAlcoholised as string || ""
 
         let jump : number 
 
@@ -23,7 +26,15 @@ export class DrinkController {
             ],
             offset:jump,
             limit:element,
-            include:[Drink.associations.users]
+            include:[Drink.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                },
+                "isAlcoholised":{
+                    [Op.substring]:isAlcoholised
+                }
+            }
         })
             .then((drinks: Array<Drink>) => res.json(drinks))
             .catch((err: Error) => res.status(500).json(err))

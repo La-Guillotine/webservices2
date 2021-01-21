@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Anime } from "../models/anime.model";
+import { Op } from "sequelize";
 
 
 export class AnimeController {
@@ -9,6 +10,7 @@ export class AnimeController {
         const count : number= await Anime.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -24,7 +26,12 @@ export class AnimeController {
             ],
             offset:jump,
             limit:element,
-            include:[Anime.associations.users]
+            include:[Anime.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
         .then((animes: Array<Anime>) => res.json(animes))
         .catch((err: Error) => res.status(500).json(err))

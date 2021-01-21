@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { MusicType } from "../models/musicType.model";
-
+import { Op } from "sequelize";
 
 export class MusicTypeController {
 
@@ -9,6 +9,7 @@ export class MusicTypeController {
         const count : number= await MusicType.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -24,7 +25,12 @@ export class MusicTypeController {
             ],
             offset:jump,
             limit:element,
-            include:[MusicType.associations.users]
+            include:[MusicType.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
         .then((musicTypes: Array<MusicType>) => res.json(musicTypes))
         .catch((err: Error) => res.status(500).json(err))

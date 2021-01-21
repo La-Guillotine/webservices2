@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { City } from '../models/city.model';
+import { Op } from "sequelize";
 
 export class CityController {
 
@@ -8,6 +9,7 @@ export class CityController {
         const count : number= await City.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -26,7 +28,12 @@ export class CityController {
             include: [
                 City.associations.region,
                 City.associations.users
-            ]
+            ],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
         .then((cities: Array<City>) => res.json(cities))
         .catch((err: Error) => res.status(500).json(err))

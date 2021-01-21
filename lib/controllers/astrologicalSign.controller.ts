@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { AstrologicalSign } from "../models/astrologicalSign.model";
+import { Op } from "sequelize";
 
 export class AstrologicalSignController {
 
@@ -8,6 +9,7 @@ export class AstrologicalSignController {
         const count : number= await AstrologicalSign.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -23,7 +25,12 @@ export class AstrologicalSignController {
             ],
             offset:jump,
             limit:element,
-            include: [AstrologicalSign.associations.users]
+            include: [AstrologicalSign.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
             .then((astrologicalSigns: Array<AstrologicalSign>) => res.json(astrologicalSigns))
             .catch((err: Error) => res.status(500).json(err))

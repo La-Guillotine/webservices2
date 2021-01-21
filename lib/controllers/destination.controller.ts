@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Destination } from "../models/destination.model";
-
+import { Op } from "sequelize";
 
 export class DestinationController {
 
@@ -9,6 +9,7 @@ export class DestinationController {
         const count : number= await Destination.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -24,7 +25,12 @@ export class DestinationController {
             ],
             offset:jump,
             limit:element,
-            include:[Destination.associations.users]
+            include:[Destination.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
             .then((destinations: Array<Destination>) => res.json(destinations))
             .catch((err: Error) => res.status(500).json(err))

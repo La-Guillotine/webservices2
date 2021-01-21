@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Videogame } from "../models/videogame.model";
+import { Op } from "sequelize";
 
 export class VideoGameController {
 
@@ -8,6 +9,7 @@ export class VideoGameController {
         const count : number= await Videogame.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -23,7 +25,12 @@ export class VideoGameController {
             ],
             offset:jump,
             limit:element,
-            include:[Videogame.associations.users]
+            include:[Videogame.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
             .then((videoGames: Array<Videogame>) => res.json(videoGames))
             .catch((err: Error) => res.status(500).json(err))

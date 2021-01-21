@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Region } from "../models/region.model";
-
+import { Op } from "sequelize";
 
 export class RegionController {
 
@@ -9,6 +9,7 @@ export class RegionController {
         const count : number= await Region.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -24,7 +25,12 @@ export class RegionController {
             ],
             offset:jump,
             limit:element,
-            include: [Region.associations.cities]
+            include: [Region.associations.cities],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
         .then((regions: Array<Region>) => res.json(regions))
         .catch((err: Error) => res.status(500).json(err))

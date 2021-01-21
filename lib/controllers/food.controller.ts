@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Food } from "../models/food.model";
+import { Op } from "sequelize";
 
 export class FoodController {
 
@@ -8,6 +9,7 @@ export class FoodController {
         const count : number= await Food.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -23,7 +25,12 @@ export class FoodController {
             ],
             offset:jump,
             limit:element,
-            include:[Food.associations.users]
+            include:[Food.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
         .then((foods: Array<Food>) => res.json(foods))
         .catch((err: Error) => res.status(500).json(err))

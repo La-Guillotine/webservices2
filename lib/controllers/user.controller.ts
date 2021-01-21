@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { User } from "../models/user.model";
 import * as bcrypt from "bcrypt";
+import { Op } from "sequelize";
 
 export class UserController {
 
@@ -9,6 +10,7 @@ export class UserController {
         const count : number= await User.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -37,7 +39,12 @@ export class UserController {
                 User.associations.musictypes,
                 User.associations.sports,
                 User.associations.videogames
-            ]
+            ],
+            where:{
+                "first_name":{
+                    [Op.substring]:search
+                }
+            }
         })
             .then((users: Array<User>) => res.json(users))
             .catch((err: Error) => res.status(500).json(err))

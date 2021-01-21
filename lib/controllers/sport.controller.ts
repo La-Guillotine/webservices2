@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Sport } from "../models/sport.model";
+import { Op } from "sequelize";
 
 export class SportController {
 
@@ -8,6 +9,8 @@ export class SportController {
         const count : number= await Sport.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
+        const isTeamPlay : string = req.query.isTeamPlay as string || ""
 
         let jump : number 
 
@@ -23,7 +26,15 @@ export class SportController {
             ],
             offset:jump,
             limit:element,
-            include:[Sport.associations.users]
+            include:[Sport.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                },
+                "isTeamPlay":{
+                    [Op.substring]:isTeamPlay
+                }
+            }
         })
             .then((sports: Array<Sport>) => res.json(sports))
             .catch((err: Error) => res.status(500).json(err))

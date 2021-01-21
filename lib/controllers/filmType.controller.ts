@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { FilmType } from "../models/filmType.model";
+import { Op } from "sequelize";
 
 export class FilmTypeController {
 
@@ -8,6 +9,7 @@ export class FilmTypeController {
         const count : number= await FilmType.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -23,7 +25,12 @@ export class FilmTypeController {
             ],
             offset:jump,
             limit:element,
-            include:[FilmType.associations.users]
+            include:[FilmType.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
         .then((filmTypes: Array<FilmType>) => res.json(filmTypes))
         .catch((err: Error) => res.status(500).json(err))

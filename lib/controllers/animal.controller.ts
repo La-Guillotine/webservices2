@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Animal } from "../models/animal.model";
+import { Op } from "sequelize";
 
 export class AnimalController {
 
@@ -7,6 +8,7 @@ export class AnimalController {
         const count : number= await Animal.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -22,7 +24,12 @@ export class AnimalController {
             ],
             offset:jump,
             limit:element,
-            include: [Animal.associations.users]
+            include: [Animal.associations.users],
+            where:{
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
             .then((animals: Array<Animal>) => res.json(animals))
             .catch((err: Error) => res.status(500).json(err))

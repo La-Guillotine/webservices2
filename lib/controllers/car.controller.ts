@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Car } from "../models/car.model";
+import { Op } from "sequelize";
 
 
 export class CarController {
@@ -9,6 +10,8 @@ export class CarController {
         const count : number= await Car.count()
         const element : number | number = parseInt(req.query.element as string) || count
         const page : number = parseInt(req.query.page as string) || 0
+        const filtre : string = req.query.brand as string || ""
+        const search : string = req.query.name as string || ""
 
         let jump : number 
 
@@ -24,7 +27,15 @@ export class CarController {
             ],
             offset:jump,
             limit:element,
-            include:[Car.associations.users]
+            include:[Car.associations.users],
+            where:{
+                "brand":{
+                    [Op.substring]:filtre
+                },
+                "name":{
+                    [Op.substring]:search
+                }
+            }
         })
             .then((cars: Array<Car>) => res.json(cars))
             .catch((err: Error) => res.status(500).json(err))

@@ -50,7 +50,16 @@ module.exports = {
                             "$ref": "#/definitions/Animal"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+
+              ],
             },
             "post": {
                 "tags": [
@@ -229,7 +238,15 @@ module.exports = {
                             "$ref": "#/definitions/Anime"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -407,7 +424,15 @@ module.exports = {
                             "$ref": "#/definitions/AstrologicalSign"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -593,7 +618,22 @@ module.exports = {
                             "$ref": "#/definitions/Car"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                      "name": "brand",
+                      "in": "query",
+                      "description": "marque choisi",
+                      "type":"string"
+                  },
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+
+              ],
             },
             "post": {
                 "tags": [
@@ -772,7 +812,15 @@ module.exports = {
                             "$ref": "#/definitions/City"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -951,7 +999,15 @@ module.exports = {
                             "$ref": "#/definitions/Destination"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -1131,7 +1187,21 @@ module.exports = {
                             "$ref": "#/definitions/Drink"
                         }
                     }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+                {
+                  "name":"isAlcoholised",
+                  "in":"query",
+                  "description":"est alcoolisé ?",
+                  "type":"string"
                 }
+              ],
             },
             "post": {
                 "tags": [
@@ -1311,7 +1381,15 @@ module.exports = {
                             "$ref": "#/definitions/FilmType"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -1491,7 +1569,15 @@ module.exports = {
                             "$ref": "#/definitions/Food"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -1671,7 +1757,15 @@ module.exports = {
                             "$ref": "#/definitions/MusicType"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -1850,7 +1944,15 @@ module.exports = {
                             "$ref": "#/definitions/Region"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -2029,7 +2131,21 @@ module.exports = {
                             "$ref": "#/definitions/Sport"
                         }
                     }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+                {
+                  "name":"isTeamPlay",
+                  "in":"query",
+                  "description":"is team play ?",
+                  "type":"string"
                 }
+              ],
             },
             "post": {
                 "tags": [
@@ -2209,7 +2325,15 @@ module.exports = {
                             "$ref": "#/definitions/User"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "firstname",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [
@@ -2383,7 +2507,15 @@ module.exports = {
                             "$ref": "#/definitions/VideoGame"
                         }
                     }
-                }
+                },
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Nom",
+                    "type":"string"
+                },
+              ],
             },
             "post": {
                 "tags": [

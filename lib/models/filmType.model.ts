@@ -2,6 +2,7 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
 import { User } from "./user.model";
+import { UserFilmType } from "./user_filmtype.model";
 
 export class FilmType extends Model {
     public id: number;
@@ -30,12 +31,12 @@ FilmType.init(
 FilmType.belongsToMany(User, {
     as : "users",
     foreignKey: "filmtype_id",
-    through: "user_filmtype",
+    through: UserFilmType,
     timestamps: false
 });
 User.belongsToMany(FilmType, {
     as: "filmtypes",
     foreignKey: "user_id",
-    through: "user_filmtype",
+    through: UserFilmType,
     timestamps: false
 });

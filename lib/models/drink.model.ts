@@ -2,6 +2,7 @@
 import { Sequelize, Model, DataTypes, BuildOptions, TinyIntegerDataType } from "sequelize";
 import { database } from "../config/database";
 import { User } from "./user.model";
+import { UserDrink } from "./user_drink.model";
 
 export class Drink extends Model {
     public id: number;
@@ -35,12 +36,12 @@ Drink.init(
 Drink.belongsToMany(User, {
     as : "users",
     foreignKey: "drink_id",
-    through: "user_drink",
+    through: UserDrink,
     timestamps: false
 });
 User.belongsToMany(Drink, {
     as: "drinks",
     foreignKey: "user_id",
-    through: "user_drink",
+    through: UserDrink,
     timestamps: false
 });

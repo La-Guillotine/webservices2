@@ -57,10 +57,10 @@ describe('Users', () => {
             .request(API)
             .post('/users')
             .send({
-                email : "test@latest.com",
-                password : "latest",
-                first_name : "test",
-                last_name : "test",
+                email : "enzo@fonteneau.com",
+                password : "fonteneau",
+                first_name : "enzo",
+                last_name : "fonteneau",
                 tel_number : "0684312033",
                 age : 85,
                 adress : "134 Cours Saint-Louis",
@@ -70,12 +70,12 @@ describe('Users', () => {
             .end((err: any, res: any) => {
                 expect(res.status).to.equals(200);
                 expect(res.body).to.be.an('object');
-                expect(res.body.first_name).to.equals('test');
-                expect(res.body.last_name).to.equals("test");
+                expect(res.body.first_name).to.equals('enzo');
+                expect(res.body.last_name).to.equals("fonteneau");
                 expect(res.body.age).to.equals(85);
                 expect(res.body.city_id).to.equals(40);
                 expect(
-                    bcrypt.compareSync("latest",res.body.password)
+                    bcrypt.compareSync("fonteneau",res.body.password)
                 ).to.be.true;
                 lastIdInserted = res.body.id;
                 done();
@@ -89,10 +89,10 @@ describe('Users', () => {
             .request(API)
             .put(`/users/${lastIdInserted}`)
             .send({
-                email : "test@latest.com",
+                email : "enzo@fonteneau.com",
                 password : "bordeaux",
-                first_name : "test",
-                last_name : "latest",
+                first_name : "enzo",
+                last_name : "fonteneau",
                 tel_number : "0684312033",
                 age : 96,
                 adress : "315 Cours Balguerie Stuttenberg",
@@ -104,8 +104,8 @@ describe('Users', () => {
                 expect(res.body).to.be.an('object');
                 expect(res.body.created).to.be.false;
                 expect(res.body.user.id).to.equals(lastIdInserted.toString());
-                expect(res.body.user.first_name).to.equals('test');
-                expect(res.body.user.last_name).to.equals("latest");
+                expect(res.body.user.first_name).to.equals('enzo');
+                expect(res.body.user.last_name).to.equals("fonteneau");
                 expect(res.body.user.age).to.equals(96);
                 expect(res.body.user.city_id).to.equals(6);
                 expect(

@@ -27,6 +27,16 @@ import * as videogames from '../datas/videoGame';
 import * as users from "../datas/users";
 import { User} from "../models/user.model"
 import * as bcrypt from "bcrypt";
+import { UserAnimal } from "../models/user_animal.model";
+import { UserAnime } from "../models/user_anime.model";
+import { UserCar } from "../models/user_car.model";
+import { UserDestination } from "../models/user_destination.model";
+import { UserDrink } from "../models/user_drink.model";
+import { UserFilmType } from "../models/user_filmtype.model";
+import { UserFood } from "../models/user_food.model";
+import { UserMusicType } from "../models/user_musictype.model";
+import { UserSport } from "../models/user_sport.model";
+import { UserVideogame } from "../models/user_videogame.model";
 
 const saltRounds: Number = 10;
 async function loadFixtures(): Promise<void>{
@@ -170,11 +180,43 @@ async function loadUsers(): Promise<void>{
                 last_name: user.last_name,
                 tel_number: user.tel_number,
                 age: user.age,
-                address: user.address,
+                address: user.adress,
                 city_id: user.city_id,
                 astrologicalsign_id:user.astrologicalsign_id
             })
-            .then((user: User) => console.log(user.id))
+            .then((userCreated: User) => {
+                user.animals.forEach((element: number) => {
+                    UserAnimal.create({user_id: userCreated.id, animal_id: element})
+                });
+                user.animes.forEach((element: number) => {
+                    UserAnime.create({user_id: userCreated.id, anime_id: element})
+                });
+                user.cars.forEach((element: number) => {
+                    UserCar.create({user_id: userCreated.id, car_id: element})
+                });
+                user.destinations.forEach((element: number) => {
+                    UserDestination.create({user_id: userCreated.id, destination_id: element})
+                });
+                user.drinks.forEach((element: number) => {
+                    UserDrink.create({user_id: userCreated.id, drink_id: element})
+                });
+                user.filmtypes.forEach((element: number) => {
+                    UserFilmType.create({user_id: userCreated.id, filmtype_id: element})
+                });
+                user.foods.forEach((element: number) => {
+                    UserFood.create({user_id: userCreated.id, food_id: element})
+                });
+                user.musictypes.forEach((element: number) => {
+                    UserMusicType.create({user_id: userCreated.id, musictype_id: element})
+                });
+                user.sports.forEach((element: number) => {
+                    UserSport.create({user_id: userCreated.id, sport_id: element})
+                });
+                user.videogames.forEach((element: number) => {
+                    UserVideogame.create({user_id: userCreated.id, videogame_id: element})
+                });
+                console.log(userCreated.id)
+            })
             .catch((err: Error) => console.log(err))
             })
         .catch((err :Error) => {

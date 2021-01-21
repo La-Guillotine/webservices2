@@ -2,6 +2,7 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
 import { User } from "./user.model";
+import { UserDestination } from "./user_destination.model";
 
 export class Destination extends Model {
     public id: number;
@@ -30,12 +31,12 @@ Destination.init(
 Destination.belongsToMany(User, {
     as : "users",
     foreignKey: "destination_id",
-    through: "user_destination",
+    through: UserDestination,
     timestamps: false
 });
 User.belongsToMany(Destination, {
     as: "destinations",
     foreignKey: "user_id",
-    through: "user_destination",
+    through: UserDestination,
     timestamps: false
 });

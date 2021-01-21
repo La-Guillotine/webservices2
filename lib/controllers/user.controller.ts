@@ -132,4 +132,120 @@ export class UserController {
         ;
     }
 
+    public getCompatibility (req: Request, res: Response){
+        User.findAll<User>({
+            order: [
+                ['id', 'ASC']
+            ],
+            include: [
+                User.associations.city,
+                User.associations.animals,
+                User.associations.animes,
+                User.associations.astrologicalsign,
+                User.associations.cars,
+                User.associations.destinations,
+                User.associations.drinks,
+                User.associations.filmtypes,
+                User.associations.foods,
+                User.associations.musictypes,
+                User.associations.sports,
+                User.associations.videogames
+            ]
+        })
+            .then((users: Array<User>) => {
+                let userChoisi: User = users.filter(obj => obj.id == Number(req.params.id))[0];
+                let commonCount: number;
+                // console.log(userChoisi.get({plain:true}));
+                users.forEach((user: User) => {
+                    commonCount = 0;
+                    if(user != userChoisi){
+                        // signes astrologiques
+                        if (user.get({plain: true}).astrologicalsign.id == userChoisi.get({plain: true}).astrologicalsign.id) commonCount++;
+                        
+                        // régions et villes
+                        if(user.get({plain: true}).city.id == userChoisi.get({plain: true}).city.id) commonCount++;
+                        else if(user.get({plain: true}).city.region_id == userChoisi.get({plain: true}).city.region_id) commonCount+= 0.5;
+                        
+                        // animaux
+                        for(let animal of user.get({plain:true}).animals){
+                            for(let b of userChoisi.get({plain:true}).animals){
+                                if(animal.id == b.id) commonCount++;
+                            }
+                        }
+                        
+                        // animes
+                        for(let anime of user.get({plain:true}).animes){
+                            for(let b of userChoisi.get({plain:true}).animes){
+                                if(anime.id == b.id) commonCount++;
+                            }
+                        }
+                        
+                        // cars
+                        for(let car of user.get({plain:true}).cars){
+                            for(let b of userChoisi.get({plain:true}).cars){
+                                if(car.id == b.id) commonCount++;
+                                else if(car.brand == b.brand) commonCount += 0.5;
+                            }
+                        }
+                        
+                        // destinations
+                        for(let destination of user.get({plain:true}).destinations){
+                            for(let b of userChoisi.get({plain:true}).destinations){
+                                if(destination.id == b.id) commonCount++;
+                            }
+                        }
+                       
+                        // drinks
+                        for(let drink of user.get({plain:true}).drinks){
+                            for(let b of userChoisi.get({plain:true}).drinks){
+                                if(drink.id == b.id) commonCount++;
+                            }
+                        }
+                        
+                        // filmtypes
+                        for(let filmtype of user.get({plain:true}).filmtypes){
+                            for(let b of userChoisi.get({plain:true}).filmtypes){
+                                if(filmtype.id == b.id) commonCount++;
+                            }
+                        }
+                        
+                        // foods
+                        for(let food of user.get({plain:true}).foods){
+                            for(let b of userChoisi.get({plain:true}).foods){
+                                if(food.id == b.id) commonCount++;
+                            }
+                        }
+                        
+                        // musictypes
+                        for(let musictype of user.get({plain:true}).musictypes){
+                            for(let b of userChoisi.get({plain:true}).musictypes){
+                                if(musictype.id == b.id) commonCount++;
+                            }
+                        }
+                        
+                        // sports
+                        for(let sport of user.get({plain:true}).sports){
+                            for(let b of userChoisi.get({plain:true}).sports){
+                                if(sport.id == b.id) commonCount++;
+                            }
+                        }
+                        
+                        // videogame
+                        for(let videogame of user.get({plain:true}).videogames){
+                            for(let b of userChoisi.get({plain:true}).videogames){
+                                if(videogame.id == b.id) commonCount++;
+                            }
+                        }
+                        console.log(commonCount);
+                    }
+                });
+
+                res.json(userChoisi);
+            })
+            .catch((err: Error) => res.status(500).json(err))
+        ;
+        
+
+    }
+
 }

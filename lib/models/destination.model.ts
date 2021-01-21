@@ -29,13 +29,13 @@ Destination.init(
 
 Destination.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "destination_id",
     through: "user_destination",
     timestamps: false
 });
 User.belongsToMany(Destination, {
     as: "destinations",
-    foreignKey: "destination_id",
+    foreignKey: "user_id",
     through: "user_destination",
     timestamps: false
 });

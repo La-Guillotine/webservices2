@@ -34,13 +34,13 @@ Car.init(
 
 Car.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "car_id",
     through: "user_car",
     timestamps: false
 });
 User.belongsToMany(Car, {
     as: "cars",
-    foreignKey: "car_id",
+    foreignKey: "user_id",
     through: "user_car",
     timestamps: false
 });

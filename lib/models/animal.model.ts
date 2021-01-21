@@ -29,13 +29,13 @@ Animal.init(
 
 Animal.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "animal_id",
     through: "user_animal",
     timestamps: false
 });
 User.belongsToMany(Animal, {
     as: "animals",
-    foreignKey: "animal_id",
+    foreignKey: "user_id",
     through: "user_animal",
     timestamps: false
 });

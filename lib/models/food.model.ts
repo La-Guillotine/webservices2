@@ -29,13 +29,13 @@ Food.init(
 
 Food.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "food_id",
     through: "user_food",
     timestamps: false
 });
 User.belongsToMany(Food, {
     as: "foods",
-    foreignKey: "food_id",
+    foreignKey: "user_id",
     through: "user_food",
     timestamps: false
 });

@@ -29,13 +29,13 @@ Anime.init(
 
 Anime.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "anime_id",
     through: "user_anime",
     timestamps: false
 });
 User.belongsToMany(Anime, {
     as: "animes",
-    foreignKey: "anime_id",
+    foreignKey: "user_id",
     through: "user_anime",
     timestamps: false
 });

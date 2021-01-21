@@ -29,13 +29,13 @@ Videogame.init(
 
 Videogame.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "videogame_id",
     through: "user_videogame",
     timestamps: false
 });
 User.belongsToMany(Videogame, {
     as: "videogames",
-    foreignKey: "videogame_id",
+    foreignKey: "user_id",
     through: "user_videogame",
     timestamps: false
 });

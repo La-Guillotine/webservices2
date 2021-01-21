@@ -34,13 +34,13 @@ Sport.init(
 
 Sport.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "sport_id",
     through: "user_sport",
     timestamps: false
 });
 User.belongsToMany(Sport, {
     as: "sports",
-    foreignKey: "sport_id",
+    foreignKey: "user_id",
     through: "user_sport",
     timestamps: false
 });

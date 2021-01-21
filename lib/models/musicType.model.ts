@@ -29,13 +29,13 @@ MusicType.init(
 
 MusicType.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "musictype_id",
     through: "user_musictype",
     timestamps: false
 });
 User.belongsToMany(MusicType, {
     as: "musictypes",
-    foreignKey: "musictype_id",
+    foreignKey: "user_id",
     through: "user_musictype",
     timestamps: false
 });

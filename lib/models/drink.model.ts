@@ -34,13 +34,13 @@ Drink.init(
 
 Drink.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "drink_id",
     through: "user_drink",
     timestamps: false
 });
 User.belongsToMany(Drink, {
     as: "drinks",
-    foreignKey: "drink_id",
+    foreignKey: "user_id",
     through: "user_drink",
     timestamps: false
 });

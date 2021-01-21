@@ -29,13 +29,13 @@ FilmType.init(
 
 FilmType.belongsToMany(User, {
     as : "users",
-    foreignKey: "user_id",
+    foreignKey: "filmtype_id",
     through: "user_filmtype",
     timestamps: false
 });
 User.belongsToMany(FilmType, {
     as: "filmtypes",
-    foreignKey: "filmtype_id",
+    foreignKey: "user_id",
     through: "user_filmtype",
     timestamps: false
 });

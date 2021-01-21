@@ -2,6 +2,7 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
 import { User } from "./user.model";
+import { UserSport } from "./user_sport.model";
 
 export class Sport extends Model {
     public id: number;
@@ -35,12 +36,12 @@ Sport.init(
 Sport.belongsToMany(User, {
     as : "users",
     foreignKey: "sport_id",
-    through: "user_sport",
+    through: UserSport,
     timestamps: false
 });
 User.belongsToMany(Sport, {
     as: "sports",
     foreignKey: "user_id",
-    through: "user_sport",
+    through: UserSport,
     timestamps: false
 });

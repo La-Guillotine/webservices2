@@ -2,6 +2,7 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
 import { User } from "./user.model";
+import { UserMusicType } from "./user_musictype.model";
 
 export class MusicType extends Model {
     public id: number;
@@ -30,12 +31,12 @@ MusicType.init(
 MusicType.belongsToMany(User, {
     as : "users",
     foreignKey: "musictype_id",
-    through: "user_musictype",
+    through: UserMusicType,
     timestamps: false
 });
 User.belongsToMany(MusicType, {
     as: "musictypes",
     foreignKey: "user_id",
-    through: "user_musictype",
+    through: UserMusicType,
     timestamps: false
 });

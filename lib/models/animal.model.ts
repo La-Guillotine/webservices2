@@ -2,6 +2,7 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from "sequelize";
 import { database } from "../config/database";
 import { User } from "./user.model";
+import { UserAnimal } from "./user_animal.model";
 
 export class Animal extends Model {
     public id: number;
@@ -30,12 +31,12 @@ Animal.init(
 Animal.belongsToMany(User, {
     as : "users",
     foreignKey: "animal_id",
-    through: "user_animal",
+    through: UserAnimal,
     timestamps: false
 });
 User.belongsToMany(Animal, {
     as: "animals",
     foreignKey: "user_id",
-    through: "user_animal",
+    through: UserAnimal,
     timestamps: false
 });

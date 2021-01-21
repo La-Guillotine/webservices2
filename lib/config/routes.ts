@@ -177,6 +177,9 @@ export class Routes {
             .delete(this.userController.removeUser)
             .put(this.userController.updateOrCreateUser)
             .patch(this.userController.updateUser)
+        
+        app.route("/users/:id/compatibility")
+            .get(this.userController.getCompatibility)
 
         //------------------
 

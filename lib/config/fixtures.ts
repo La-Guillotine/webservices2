@@ -215,7 +215,7 @@ async function loadUsers(): Promise<void>{
                 user.videogames.forEach((element: number) => {
                     UserVideogame.create({user_id: userCreated.id, videogame_id: element})
                 });
-                console.log(userCreated.id)
+                console.log(userCreated.id + " : " + userCreated.first_name);
             })
             .catch((err: Error) => console.log(err))
             })

@@ -162,10 +162,13 @@ export class UserController {
             .then((users: Array<User>) => {
                 let userChoisi: User = users.filter(obj => obj.id == Number(req.params.id))[0];
                 let commonCount: number;
+                let tabUsersWithScore: Array<Object> = [];
                 // console.log(userChoisi.get({plain:true}));
                 users.forEach((user: User) => {
                     commonCount = 0;
                     if(user != userChoisi){
+                        let userWithScore: Object;
+
                         if(user.first_name == userChoisi.first_name)commonCount++;
                         if(user.last_name == userChoisi.last_name)commonCount++;
                         if(user.age == userChoisi.age)commonCount++;
@@ -247,10 +250,17 @@ export class UserController {
                             }
                         }
                         console.log(commonCount);
-                    }
-                });
+                        
+                        userWithScore = {
+                            user: user,
+                            score: commonCount
+                        };
 
-                res.json(userChoisi);
+                        tabUsersWithScore.push(userWithScore);
+                    }
+                    
+                });
+                res.json(tabUsersWithScore);
             })
             .catch((err: Error) => res.status(500).json(err))
         ;

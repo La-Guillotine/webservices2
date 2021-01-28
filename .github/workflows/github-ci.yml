@@ -76,8 +76,8 @@ jobs:
     - name: Start Projet with PM2
       run : pm2 start pm2.json
 
-    # - name: Execute unit tests via Mocha
-    #   run: npm run test
+    - name: Execute unit tests via Mocha
+      run: npm run test
 
     # - name: Coverage report
     #   run: npm run report

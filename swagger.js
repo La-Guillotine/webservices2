@@ -1,13 +1,15 @@
-module.exports = {
+    module.exports = {
     "swagger": "2.0",
     "info": {
         "title": "Swagger",
-         "description": "",
+        "description": "",
         "version": "1.0"
     },
-    "produces": ["application/json"],
+    "produces": [
+        "application/json"
+    ],
     "paths": {
-          "/login": {
+        "/login": {
             "post": {
                 "tags": [
                     "Login"
@@ -52,14 +54,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
-                    "name": "name",
-                    "in": "query",
-                    "description": "Nom",
-                    "type":"string"
-                },
-
-              ],
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nom",
+                        "type":"string"
+                    },
+                ],
             },
             "post": {
                 "tags": [
@@ -77,10 +78,10 @@ module.exports = {
                         }
                     },
                     {
-                          "name": "authorization",
-                          "in": "header",
-                          "description": "authorization",
-                          "value":"Bearer "
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
                 ],
                 "produces": [
@@ -98,42 +99,42 @@ module.exports = {
         },
         "/animals/{id}": {
             "delete": {
-              "summary": "Supprimer l'animal par l'ID donné",
-              "tags": [
-                "Animal"
-              ],
-              "parameters": [
-                {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID de l'animal que l'on souhaite supprimer",
-                  "type": "integer"
-                },
-                {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
+                "summary": "Supprimer l'animal par l'ID donné",
+                "tags": [
+                    "Animal"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'animal que l'on souhaite supprimer",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Animal supprimé",
+                        "schema": {
+                            "$ref": "#/definitions/Animal"
+                        }
+                    }
                 }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Animal supprimé",
-                  "schema": {
-                    "$ref": "#/definitions/Animal"
-                  }
-                }
-              }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de l'animal que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'animal que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -152,7 +153,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour l'animal par l'ID donné ou le créer",
                 "tags": [
-                  "Animal"
+                    "Animal"
                 ],
                 "parameters": [
                     {
@@ -161,36 +162,35 @@ module.exports = {
                         "required": true,
                         "description": "ID de l'animal que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
-                    "name": "animal",
-                    "in": "body",
-                    "description": "Animal avec les nouvelles valeurs des propriétés",
-                    "schema": {
-                      "$ref": "#/definitions/UpdateAnimal"
+                    },
+                    {
+                        "name": "animal",
+                        "in": "body",
+                        "description": "Animal avec les nouvelles valeurs des propriétés",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAnimal"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
-                  },
-                  {
-                    "name": "authorization",
-                    "in": "header",
-                    "description": "authorization",
-                    "value":"Bearer "
-              }
-                  
                 ],
                 "responses": {
-                  "200": {
-                    "description": "l'animal a été mis à jour ou créer",
-                    "schema": {
-                      "$ref": "#/definitions/Animal"
+                    "200": {
+                        "description": "l'animal a été mis à jour ou créer",
+                        "schema": {
+                            "$ref": "#/definitions/Animal"
+                        }
                     }
-                  }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour l'animal par l'ID donné",
                 "tags": [
-                  "Animal"
+                    "Animal"
                 ],
                 "parameters": [
                     {
@@ -199,29 +199,29 @@ module.exports = {
                         "required": true,
                         "description": "ID de l'animal que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
-                    "name": "animal",
-                    "in": "body",
-                    "description": "Animal avec les nouvelles valeurs des propriétés",
-                    "schema": {
-                      "$ref": "#/definitions/UpdateAnimal"
+                    },
+                    {
+                        "name": "animal",
+                        "in": "body",
+                        "description": "Animal avec les nouvelles valeurs des propriétés",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAnimal"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
-                  },
-                  {
-                    "name": "authorization",
-                    "in": "header",
-                    "description": "authorization",
-                    "value":"Bearer "
-              }
                 ],
                 "responses": {
-                  "200": {
-                    "description": "l'animal a été mis à jour",
-                    "schema": {
-                      "$ref": "#/definitions/Animal"
+                    "200": {
+                        "description": "l'animal a été mis à jour",
+                        "schema": {
+                            "$ref": "#/definitions/Animal"
+                        }
                     }
-                  }
                 }
             }
         },
@@ -240,13 +240,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
-                    "name": "name",
-                    "in": "query",
-                    "description": "Nom",
-                    "type":"string"
-                },
-              ],
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nom",
+                        "type":"string"
+                    },
+                ],
             },
             "post": {
                 "tags": [
@@ -268,7 +268,7 @@ module.exports = {
                         "in": "header",
                         "description": "authorization",
                         "value":"Bearer "
-                  }
+                    }
                 ],
                 "produces": [
                     "application/json"
@@ -285,42 +285,42 @@ module.exports = {
         },
         "/animes/{id}": {
             "delete": {
-              "summary": "Supprime l'anime par l'ID donné",
-              "tags": [
-                "Anime"
-              ],
-              "parameters": [
-                {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID de l'anime que l'on souhaite supprimer",
-                  "type": "integer"
-                },
-                {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-            }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Anime supprimé",
-                  "schema": {
-                    "$ref": "#/definitions/Anime"
-                  }
+                "summary": "Supprime l'anime par l'ID donné",
+                "tags": [
+                    "Anime"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'anime que l'on souhaite supprimer",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Anime supprimé",
+                        "schema": {
+                            "$ref": "#/definitions/Anime"
+                        }
+                    }
                 }
-              }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de l'anime que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'anime que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -339,7 +339,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour l'anime par l'ID donné ou le créer",
                 "tags": [
-                  "Anime"
+                    "Anime"
                 ],
                 "parameters": [
                     {
@@ -348,35 +348,35 @@ module.exports = {
                         "required": true,
                         "description": "ID de l'anime que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
-                    "name": "anime",
-                    "in": "body",
-                    "description": "Anime avec les nouvelles valeurs des propriétés",
-                    "schema": {
-                      "$ref": "#/definitions/UpdateAnime"
+                    },
+                    {
+                        "name": "anime",
+                        "in": "body",
+                        "description": "Anime avec les nouvelles valeurs des propriétés",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAnime"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
-                  },
-                  {
-                    "name": "authorization",
-                    "in": "header",
-                    "description": "authorization",
-                    "value":"Bearer "
-              }
                 ],
                 "responses": {
-                  "200": {
-                    "description": "l'anime a été mis à jour ou créer",
-                    "schema": {
-                      "$ref": "#/definitions/Anime"
+                    "200": {
+                        "description": "l'anime a été mis à jour ou créer",
+                        "schema": {
+                            "$ref": "#/definitions/Anime"
+                        }
                     }
-                  }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour l'anime par l'ID donné",
                 "tags": [
-                  "Anime"
+                    "Anime"
                 ],
                 "parameters": [
                     {
@@ -385,29 +385,29 @@ module.exports = {
                         "required": true,
                         "description": "ID de l'anime que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
-                    "name": "anime",
-                    "in": "body",
-                    "description": "Anime avec les nouvelles valeurs des propriétés",
-                    "schema": {
-                      "$ref": "#/definitions/UpdateAnime"
+                    },
+                    {
+                        "name": "anime",
+                        "in": "body",
+                        "description": "Anime avec les nouvelles valeurs des propriétés",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAnime"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
-                  },
-                  {
-                    "name": "authorization",
-                    "in": "header",
-                    "description": "authorization",
-                    "value":"Bearer "
-              }
                 ],
                 "responses": {
-                  "200": {
-                    "description": "l'anime a été mis à jour",
-                    "schema": {
-                      "$ref": "#/definitions/Anime"
+                    "200": {
+                        "description": "l'anime a été mis à jour",
+                        "schema": {
+                            "$ref": "#/definitions/Anime"
+                        }
                     }
-                  }
                 }
             }
         },
@@ -426,13 +426,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
-                    "name": "name",
-                    "in": "query",
-                    "description": "Nom",
-                    "type":"string"
-                },
-              ],
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nom",
+                        "type":"string"
+                    },
+                ],
             },
             "post": {
                 "tags": [
@@ -454,7 +454,7 @@ module.exports = {
                         "in": "header",
                         "description": "authorization",
                         "value":"Bearer "
-                  }
+                    }
                 ],
                 "produces": [
                     "application/json"
@@ -470,51 +470,50 @@ module.exports = {
             }
         },
         "/astrologicalSigns/{id}": {
-            
             "delete": {
-              "summary": "Supprime le signe astrologique par l'ID donné",
-              "tags": [
-                "Astrological sign"
-              ],
-              "parameters": [
-                {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID du signe astrologique que l'on souhaite supprimer",
-                  "type": "integer"
-                },
-                {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-            }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Signe astrologique supprimé",
-                  "schema": {
-                    "$ref": "#/definitions/AstrologicalSign"
-                  }
-                }
-              }
-            },
-            "get": {
+                "summary": "Supprime le signe astrologique par l'ID donné",
+                "tags": [
+                    "Astrological sign"
+                ],
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID du signe astrologique que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du signe astrologique que l'on souhaite supprimer",
+                        "type": "integer"
                     },
                     {
                         "name": "authorization",
                         "in": "header",
                         "description": "authorization",
                         "value":"Bearer "
-                  }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Signe astrologique supprimé",
+                        "schema": {
+                            "$ref": "#/definitions/AstrologicalSign"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID du signe astrologique que l'on souhaite recupérer",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
+                    }
                 ],
                 "tags": [
                     "Astrological sign"
@@ -532,7 +531,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour le signe astrologique par l'ID donné ou le créer",
                 "tags": [
-                  "Astrological sign"
+                    "Astrological sign"
                 ],
                 "parameters": [
                     {
@@ -541,35 +540,35 @@ module.exports = {
                         "required": true,
                         "description": "ID du signe astrologique que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
-                    "name": "astrologicalSign",
-                    "in": "body",
-                    "description": "Signe astrologique avec les nouvelles valeurs des propriétés",
-                    "schema": {
-                      "$ref": "#/definitions/UpdateAstrologicalSign"
+                        },
+                    {
+                        "name": "astrologicalSign",
+                        "in": "body",
+                        "description": "Signe astrologique avec les nouvelles valeurs des propriétés",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAstrologicalSign"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
-                  },
-                  {
-                    "name": "authorization",
-                    "in": "header",
-                    "description": "authorization",
-                    "value":"Bearer "
-              }
                 ],
                 "responses": {
-                  "200": {
-                    "description": "Le signe astrologique a été mis à jour ou créer",
-                    "schema": {
-                      "$ref": "#/definitions/AstrologicalSign"
+                    "200": {
+                        "description": "Le signe astrologique a été mis à jour ou créer",
+                        "schema": {
+                            "$ref": "#/definitions/AstrologicalSign"
+                        }
                     }
-                  }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour le signe astrologique par l'ID donné",
                 "tags": [
-                  "Astrological sign"
+                    "Astrological sign"
                 ],
                 "parameters": [
                     {
@@ -578,32 +577,31 @@ module.exports = {
                         "required": true,
                         "description": "ID du signe astrologique que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
-                    "name": "astrologicalSign",
-                    "in": "body",
-                    "description": "Signe astrologique avec les nouvelles valeurs des propriétés",
-                    "schema": {
-                      "$ref": "#/definitions/UpdateAstrologicalSign"
+                    },
+                    {
+                        "name": "astrologicalSign",
+                        "in": "body",
+                        "description": "Signe astrologique avec les nouvelles valeurs des propriétés",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateAstrologicalSign"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization",
+                        "value":"Bearer "
                     }
-                  },
-                  {
-                    "name": "authorization",
-                    "in": "header",
-                    "description": "authorization",
-                    "value":"Bearer "
-                }
                 ],
                 "responses": {
-                  "200": {
-                    "description": "Le signe astrologique a été mis à jour",
-                    "schema": {
-                      "$ref": "#/definitions/AstrologicalSign"
+                    "200": {
+                        "description": "Le signe astrologique a été mis à jour",
+                        "schema": {
+                            "$ref": "#/definitions/AstrologicalSign"
+                        }
                     }
-                  }
                 }
             }
-            
         },
         "/cars": {
             "get": {
@@ -620,20 +618,19 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
-                      "name": "brand",
-                      "in": "query",
-                      "description": "marque choisi",
-                      "type":"string"
-                  },
-                  {
-                    "name": "name",
-                    "in": "query",
-                    "description": "Nom",
-                    "type":"string"
-                },
-
-              ],
+                    {
+                        "name": "brand",
+                        "in": "query",
+                        "description": "marque choisi",
+                        "type":"string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nom",
+                        "type":"string"
+                    },
+                ],
             },
             "post": {
                 "tags": [
@@ -671,44 +668,43 @@ module.exports = {
             }
         },
         "/cars/{id}": {
-            
             "delete": {
-              "summary": "Supprime la voiture par l'ID donné",
-              "tags": [
-                "Car"
-              ],
-              "parameters": [
+                "summary": "Supprime la voiture par l'ID donné",
+                "tags": [
+                    "Car"
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID de la voiture que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID de la voiture que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Voiture supprimée",
-                  "schema": {
-                    "$ref": "#/definitions/Car"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Voiture supprimée",
+                    "schema": {
+                    "$ref": "#/definitions/Car"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de la voiture que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la voiture que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -727,7 +723,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour la voiture par l'ID donné ou le créer",
                 "tags": [
-                  "Car"
+                    "Car"
                 ],
                 "parameters": [
                     {
@@ -736,16 +732,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la voiture que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "car",
                     "in": "body",
                     "description": "Voiture avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateCar"
+                        "$ref": "#/definitions/UpdateCar"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -753,18 +749,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La voiture a été mise à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/Car"
+                        "$ref": "#/definitions/Car"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour la voiture par l'ID donné",
                 "tags": [
-                  "Car"
+                    "Car"
                 ],
                 "parameters": [
                     {
@@ -773,16 +769,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la voiture que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "car",
                     "in": "body",
                     "description": "Voiture avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateCar"
+                        "$ref": "#/definitions/UpdateCar"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -790,12 +786,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La voiture a été mise à jour",
                     "schema": {
-                      "$ref": "#/definitions/Car"
+                        "$ref": "#/definitions/Car"
                     }
-                  }
+                    }
                 }
             }
         },
@@ -814,13 +810,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -860,42 +856,42 @@ module.exports = {
         "/cities/{id}": {
             
             "delete": {
-              "summary": "Supprime la ville par l'ID donné",
-              "tags": [
+                "summary": "Supprime la ville par l'ID donné",
+                "tags": [
                 "City"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID de la ville que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID de la ville que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Ville supprimée",
-                  "schema": {
-                    "$ref": "#/definitions/City"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Ville supprimée",
+                    "schema": {
+                    "$ref": "#/definitions/City"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de la ville que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la ville que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -914,7 +910,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour la ville par l'ID donné ou le créer",
                 "tags": [
-                  "City"
+                    "City"
                 ],
                 "parameters": [
                     {
@@ -923,16 +919,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la ville que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "city",
                     "in": "body",
                     "description": "Ville avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateCity"
+                        "$ref": "#/definitions/UpdateCity"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -940,18 +936,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La ville a été mise à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/City"
+                        "$ref": "#/definitions/City"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour la ville par l'ID donné",
                 "tags": [
-                  "City"
+                    "City"
                 ],
                 "parameters": [
                     {
@@ -960,16 +956,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la ville que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "city",
                     "in": "body",
                     "description": "Ville avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateCity"
+                        "$ref": "#/definitions/UpdateCity"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -977,12 +973,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La ville a été mise à jour",
                     "schema": {
-                      "$ref": "#/definitions/City"
+                        "$ref": "#/definitions/City"
                     }
-                  }
+                    }
                 }
             }
         },
@@ -1001,13 +997,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -1047,42 +1043,42 @@ module.exports = {
         "/destinations/{id}": {
             
             "delete": {
-              "summary": "Supprime la destination par l'ID donné",
-              "tags": [
+                "summary": "Supprime la destination par l'ID donné",
+                "tags": [
                 "Destination"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID de la destination que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID de la destination que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Destination supprimée",
-                  "schema": {
-                    "$ref": "#/definitions/Destination"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Destination supprimée",
+                    "schema": {
+                    "$ref": "#/definitions/Destination"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de la destination que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la destination que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -1101,7 +1097,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour la destination par l'ID donné ou le créer",
                 "tags": [
-                  "Destination"
+                    "Destination"
                 ],
                 "parameters": [
                     {
@@ -1110,16 +1106,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la destination que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "destination",
                     "in": "body",
                     "description": "Destination avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateDestination"
+                        "$ref": "#/definitions/UpdateDestination"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1127,18 +1123,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La destination a été mise à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/Destination"
+                        "$ref": "#/definitions/Destination"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour la destination par l'ID donné",
                 "tags": [
-                  "Destination"
+                    "Destination"
                 ],
                 "parameters": [
                     {
@@ -1147,16 +1143,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la destination que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "destination",
                     "in": "body",
                     "description": "Destination avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateDestination"
+                        "$ref": "#/definitions/UpdateDestination"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1164,12 +1160,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La destination a été mise à jour",
                     "schema": {
-                      "$ref": "#/definitions/Destination"
+                        "$ref": "#/definitions/Destination"
                     }
-                  }
+                    }
                 }
             }
             
@@ -1189,19 +1185,19 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
                 {
-                  "name":"isAlcoholised",
-                  "in":"query",
-                  "description":"est alcoolisé ?",
-                  "type":"string"
+                    "name":"isAlcoholised",
+                    "in":"query",
+                    "description":"est alcoolisé ?",
+                    "type":"string"
                 }
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -1241,42 +1237,42 @@ module.exports = {
         "/drinks/{id}": {
 
             "delete": {
-              "summary": "Supprime la boisson par l'ID donné",
-              "tags": [
+                "summary": "Supprime la boisson par l'ID donné",
+                "tags": [
                 "Drink"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID de la boisson que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID de la boisson que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Boisson supprimée",
-                  "schema": {
-                    "$ref": "#/definitions/Drink"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Boisson supprimée",
+                        "schema": {
+                        "$ref": "#/definitions/Drink"
+                        }
+                    }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de la boisson que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la boisson que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -1295,7 +1291,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour la boisson par l'ID donné ou le créer",
                 "tags": [
-                  "Drink"
+                    "Drink"
                 ],
                 "parameters": [
                     {
@@ -1304,16 +1300,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la boisson que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "drink",
                     "in": "body",
                     "description": "Boisson avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateDrink"
+                        "$ref": "#/definitions/UpdateDrink"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1321,18 +1317,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La boisson a été mise à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/Drink"
+                        "$ref": "#/definitions/Drink"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour la boisson par l'ID donné",
                 "tags": [
-                  "Drink"
+                    "Drink"
                 ],
                 "parameters": [
                     {
@@ -1341,16 +1337,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la boisson, que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "csrinkar",
                     "in": "body",
                     "description": "Boisson avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateDrink"
+                        "$ref": "#/definitions/UpdateDrink"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1358,12 +1354,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La boisson a été mise à jour",
                     "schema": {
-                      "$ref": "#/definitions/Drink"
+                        "$ref": "#/definitions/Drink"
                     }
-                  }
+                    }
                 }
             }
             
@@ -1383,13 +1379,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -1429,42 +1425,42 @@ module.exports = {
         "/filmTypes/{id}": {
 
             "delete": {
-              "summary": "Supprime le type de film par l'ID donné",
-              "tags": [
+                "summary": "Supprime le type de film par l'ID donné",
+                "tags": [
                 "Film type"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID du type de film que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID du type de film que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Type de film supprimé",
-                  "schema": {
-                    "$ref": "#/definitions/FilmType"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Type de film supprimé",
+                    "schema": {
+                    "$ref": "#/definitions/FilmType"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de le type de film que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de le type de film que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -1483,7 +1479,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour le type de film par l'ID donné ou le créer",
                 "tags": [
-                  "Film type"
+                    "Film type"
                 ],
                 "parameters": [
                     {
@@ -1492,16 +1488,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du type de film que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "filmType",
                     "in": "body",
                     "description": "Type de film avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateFilmType"
+                        "$ref": "#/definitions/UpdateFilmType"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1509,18 +1505,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le type de film a été mis à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/FilmType"
+                        "$ref": "#/definitions/FilmType"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour le type de film par l'ID donné",
                 "tags": [
-                  "Film type"
+                    "Film type"
                 ],
                 "parameters": [
                     {
@@ -1529,16 +1525,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du type de film que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "filmType",
                     "in": "body",
                     "description": "Type de film avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateFilmType"
+                        "$ref": "#/definitions/UpdateFilmType"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1546,12 +1542,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le type de film a été mis à jour",
                     "schema": {
-                      "$ref": "#/definitions/FilmType"
+                        "$ref": "#/definitions/FilmType"
                     }
-                  }
+                    }
                 }
             }
             
@@ -1571,13 +1567,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -1617,42 +1613,42 @@ module.exports = {
         "/foods/{id}": {
 
             "delete": {
-              "summary": "Supprime le restaurant par l'ID donné",
-              "tags": [
+                "summary": "Supprime le restaurant par l'ID donné",
+                "tags": [
                 "Food"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID du restaurant que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID du restaurant que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Restaurant supprimé",
-                  "schema": {
-                    "$ref": "#/definitions/Food"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Restaurant supprimé",
+                    "schema": {
+                    "$ref": "#/definitions/Food"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de le restaurant que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de le restaurant que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -1671,7 +1667,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour le restaurant par l'ID donné ou le créer",
                 "tags": [
-                  "Food"
+                    "Food"
                 ],
                 "parameters": [
                     {
@@ -1680,16 +1676,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du restaurant que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "car",
                     "in": "body",
                     "description": "Restaurant avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateFood"
+                        "$ref": "#/definitions/UpdateFood"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1697,18 +1693,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le restaurant a été mis à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/Food"
+                        "$ref": "#/definitions/Food"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour le restaurant par l'ID donné",
                 "tags": [
-                  "Food"
+                    "Food"
                 ],
                 "parameters": [
                     {
@@ -1717,16 +1713,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du restaurant que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "car",
                     "in": "body",
                     "description": "Restaurant avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateFood"
+                        "$ref": "#/definitions/UpdateFood"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1734,12 +1730,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le restaurant a été mis à jour",
                     "schema": {
-                      "$ref": "#/definitions/Food"
+                        "$ref": "#/definitions/Food"
                     }
-                  }
+                    }
                 }
             }
             
@@ -1759,13 +1755,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -1805,42 +1801,42 @@ module.exports = {
         "/musicTypes/{id}": {
 
             "delete": {
-              "summary": "Supprime le type de musique par l'ID donné",
-              "tags": [
+                "summary": "Supprime le type de musique par l'ID donné",
+                "tags": [
                 "Music type"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID du type de musique que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID du type de musique que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Type de musique supprimé",
-                  "schema": {
-                    "$ref": "#/definitions/MusicType"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Type de musique supprimé",
+                    "schema": {
+                    "$ref": "#/definitions/MusicType"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de le type de musique que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de le type de musique que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -1859,7 +1855,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour le type de musique par l'ID donné ou le créer",
                 "tags": [
-                  "Music type"
+                    "Music type"
                 ],
                 "parameters": [
                     {
@@ -1868,16 +1864,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du type de la musique que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "musicType",
                     "in": "body",
                     "description": "Type de musique avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateMusicType"
+                        "$ref": "#/definitions/UpdateMusicType"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1885,18 +1881,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le type de musique a été mis à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/MusicType"
+                        "$ref": "#/definitions/MusicType"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour le type de la musique par l'ID donné",
                 "tags": [
-                  "Music type"
+                    "Music type"
                 ],
                 "parameters": [
                     {
@@ -1905,16 +1901,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du type de musique que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "musicType",
                     "in": "body",
                     "description": "Type de musique avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateMusicType"
+                        "$ref": "#/definitions/UpdateMusicType"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -1922,12 +1918,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le type de musique a été mise à jour",
                     "schema": {
-                      "$ref": "#/definitions/MusicType"
+                        "$ref": "#/definitions/MusicType"
                     }
-                  }
+                    }
                 }
             } 
         },
@@ -1946,13 +1942,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -1992,42 +1988,42 @@ module.exports = {
         "/regions/{id}": {
 
             "delete": {
-              "summary": "Supprime la region par l'ID donné",
-              "tags": [
+                "summary": "Supprime la region par l'ID donné",
+                "tags": [
                 "Region"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID de la region que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID de la region que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Region supprimée",
-                  "schema": {
-                    "$ref": "#/definitions/Region"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Region supprimée",
+                    "schema": {
+                    "$ref": "#/definitions/Region"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de la region que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de la region que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -2046,7 +2042,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour la region par l'ID donné ou le créer",
                 "tags": [
-                  "Region"
+                    "Region"
                 ],
                 "parameters": [
                     {
@@ -2055,16 +2051,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la region que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "region",
                     "in": "body",
                     "description": "Region avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateRegion"
+                        "$ref": "#/definitions/UpdateRegion"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -2072,18 +2068,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La region a été mis à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/Region"
+                        "$ref": "#/definitions/Region"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour la region par l'ID donné",
                 "tags": [
-                  "Region"
+                    "Region"
                 ],
                 "parameters": [
                     {
@@ -2092,16 +2088,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de la region que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "region",
                     "in": "body",
                     "description": "Région avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateRegion"
+                        "$ref": "#/definitions/UpdateRegion"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -2109,12 +2105,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "La region a été mise à jour",
                     "schema": {
-                      "$ref": "#/definitions/Region"
+                        "$ref": "#/definitions/Region"
                     }
-                  }
+                    }
                 }
             }
         },
@@ -2133,19 +2129,19 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
                 {
-                  "name":"isTeamPlay",
-                  "in":"query",
-                  "description":"is team play ?",
-                  "type":"string"
+                    "name":"isTeamPlay",
+                    "in":"query",
+                    "description":"is team play ?",
+                    "type":"string"
                 }
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -2185,42 +2181,42 @@ module.exports = {
         "/sports/{id}": {
 
             "delete": {
-              "summary": "Supprime le sport par l'ID donné",
-              "tags": [
+                "summary": "Supprime le sport par l'ID donné",
+                "tags": [
                 "Sport"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID du sport que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID du sport que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Sport supprimé",
-                  "schema": {
-                    "$ref": "#/definitions/Sport"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Sport supprimé",
+                    "schema": {
+                    "$ref": "#/definitions/Sport"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de le sport que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de le sport que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -2239,7 +2235,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour le sport par l'ID donné ou le créer",
                 "tags": [
-                  "Sport"
+                    "Sport"
                 ],
                 "parameters": [
                     {
@@ -2248,16 +2244,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du sport que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "sport",
                     "in": "body",
                     "description": "Sport avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateSport"
+                        "$ref": "#/definitions/UpdateSport"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -2265,18 +2261,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le sport a été mis à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/Sport"
+                        "$ref": "#/definitions/Sport"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour le sport par l'ID donné",
                 "tags": [
-                  "Sport"
+                    "Sport"
                 ],
                 "parameters": [
                     {
@@ -2285,16 +2281,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du sport que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "sport",
                     "in": "body",
                     "description": "Sport avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateSport"
+                        "$ref": "#/definitions/UpdateSport"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -2302,12 +2298,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le sport a été mis à jour",
                     "schema": {
-                      "$ref": "#/definitions/Sport"
+                        "$ref": "#/definitions/Sport"
                     }
-                  }
+                    }
                 }
             } 
             
@@ -2327,13 +2323,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "firstname",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -2367,42 +2363,42 @@ module.exports = {
         "/users/{id}": {
 
             "delete": {
-              "summary": "Supprime l'utilisateur par l'ID donné",
-              "tags": [
+                "summary": "Supprime l'utilisateur par l'ID donné",
+                "tags": [
                 "User"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID de l'utilisateur que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID de l'utilisateur que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Utilisateur supprimé",
-                  "schema": {
-                    "$ref": "#/definitions/User"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Utilisateur supprimé",
+                    "schema": {
+                    "$ref": "#/definitions/User"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de l'utilisateur que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de l'utilisateur que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -2421,7 +2417,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour l'utilisateur par l'ID donné ou le créer",
                 "tags": [
-                  "User"
+                    "User"
                 ],
                 "parameters": [
                     {
@@ -2430,16 +2426,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de l'utilisateur que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "user",
                     "in": "body",
                     "description": "Utilisateur avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateUser"
+                        "$ref": "#/definitions/UpdateUser"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -2447,18 +2443,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "L'utilisateur a été mis à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/User"
+                        "$ref": "#/definitions/User"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour la region par l'ID donné",
                 "tags": [
-                  "User"
+                    "User"
                 ],
                 "parameters": [
                     {
@@ -2467,16 +2463,16 @@ module.exports = {
                         "required": true,
                         "description": "ID de l'utilisateur que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "user",
                     "in": "body",
                     "description": "L'utilisateur avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateUser"
+                        "$ref": "#/definitions/UpdateUser"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -2484,12 +2480,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "L'utilisateur a été mise à jour",
                     "schema": {
-                      "$ref": "#/definitions/User"
+                        "$ref": "#/definitions/User"
                     }
-                  }
+                    }
                 }
             } 
             
@@ -2509,13 +2505,13 @@ module.exports = {
                     }
                 },
                 "parameters": [
-                  {
+                    {
                     "name": "name",
                     "in": "query",
                     "description": "Nom",
                     "type":"string"
                 },
-              ],
+                ],
             },
             "post": {
                 "tags": [
@@ -2555,42 +2551,42 @@ module.exports = {
         "/videoGames/{id}": {
 
             "delete": {
-              "summary": "Supprime le jeux video par l'ID donné",
-              "tags": [
+                "summary": "Supprime le jeux video par l'ID donné",
+                "tags": [
                 "Video game"
-              ],
-              "parameters": [
+                ],
+                "parameters": [
                 {
-                  "name": "id",
-                  "in": "path",
-                  "required": true,
-                  "description": "ID du jeux video que l'on souhaite supprimer",
-                  "type": "integer"
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID du jeux video que l'on souhaite supprimer",
+                    "type": "integer"
                 },
                 {
-                  "name": "authorization",
-                  "in": "header",
-                  "description": "authorization",
-                  "value":"Bearer "
-              }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Voiture supprimée",
-                  "schema": {
-                    "$ref": "#/definitions/VideoGame"
-                  }
+                    "name": "authorization",
+                    "in": "header",
+                    "description": "authorization",
+                    "value":"Bearer "
                 }
-              }
+                ],
+                "responses": {
+                "200": {
+                    "description": "Voiture supprimée",
+                    "schema": {
+                    "$ref": "#/definitions/VideoGame"
+                    }
+                }
+                }
             },
             "get": {
                 "parameters": [
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "description": "ID de le jeux video que l'on souhaite recupérer",
-                      "type": "integer"
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de le jeux video que l'on souhaite recupérer",
+                        "type": "integer"
                     }
                 ],
                 "tags": [
@@ -2609,7 +2605,7 @@ module.exports = {
             "put": {
                 "summary": "Mettre a jour le jeux vidéo par l'ID donné ou le créer",
                 "tags": [
-                  "Video game"
+                    "Video game"
                 ],
                 "parameters": [
                     {
@@ -2618,16 +2614,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du jeux video que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "videoGame",
                     "in": "body",
                     "description": "Jeux video avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateVideoGame"
+                        "$ref": "#/definitions/UpdateVideoGame"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -2635,18 +2631,18 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le jeux video a été mis à jour ou créer",
                     "schema": {
-                      "$ref": "#/definitions/VideoGame"
+                        "$ref": "#/definitions/VideoGame"
                     }
-                  }
+                    }
                 }
             },
             "patch": {
                 "summary": "Mettre a jour le jeux vidéo par l'ID donné",
                 "tags": [
-                  "Video game"
+                    "Video game"
                 ],
                 "parameters": [
                     {
@@ -2655,16 +2651,16 @@ module.exports = {
                         "required": true,
                         "description": "ID du jeux video que l'on souhaite modifier",
                         "type": "integer"
-                      },
-                  {
+                        },
+                    {
                     "name": "videoGame",
                     "in": "body",
                     "description": "Jeux video avec les nouvelles valeurs des propriétés",
                     "schema": {
-                      "$ref": "#/definitions/UpdateVideoGame"
+                        "$ref": "#/definitions/UpdateVideoGame"
                     }
-                  },
-                  {
+                    },
+                    {
                     "name": "authorization",
                     "in": "header",
                     "description": "authorization",
@@ -2672,12 +2668,12 @@ module.exports = {
                 }
                 ],
                 "responses": {
-                  "200": {
+                    "200": {
                     "description": "Le jeux vidéo a été mise à jour",
                     "schema": {
-                      "$ref": "#/definitions/VideoGame"
+                        "$ref": "#/definitions/VideoGame"
                     }
-                  }
+                    }
                 }
             } 
             
@@ -2697,17 +2693,17 @@ module.exports = {
             }
         },
         "Auth": {
-          "properties": {
-              "email": {
-                  "type": "string",
-                  "required":true
-              },
-              "password": {
-                  "type": "string",
-                  "required":true
-              },
-          }
-      },
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "required":true
+                },
+                "password": {
+                    "type": "string",
+                    "required":true
+                },
+            }
+        },
         "UpdateAnimal": {
             "properties": {
                 "name": {
@@ -3089,4 +3085,4 @@ module.exports = {
             }
         },
     }
- }
+    }
